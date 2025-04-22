@@ -1,20 +1,11 @@
-import Link from "next/link"
+import { Hero } from "@/components/hero"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div>
+    <>
       <main>
-        <h2>Main</h2>
-        <ul>
-          <li>
-            <Link href="/login">Login</Link>
-          </li>
-          <li>
-            <Link href="/signup">Signup</Link>
-          </li>
-        </ul>
+        <Hero />
       </main>
-      <footer>Footer</footer>
-    </div>
+    </>
   )
 }

@@ -12,7 +12,7 @@ type RootLayoutProps = Readonly<{ children: React.ReactNode }>
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className="bg-slate-950 text-slate-200">
         <Header />
         {children}
       </body>

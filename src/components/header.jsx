@@ -24,7 +24,7 @@ export function Header () {
         </Link>
         {/* searchbar */}
         <form className="flex w-full md:w-[460px] lg:w-[600px]">
-          <Input type="search" placeholder="Nome do jogo que você tem ou deseja" className="placeholder:text-white/70 border-2 border-white border-r-transparent text-white rounded-tr-none rounded-br-none sm:h-10 md:h-12 md:text-lg" />
+          <Input type="search" placeholder="Jogo que você tem ou deseja" className="placeholder:text-white/70 border-2 border-white border-r-transparent text-white rounded-tr-none rounded-br-none sm:h-10 md:h-12 md:text-lg" />
           <Button type="submit" className="rounded-tl-none rounded-bl-none bg-primary-yellow hover:cursor-pointer hover:bg-primary-yellow/90 sm:h-10 md:h-12 md:w-14">
             <Search strokeWidth={3} color={primaryBlack} />
           </Button>

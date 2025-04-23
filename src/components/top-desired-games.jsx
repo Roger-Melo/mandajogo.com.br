@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { MoveRight } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import Link from "next/link"
 
 const games = [
   { title: "Astro Bot", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
@@ -15,10 +16,15 @@ function GameBadge ({ text }) {
 
 function GameCard ({ title, platform, desired, offered, rating, cover }) {
   const badgeTexts = [platform, `${desired} desejos`, `${offered} ofertas`, `Nota ${rating}`]
+  const gamePageLink = "#"
   return (
     <li className="border-2 rounded-2xl border-white/20 p-4">
-      <img src={cover} alt={title} />
-      <h3 className="text-3xl uppercase font-semibold my-4">{title}</h3>
+      <Link href={gamePageLink}>
+        <img src={cover} alt={title} />
+      </Link>
+      <Link href={gamePageLink}>
+        <h3 className="text-3xl uppercase font-semibold my-4">{title}</h3>
+      </Link>
       <div className="flex justify-between items-end">
         <ul className="max-w-48">
           {badgeTexts.map((text) => <GameBadge key={text} text={text} />)}
@@ -26,8 +32,10 @@ function GameCard ({ title, platform, desired, offered, rating, cover }) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" className="bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10">
-                <MoveRight />
+              <Button asChild size="icon" className="bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10">
+                <Link href={gamePageLink}>
+                  <MoveRight />
+                </Link>
               </Button>
             </TooltipTrigger>
             <TooltipContent>

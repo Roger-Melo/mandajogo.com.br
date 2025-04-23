@@ -5,7 +5,7 @@ const siteName = "MandaJogo"
 
 export function Hero () {
   return (
-    <div className="px-4 py-8 bg-radial-[at_25%_25%] from-primary-blue/20 to-primary-black to-75% min-[380px]:text-center lg:py-16">
+    <div className="px-4 py-8 bg-radial-[at_25%_25%] from-primary-blue/20 to-slate-950 to-75% min-[380px]:text-center lg:py-16">
       <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl lg:max-w-2xl lg:mx-auto">
         Game usado juntando poeira na estante <span className="text-primary-yellow">nunca mais</span>!
       </h1>

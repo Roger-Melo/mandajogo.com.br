@@ -7,6 +7,7 @@
   --color-primary-blue: #3A00F2;
   --color-primary-black: #0F0F0F;
   --color-primary-yellow: #FFD121;
+  --breakpoint-ssm: 28rem;
 }
 
 @theme inline {

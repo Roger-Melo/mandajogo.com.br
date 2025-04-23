@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button"
 import { MoveRight } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import Link from "next/link"
+import Image from "next/image"
 
 const games = [
   { title: "Astro Bot", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
-  { title: "Spider-Man 2", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
+  { title: "Suikoden I & II HD Remaster Gate Rune and Dunan Unification Wars", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
+  // { title: "Spider-Man 2", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
   { title: "Stellar Blade", platform: "PS5", desired: 73, offered: 31, rating: 8.8, cover: "/covers/ps5/stellar-blade.jpg" },
 ]
 
@@ -18,31 +20,41 @@ function GameCard ({ title, platform, desired, offered, rating, cover }) {
   const badgeTexts = [platform, `${desired} desejos`, `${offered} ofertas`, `Nota ${rating}`]
   const gamePageLink = "#"
   return (
-    <li className="border-2 rounded-2xl border-white/20 p-4">
-      <Link href={gamePageLink}>
-        <img src={cover} alt={title} />
+    <li className="border-2 rounded-2xl border-white/20 p-4 ssm:flex ssm:columns-2 ssm:gap-4">
+      {/* image */}
+      <Link href={gamePageLink} className="ssm:flex-shrink-0 ssm:w-[183px]">
+        <Image width={236} height={294} src={cover} alt={title} className="mx-auto w-full h-auto" />
       </Link>
-      <Link href={gamePageLink}>
-        <h3 className="text-3xl uppercase font-semibold my-4">{title}</h3>
-      </Link>
-      <div className="flex justify-between items-end">
-        <ul className="max-w-48">
-          {badgeTexts.map((text) => <GameBadge key={text} text={text} />)}
-        </ul>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button asChild size="icon" className="bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10">
-                <Link href={gamePageLink}>
-                  <MoveRight />
-                </Link>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Ver jogo</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+
+      <div>
+        {/* title */}
+        <Link href={gamePageLink}>
+          <h3 className="wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0">{title}</h3>
+        </Link>
+
+        {/* bottom container */}
+        <div className="flex justify-between items-center gap-4">
+          {/* badges list */}
+          <ul>
+            {badgeTexts.map((text) => <GameBadge key={text} text={text} />)}
+          </ul>
+
+          {/* link game page */}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button asChild size="icon" className="bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10">
+                  <Link href={gamePageLink}>
+                    <MoveRight />
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Ver jogo</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
       </div>
     </li>
   )

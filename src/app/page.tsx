@@ -1,12 +1,12 @@
 import { Hero } from "@/components/hero"
-import { TopDesiredGames } from "@/components/top-desired-games"
+import { TopGamesSection } from "@/components/top-games-section"
 
 export default function HomePage() {
   return (
     <>
       <main>
         <Hero />
-        <TopDesiredGames />
+        <TopGamesSection />
       </main>
     </>
   )

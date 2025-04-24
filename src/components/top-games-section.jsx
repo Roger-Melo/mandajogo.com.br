@@ -5,16 +5,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import Link from "next/link"
 import Image from "next/image"
 
-const games = [
+const topDesiredGames = [
   { title: "Astro Bot", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
   { title: "Spider-Man 2", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
   { title: "Stellar Blade", platform: "PS5", desired: 73, offered: 31, rating: 8.8, cover: "/covers/ps5/stellar-blade.jpg" },
-  { title: "Astro Bot 2", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
-  { title: "Spider-Man 3", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
-  { title: "Stellar Blade 2", platform: "PS5", desired: 73, offered: 31, rating: 8.8, cover: "/covers/ps5/stellar-blade.jpg" },
-  { title: "Astro Bot 3", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
-  { title: "Spider-Man 4", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
-  { title: "Stellar Blade 3", platform: "PS5", desired: 73, offered: 31, rating: 8.8, cover: "/covers/ps5/stellar-blade.jpg" },
+  { title: "The Last of Us Part II Remastered", platform: "PS5", desired: 130, offered: 41, rating: 9.3, cover: "/covers/ps5/the-last-of-us-part-ii-remastered.jpg" },
+  { title: "Cyberpunk 2077: Ultimate Edition", platform: "PS5", desired: 70, offered: 5, rating: 8.6, cover: "/covers/ps5/cyberpunk-2077-ultimate-edition.jpg" },
 ]
 
 function GameBadge ({ text }) {
@@ -65,12 +61,12 @@ function GameCard ({ title, platform, desired, offered, rating, cover }) {
   )
 }
 
-export function TopDesiredGames () {
+export function TopGamesSection () {
   return (
     <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-[1120px] md:mx-auto">
-      <h2 className="font-bold uppercase text-primary-blue mb-6">Os mais desejados</h2>
+      <h2 className="font-bold uppercase text-primary-blue mb-6">Os mais <span className="text-primary-yellow">desejados</span></h2>
       <ul className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
-        {games.map((game) => (
+        {topDesiredGames.map((game) => (
           <GameCard
             key={game.title}
             title={game.title}

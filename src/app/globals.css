@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+li {
+  list-style: none;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {

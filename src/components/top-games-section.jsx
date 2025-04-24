@@ -5,14 +5,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import Link from "next/link"
 import Image from "next/image"
 
-const topDesiredGames = [
-  { title: "Astro Bot", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
-  { title: "Spider-Man 2", platform: "PS5", desired: 249, offered: 134, rating: 9.2, cover: "/covers/ps5/spider-man-2.jpg" },
-  { title: "Stellar Blade", platform: "PS5", desired: 73, offered: 31, rating: 8.8, cover: "/covers/ps5/stellar-blade.jpg" },
-  { title: "The Last of Us Part II Remastered", platform: "PS5", desired: 130, offered: 41, rating: 9.3, cover: "/covers/ps5/the-last-of-us-part-ii-remastered.jpg" },
-  { title: "Cyberpunk 2077: Ultimate Edition", platform: "PS5", desired: 70, offered: 5, rating: 8.6, cover: "/covers/ps5/cyberpunk-2077-ultimate-edition.jpg" },
-]
-
 function GameBadge ({ text }) {
   return <Badge className="bg-white/10 text-white/80 ml-0.5">{text}</Badge>
 }
@@ -61,12 +53,12 @@ function GameCard ({ title, platform, desired, offered, rating, cover }) {
   )
 }
 
-export function TopGamesSection () {
+export function TopGamesSection ({ heading, games }) {
   return (
     <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-[1120px] md:mx-auto">
-      <h2 className="font-bold uppercase text-primary-blue mb-6">Os mais <span className="text-primary-yellow">desejados</span></h2>
+      <h2 className="font-bold uppercase text-primary-blue mb-6">{heading}</h2>
       <ul className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
-        {topDesiredGames.map((game) => (
+        {games.map((game) => (
           <GameCard
             key={game.title}
             title={game.title}

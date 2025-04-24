@@ -1,5 +1,6 @@
 import { Hero } from "@/components/hero"
 import { TopGamesSection } from "@/components/top-games-section"
+import { ExchangersRanking } from "@/components/exchangers-ranking"
 
 const topDesiredGames = [
   { title: "Astro Bot", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },
@@ -32,6 +33,7 @@ export default function HomePage() {
         <Hero />
         <TopGamesSection games={topDesiredGames} heading={<TopDesiredHeading />} />
         <TopGamesSection games={topOfferedGames} heading={<TopOfferedHeading />} />
+        <ExchangersRanking />
       </main>
     </>
   )

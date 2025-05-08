@@ -40,17 +40,26 @@ export function ExchangersRanking () {
     <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-[1120px] md:mx-auto mb-96">
       <h2 className="font-bold uppercase text-primary-blue mb-6">Ranking de <span className="text-primary-yellow">Trocadores</span></h2>
 
-      {/* mobile carousel */}
-      <Carousel className="w-full" opts={{ loop: true }}>
-        <CarouselContent>
+      <Carousel className="w-full" opts={{ loop: false, slidesToScroll: "auto", align: "start", containScroll: "trimSnaps" }}>
+        <CarouselContent className="sm:flex sm:gap-4 sm:snap-x sm:snap-mandatory">
           {topExchangers.map((exchanger) => (
             <CarouselItem key={exchanger.id} className="
               odd:bg-primary-blue
               even:text-primary-black
               even:bg-primary-yellow
               rounded-2xl
+              min-w-0
+              shrink-0
+              basis-full
               min-[430px]:flex
               min-[430px]:justify-center
+              sm:basis-[calc(50%-0.5rem)]
+              sm:shrink-0
+              sm:px-4
+              sm:min-w-0
+              sm:flex
+              sm:justify-center
+              sm:snap-start
             ">
               <Exchanger avatar={exchanger.avatar} position={exchanger.position} name={exchanger.name} city={exchanger.city} state={exchanger.state} />
             </CarouselItem>

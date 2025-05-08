@@ -44,7 +44,7 @@ export function ExchangersRanking () {
       <Carousel className="w-full" opts={{ loop: true }}>
         <CarouselContent>
           {topExchangers.map((exchanger) => (
-            <CarouselItem key={exchanger.id} className="odd:bg-primary-blue even:text-primary-black even:bg-primary-yellow rounded-2xl">
+            <CarouselItem key={exchanger.id} className="odd:bg-primary-blue even:text-primary-black even:bg-primary-yellow rounded-2xl min-[430px]:flex min-[430px]:justify-center">
               <Exchanger avatar={exchanger.avatar} position={exchanger.position} name={exchanger.name} city={exchanger.city} state={exchanger.state} />
             </CarouselItem>
           ))}

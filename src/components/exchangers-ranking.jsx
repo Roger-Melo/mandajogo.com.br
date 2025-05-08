@@ -75,6 +75,7 @@ export function ExchangersRanking () {
                 sm:flex
                 sm:justify-center
                 sm:snap-start
+                lg:basis-[calc(33%-0.5rem)]
               "
             >
               <Exchanger avatar={exchanger.avatar} position={exchanger.position} name={exchanger.name} city={exchanger.city} state={exchanger.state} />

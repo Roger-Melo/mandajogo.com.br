@@ -11,8 +11,9 @@ const topExchangers = [
   { id: randomUUID(), avatar: "/users/erich.jpg", position: 3, name: "Erich vinícius", city: "Rio de Janeiro", state: "RJ" },
 ]
 
+const tempLink = "#"
+
 function Exchanger ({ avatar, position, name, city, state }) {
-  const exchangerPageLink = "#"
   return (
     <li
       className="
@@ -29,7 +30,7 @@ function Exchanger ({ avatar, position, name, city, state }) {
       "
     >
       {/* avatar */}
-      <Link href={exchangerPageLink} className="mx-auto min-[430px]:mx-0">
+      <Link href={tempLink} className="mx-auto min-[430px]:mx-0">
         <Avatar className="w-32 h-32 border-4 border-white">
           <AvatarImage src={avatar} alt={`Avatar de ${name}`} />
           <AvatarFallback>{name}</AvatarFallback>
@@ -38,7 +39,7 @@ function Exchanger ({ avatar, position, name, city, state }) {
 
       {/* text */}
       <div>
-        <Link href={exchangerPageLink}>
+        <Link href={tempLink}>
           <h3 className="wrap-anywhere text-3xl text-center uppercase font-semibold my-4 min-[430px]:text-left min-[430px]:mt-0 min-[430px]:mb-2 sm:text-center">{name}</h3>
         </Link>
         <p>{position}º Lugar</p>
@@ -88,7 +89,9 @@ export function ExchangersRanking () {
         </div>
       </Carousel>
 
-      <h2 className="text-center mt-4">Ver ranking completo</h2>
+      <Link href={tempLink} className="text-center mt-4 mx-auto block w-fit hover:text-primary-yellow">
+        Ver ranking completo
+      </Link>
     </section>
   )
 }

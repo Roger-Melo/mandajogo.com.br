@@ -14,7 +14,18 @@ const topExchangers = [
 function Exchanger ({ avatar, position, name, city, state }) {
   const exchangerPageLink = "#"
   return (
-    <li className="flex flex-col p-4 text-center min-[430px]:flex-row min-[430px]:text-left min-[430px]:items-center min-[430px]:gap-4">
+    <li
+      className="
+        flex
+        flex-col
+        p-4
+        text-center
+        min-[430px]:flex-row
+        min-[430px]:text-left
+        min-[430px]:items-center
+        min-[430px]:gap-4
+      "
+    >
       {/* avatar */}
       <Link href={exchangerPageLink} className="mx-auto min-[430px]:mx-0">
         <Avatar className="w-32 h-32 border-4 border-white">
@@ -43,24 +54,27 @@ export function ExchangersRanking () {
       <Carousel className="w-full" opts={{ loop: false, slidesToScroll: "auto", align: "start", containScroll: "trimSnaps" }}>
         <CarouselContent className="sm:flex sm:gap-4 sm:snap-x sm:snap-mandatory">
           {topExchangers.map((exchanger) => (
-            <CarouselItem key={exchanger.id} className="
-              odd:bg-primary-blue
-              even:text-primary-black
-              even:bg-primary-yellow
-              rounded-2xl
-              min-w-0
-              shrink-0
-              basis-full
-              min-[430px]:flex
-              min-[430px]:justify-center
-              sm:basis-[calc(50%-0.5rem)]
-              sm:shrink-0
-              sm:px-4
-              sm:min-w-0
-              sm:flex
-              sm:justify-center
-              sm:snap-start
-            ">
+            <CarouselItem
+              key={exchanger.id}
+              className="
+                odd:bg-primary-blue
+                even:text-primary-black
+                even:bg-primary-yellow
+                rounded-2xl
+                min-w-0
+                shrink-0
+                basis-full
+                min-[430px]:flex
+                min-[430px]:justify-center
+                sm:basis-[calc(50%-0.5rem)]
+                sm:shrink-0
+                sm:px-4
+                sm:min-w-0
+                sm:flex
+                sm:justify-center
+                sm:snap-start
+              "
+            >
               <Exchanger avatar={exchanger.avatar} position={exchanger.position} name={exchanger.name} city={exchanger.city} state={exchanger.state} />
             </CarouselItem>
           ))}

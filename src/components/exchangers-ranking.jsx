@@ -24,6 +24,8 @@ function Exchanger ({ avatar, position, name, city, state }) {
         min-[430px]:text-left
         min-[430px]:items-center
         min-[430px]:gap-4
+        sm:flex-col
+        sm:text-center
       "
     >
       {/* avatar */}
@@ -37,7 +39,7 @@ function Exchanger ({ avatar, position, name, city, state }) {
       {/* text */}
       <div>
         <Link href={exchangerPageLink}>
-          <h3 className="wrap-anywhere text-3xl text-center uppercase font-semibold my-4 min-[430px]:text-left min-[430px]:mt-0 min-[430px]:mb-2">{name}</h3>
+          <h3 className="wrap-anywhere text-3xl text-center uppercase font-semibold my-4 min-[430px]:text-left min-[430px]:mt-0 min-[430px]:mb-2 sm:text-center">{name}</h3>
         </Link>
         <p>{position}º Lugar</p>
         <p>{`${city} - ${state}`}</p>

@@ -12,13 +12,14 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 ## TODO
 
 - Homepage + global
-  - mobile bottom bar
-  - mobile menu opened
-  - desktop consoles bar
-  - desktop top bar (mobile bottom bar)
-  - section: site statistics
   - section: launchs
-  - desktop yellow footer
+  - mobile: bottom bar
+  - mobile: menu opened
+  - desktop: consoles bar
+  - desktop: top bar (mobile bottom bar)
+  - desktop: yellow footer
+  - section: site statistics
+- remove dark mode
 - Game page
 - Sign up page
 - Login page

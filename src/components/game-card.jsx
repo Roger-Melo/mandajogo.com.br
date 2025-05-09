@@ -8,18 +8,26 @@ import Image from "next/image"
 // paragraph example
 /*
 <div className="mb-4 space-y-3 text-slate-300">
-  <p>Mergulho no Passado com Khazan: Aventure-se no Universo de DNF</p>
+  <p>Mergulhe no Passado com Khazan: Aventure-se no Universo de DNF</p>
   <p>Desperte seu herói interior em "The First Berserker: Khazan". Reviva a história de Khazan e Ozma, os lendários salvadores do Império Pell Los. Acompanhe Khazan, o herói exilado, em sua busca por justiça após ser injustamente acusado de traição. Experimente um RPG de ação carregado de batalhas intensas e uma narrativa envolvente.</p>
 </div>
 */
-
-function GameBadge ({ text }) {
-  return <Badge className="bg-white/10 text-white/80 ml-0.5">{text}</Badge>
+function GameBadgesList ({ platform, desired, offered, rating }) {
+  const badgeTexts = [platform, `${desired} desejos`, `${offered} ofertas`, `Nota ${rating}`]
+  return (
+    <ul>
+      {badgeTexts.map((text, index) =>
+        <Badge key={index} className="bg-white/10 text-white/80 ml-0.5">
+          {text}
+        </Badge>)
+      }
+    </ul>
+  )
 }
 
-export function GameCard ({ title, platform, desired, offered, rating, cover }) {
-  const badgeTexts = [platform, `${desired} desejos`, `${offered} ofertas`, `Nota ${rating}`]
+export function GameCard ({ cardType, game }) {
   const gamePageLink = "#"
+  return <p>hi</p>
   return (
     <li className="w-full gap-4 sm:w-[calc(50%-0.5rem)] border-2 rounded-2xl border-white/20 p-4 flex flex-col lg:w-[calc(33%-0.5rem)]">
       {/* image */}
@@ -35,10 +43,11 @@ export function GameCard ({ title, platform, desired, offered, rating, cover }) 
 
         {/* bottom container */}
         <div className="flex justify-between items-center gap-4 ssm:items-end">
-          {/* badges list */}
-          <ul>
-            {badgeTexts.map((text) => <GameBadge key={text} text={text} />)}
-          </ul>
+          {/* description | badges list */}
+          {description
+            ? <p>{description}</p>
+            : <GameBadgesList platform={platform} desired={desired} offered={offered} rating={rating} />
+          }
 
           {/* link game page */}
           <TooltipProvider>

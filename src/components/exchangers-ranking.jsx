@@ -51,7 +51,7 @@ function Exchanger ({ avatar, position, name, city, state }) {
 
 export function ExchangersRanking () {
   return (
-    <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-[1120px] md:mx-auto mb-96">
+    <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-[1120px] md:mx-auto">
       <h2 className="font-bold uppercase text-primary-blue mb-6">Ranking de <span className="text-primary-yellow">Trocadores</span></h2>
 
       <Carousel className="w-full" opts={{ loop: false, slidesToScroll: "auto", align: "start", containScroll: "trimSnaps" }}>

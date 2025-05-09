@@ -5,6 +5,14 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import Link from "next/link"
 import Image from "next/image"
 
+// paragraph example
+/*
+<div className="mb-4 space-y-3 text-slate-300">
+  <p>Mergulho no Passado com Khazan: Aventure-se no Universo de DNF</p>
+  <p>Desperte seu herói interior em "The First Berserker: Khazan". Reviva a história de Khazan e Ozma, os lendários salvadores do Império Pell Los. Acompanhe Khazan, o herói exilado, em sua busca por justiça após ser injustamente acusado de traição. Experimente um RPG de ação carregado de batalhas intensas e uma narrativa envolvente.</p>
+</div>
+*/
+
 function GameBadge ({ text }) {
   return <Badge className="bg-white/10 text-white/80 ml-0.5">{text}</Badge>
 }

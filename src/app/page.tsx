@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero"
-import { TopGamesSection } from "@/components/top-games-section"
+import { SectionTopGames } from "@/components/section-top-games"
 import { ExchangersRanking } from "@/components/exchangers-ranking"
 
 const topDesiredGames = [
@@ -31,8 +31,8 @@ export default function HomePage() {
     <>
       <main>
         <Hero />
-        <TopGamesSection games={topDesiredGames} heading={<TopDesiredHeading />} />
-        <TopGamesSection games={topOfferedGames} heading={<TopOfferedHeading />} />
+        <SectionTopGames games={topDesiredGames} heading={<TopDesiredHeading />} />
+        <SectionTopGames games={topOfferedGames} heading={<TopOfferedHeading />} />
         <ExchangersRanking />
       </main>
     </>

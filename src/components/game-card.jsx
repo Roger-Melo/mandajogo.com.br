@@ -26,6 +26,12 @@ function GameBadgesList ({ game }) {
   )
 }
 
+function GameDescription ({ game }) {
+  return (
+    <p className="text-primary-blue">{game.description}</p>
+  )
+}
+
 export function GameCard ({ cardType, game }) {
   return (
     <li className={cn("w-full gap-4 sm:w-[calc(50%-0.5rem)] border-2 rounded-2xl border-white/20 p-4 flex flex-col lg:w-[calc(33%-0.5rem)]", { "border-primary-blue": cardType === "newReleaseGame" })}>
@@ -37,14 +43,14 @@ export function GameCard ({ cardType, game }) {
       <div className="ssm:flex ssm:flex-col ssm:justify-between ssm:w-full sm:h-full">
         {/* title */}
         <Link href={tempLink}>
-          <h3 className="wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center">{game.title}</h3>
+          <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center", { "text-primary-blue": cardType === "newReleaseGame" })}>{game.title}</h3>
         </Link>
 
         {/* bottom container */}
         <div className="flex justify-between items-center gap-4 ssm:items-end">
-          {cardType === "topGame"
-            ? <GameBadgesList game={game} />
-            : <p>{game.description}</p>
+          {cardType === "newReleaseGame"
+            ? <GameDescription game={game} />
+            : <GameBadgesList game={game} />
           }
 
           {/* link game page */}

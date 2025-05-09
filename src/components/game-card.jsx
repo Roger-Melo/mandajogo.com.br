@@ -6,13 +6,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { cn, tempLink } from "@/lib/utils"
 
-// paragraph example
-/*
-<div className="mb-4 space-y-3 text-slate-300">
-  <p>Mergulhe no Passado com Khazan: Aventure-se no Universo de DNF</p>
-  <p>Desperte seu herói interior em "The First Berserker: Khazan". Reviva a história de Khazan e Ozma, os lendários salvadores do Império Pell Los. Acompanhe Khazan, o herói exilado, em sua busca por justiça após ser injustamente acusado de traição. Experimente um RPG de ação carregado de batalhas intensas e uma narrativa envolvente.</p>
-</div>
-*/
 function GameBadgesList ({ game }) {
   const badgeTexts = [game.platform, `${game.desired} desejos`, `${game.offered} ofertas`, `Nota ${game.rating}`]
   return (
@@ -34,20 +27,23 @@ function GameDescription ({ game }) {
 
 export function GameCard ({ cardType, game }) {
   return (
-    <li className={cn("w-full gap-4 sm:w-[calc(50%-0.5rem)] border-2 rounded-2xl border-white/20 p-4 flex flex-col lg:w-[calc(33%-0.5rem)]", { "border-primary-blue": cardType === "newReleaseGame" })}>
+    <li className={cn("w-full gap-4 sm:w-[calc(50%-0.5rem)] border-2 rounded-2xl border-white/20 p-4 flex flex-col lg:w-[calc(33%-0.5rem)]", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : "")}>
       {/* image */}
       <Link href={tempLink} className="ssm:flex-shrink-0 ssm:w-[183px] sm:mx-auto">
         <Image width={236} height={294} src={game.cover} alt={game.title} className="mx-auto w-full h-auto" />
       </Link>
 
-      <div className="ssm:flex ssm:flex-col ssm:justify-between ssm:w-full sm:h-full">
+      <div className={cn("ssm:flex ssm:flex-col ssm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "ssm:justify-between")}>
         {/* title */}
         <Link href={tempLink}>
           <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center", { "text-primary-blue": cardType === "newReleaseGame" })}>{game.title}</h3>
         </Link>
 
         {/* bottom container */}
-        <div className="flex justify-between items-center gap-4 ssm:items-end">
+        <div className={cn(
+          "flex justify-between items-center gap-4 ssm:items-end",
+          { "flex-col": cardType === "newReleaseGame" }
+        )}>
           {cardType === "newReleaseGame"
             ? <GameDescription game={game} />
             : <GameBadgesList game={game} />
@@ -57,9 +53,24 @@ export function GameCard ({ cardType, game }) {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button asChild size="icon" className="bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10">
+                <Button
+                  asChild
+                  size="icon"
+                  className={cn(`
+                    bg-transparent
+                  border-white/20
+                    border-2
+                    hover:bg-transparent
+                    hover:cursor-pointer
+                  hover:border-white/10
+                  `,
+                    cardType === "newReleaseGame"
+                      ? "self-end border-primary-blue hover:border-primary-blue"
+                      : ""
+                  )}
+                >
                   <Link href={tempLink}>
-                    <MoveRight />
+                    <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
                   </Link>
                 </Button>
               </TooltipTrigger>
@@ -70,6 +81,6 @@ export function GameCard ({ cardType, game }) {
           </TooltipProvider>
         </div>
       </div>
-    </li>
+    </li >
   )
 }

@@ -12,7 +12,7 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 ## TODO
 
 - Homepage + global
-  - section: launchs
+  - section: new releases
   - mobile: bottom bar
   - mobile: menu opened
   - desktop: consoles bar
@@ -23,5 +23,3 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 - Game page
 - Sign up page
 - Login page
-- 
-- 

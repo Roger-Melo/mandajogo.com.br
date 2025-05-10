@@ -2,7 +2,6 @@ import { GameCard } from "@/components/game-card"
 
 export function SectionNewReleases ({ games }) {
   return (
-    // <section className="px-4 py-8 bg-primary-yellow lg:py-16 md:max-w-[1120px] md:mx-auto">
     <section className="px-4 py-8 bg-primary-yellow lg:py-16">
       <div className="md:max-w-[1120px] md:mx-auto">
         <h2 className="font-bold uppercase text-primary-blue mb-6">Lançamentos</h2>

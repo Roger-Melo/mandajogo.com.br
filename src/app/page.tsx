@@ -15,7 +15,7 @@ function TopOfferedHeading() {
 export default function HomePage() {
   return (
     <>
-      <main>
+      <main className="pb-10">
         <Hero />
         <SectionTopGames games={topDesiredGames} heading={<TopDesiredHeading />} />
         <SectionTopGames games={topOfferedGames} heading={<TopOfferedHeading />} />

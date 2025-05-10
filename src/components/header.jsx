@@ -8,7 +8,7 @@ const primaryBlack = "#0F0F0F"
 
 export function Header () {
   return (
-    <header className="w-full bg-primary-blue">
+    <header className="w-full bg-primary-blue md:pt-16">
       <div className="mx-auto flex flex-col gap-3 py-4 px-4 items-center sm:flex-row sm:gap-8 sm:px-12 md:px-10 md:gap-7 md:justify-between lg:max-w-[1120px]">
         {/* logo */}
         <Link href="/">

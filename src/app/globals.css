@@ -8,9 +8,9 @@ li {
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-primary-blue: #3A00F2;
+  --color-primary-blue: #220CEA;
   --color-primary-black: #0F0F0F;
-  --color-primary-yellow: #FFD121;
+  --color-primary-yellow: #FFD221;
   --breakpoint-ssm: 28rem;
 }
 

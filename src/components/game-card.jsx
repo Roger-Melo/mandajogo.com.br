@@ -69,18 +69,13 @@ function GamePageButton ({ cardType }) {
 export function GameCard ({ cardType, game }) {
   return (
     <li className={cn("w-full gap-4 sm:w-[calc(50%-0.5rem)] border-2 rounded-2xl border-white/20 p-4 flex flex-col lg:w-[calc(33%-0.5rem)]", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : "")}>
-      {/* image */}
       <Link href={tempLink} className="ssm:flex-shrink-0 ssm:w-[183px] sm:mx-auto">
         <Image width={236} height={294} src={game.cover} alt={game.title} className="mx-auto w-full h-auto" />
       </Link>
-
       <div className={cn("ssm:flex ssm:flex-col ssm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "ssm:justify-between")}>
-        {/* title */}
         <Link href={tempLink}>
           <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center", { "text-primary-blue": cardType === "newReleaseGame" })}>{game.title}</h3>
         </Link>
-
-        {/* bottom container */}
         <div className={cn("flex justify-between items-center gap-4 ssm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
           {cardType === "newReleaseGame"
             ? (
@@ -94,6 +89,6 @@ export function GameCard ({ cardType, game }) {
           {cardType === "topGame" && <GamePageButton cardType={cardType} />}
         </div>
       </div>
-    </li >
+    </li>
   )
 }

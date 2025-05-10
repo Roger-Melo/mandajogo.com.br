@@ -57,16 +57,7 @@ function GamePlatformLinksList ({ game }) {
 function GamePageButton ({ cardType }) {
   return (
     <GameTooltip text="Ver jogo">
-      <Button asChild size="icon" className={cn(`
-        bg-transparent
-      border-white/20
-        border-2
-        hover:bg-transparent
-        hover:cursor-pointer
-      hover:border-white/10
-      `,
-        cardType === "newReleaseGame" ? "self-end border-primary-blue hover:border-primary-blue" : ""
-      )}>
+      <Button asChild size="icon" className={cn(`bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10`, cardType === "newReleaseGame" ? "self-end border-primary-blue hover:border-primary-blue" : "")}>
         <Link href={tempLink}>
           <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
         </Link>

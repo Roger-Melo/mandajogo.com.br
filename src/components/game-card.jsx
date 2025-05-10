@@ -25,14 +25,29 @@ function GameDescription ({ game }) {
   )
 }
 
+function GameTooltip ({ text, children }) {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipContent>
+          <p>{text}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+
 function GamePlatformLinksList ({ game }) {
   return (
     <ul className="flex gap-2">
       {game.platforms.map((platform) =>
         <li key={platform.name}>
-          <Link href={tempLink}>
-            <img className="w-20 h-auto" src={platform.logo} alt={`${platform.name} logo`} />
-          </Link>
+          <GameTooltip text="Ver jogo">
+            <Link href={tempLink}>
+              <img className="w-20 h-auto" src={platform.logo} alt={`${platform.name} logo`} />
+            </Link>
+          </GameTooltip>
         </li>
       )}
     </ul>
@@ -70,13 +85,11 @@ export function GameCard ({ cardType, game }) {
 
           {/* link game page */}
           {cardType === "topGame" && (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    asChild
-                    size="icon"
-                    className={cn(`
+            <GameTooltip text="Ver jogo">
+              <Button
+                asChild
+                size="icon"
+                className={cn(`
                     bg-transparent
                   border-white/20
                     border-2
@@ -84,21 +97,16 @@ export function GameCard ({ cardType, game }) {
                     hover:cursor-pointer
                   hover:border-white/10
                   `,
-                      cardType === "newReleaseGame"
-                        ? "self-end border-primary-blue hover:border-primary-blue"
-                        : ""
-                    )}
-                  >
-                    <Link href={tempLink}>
-                      <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
-                    </Link>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Ver jogo</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+                  cardType === "newReleaseGame"
+                    ? "self-end border-primary-blue hover:border-primary-blue"
+                    : ""
+                )}
+              >
+                <Link href={tempLink}>
+                  <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
+                </Link>
+              </Button>
+            </GameTooltip>
           )}
         </div>
       </div>

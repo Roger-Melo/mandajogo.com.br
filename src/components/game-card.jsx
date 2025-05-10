@@ -25,6 +25,20 @@ function GameDescription ({ game }) {
   )
 }
 
+function GamePlatformLinksList ({ game }) {
+  return (
+    <ul className="flex gap-2">
+      {game.platforms.map((platform) =>
+        <li key={platform.name}>
+          <Link href={tempLink}>
+            <img className="w-20 h-auto" src={platform.logo} alt={`${platform.name} logo`} />
+          </Link>
+        </li>
+      )}
+    </ul>
+  )
+}
+
 export function GameCard ({ cardType, game }) {
   return (
     <li className={cn("w-full gap-4 sm:w-[calc(50%-0.5rem)] border-2 rounded-2xl border-white/20 p-4 flex flex-col lg:w-[calc(33%-0.5rem)]", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : "")}>
@@ -45,18 +59,24 @@ export function GameCard ({ cardType, game }) {
           { "flex-col": cardType === "newReleaseGame" }
         )}>
           {cardType === "newReleaseGame"
-            ? <GameDescription game={game} />
+            ? (
+              <>
+                <GameDescription game={game} />
+                <GamePlatformLinksList game={game} />
+              </>
+            )
             : <GameBadgesList game={game} />
           }
 
           {/* link game page */}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  asChild
-                  size="icon"
-                  className={cn(`
+          {cardType === "topGame" && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    asChild
+                    size="icon"
+                    className={cn(`
                     bg-transparent
                   border-white/20
                     border-2
@@ -64,21 +84,22 @@ export function GameCard ({ cardType, game }) {
                     hover:cursor-pointer
                   hover:border-white/10
                   `,
-                    cardType === "newReleaseGame"
-                      ? "self-end border-primary-blue hover:border-primary-blue"
-                      : ""
-                  )}
-                >
-                  <Link href={tempLink}>
-                    <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Ver jogo</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+                      cardType === "newReleaseGame"
+                        ? "self-end border-primary-blue hover:border-primary-blue"
+                        : ""
+                    )}
+                  >
+                    <Link href={tempLink}>
+                      <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Ver jogo</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
         </div>
       </div>
     </li >

@@ -13,6 +13,7 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 
 - Homepage + global
   - section: new releases
+    - grid como em "Loved by businesses worldwide": https://salient.tailwindui.com/
   - mobile: bottom bar
   - mobile: menu opened
   - desktop: consoles bar

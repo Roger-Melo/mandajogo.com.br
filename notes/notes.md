@@ -13,7 +13,11 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 
 - Homepage + global
   ✅ section: new releases
-  - mobile: bottom bar
+  - menu bar
+    - mobile: logged in
+    - mobile: logged out
+    - desktop: logged out
+    - desktop: logged in
   - mobile: menu opened
   - desktop: consoles bar
   - desktop: top bar (mobile bottom bar)

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { MenuBar } from "@/components/menu-bar"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="pt-BR">
       <body className="bg-slate-950 text-slate-200">
+        <MenuBar />
         <Header />
         {children}
       </body>

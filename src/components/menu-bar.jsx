@@ -5,21 +5,21 @@ import Link from "next/link"
 import { LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon } from "lucide-react"
 import { tempLink } from "@/lib/utils"
 
-const oportunitiesLink = { href: tempLink, text: "Oportunidades", icon: Handshake }
-const messagesLink = { href: tempLink, text: "Mensagens", icon: MessageCircle }
-const desiresLink = { href: tempLink, text: "Desejos", icon: Heart }
-const collectionLink = { href: tempLink, text: "Coleção", icon: Library }
+const oportunitiesLink = { id: Math.random(), href: tempLink, text: "Oportunidades", icon: Handshake }
+const messagesLink = { id: Math.random(), href: tempLink, text: "Mensagens", icon: MessageCircle }
+const desiresLink = { id: Math.random(), href: tempLink, text: "Desejos", icon: Heart }
+const collectionLink = { id: Math.random(), href: tempLink, text: "Coleção", icon: Library }
 
 const mobileLinks = [oportunitiesLink, messagesLink, desiresLink, collectionLink]
 
 const mdLinks = [
   oportunitiesLink,
-  { href: tempLink, text: "Propostas", icon: ListChecks },
-  { href: tempLink, text: "Trocas", icon: ArrowRightLeft },
+  { id: Math.random(), href: tempLink, text: "Propostas", icon: ListChecks },
+  { id: Math.random(), href: tempLink, text: "Trocas", icon: ArrowRightLeft },
   desiresLink,
   collectionLink,
   messagesLink,
-  { href: tempLink, text: "Preferências", icon: Settings },
+  { id: Math.random(), href: tempLink, text: "Preferências", icon: Settings },
 ]
 
 function MenuBarLink ({ href, text, icon: Icon }) {
@@ -49,17 +49,18 @@ function useBreakpoint () {
 
 export function MenuBar () {
   const { isMdBreakpoint } = useBreakpoint()
-  const links = isMdBreakpoint ? mdLinks : mobileLinks
+  const links = isMdBreakpoint
+    ? mdLinks.map((link) => ["Mensagens", "Preferências"].some((t) => t === link.text) ? { ...link, text: "" } : link)
+    : mobileLinks
   return (
-    // md:bottom-auto md:top-0 md:bg-primary-black md:px-10
-    <nav className="bg-primary-blue text-white fixed bottom-0 left-0 right-0 z-50">
-      <div className="flex items-center justify-between px-2 py-3 gap-4">
-        {/* lg-only heading */}
-        <strong className="hidden">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
+    <nav className="bg-primary-blue text-white fixed bottom-0 left-0 right-0 z-50 md:bg-slate-950 md:bottom-auto md:top-0 md:px-8">
+      <div className="flex items-center justify-between px-2 py-3 gap-4 lg:max-w-[1120px] lg:mx-auto lg:px-0">
+        {/* xl-only heading */}
+        <strong className="hidden xl:block xl:text-xs xl:uppercase">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
 
-        <ul className="flex justify-around flex-1">
+        <ul className="flex justify-around flex-1 md:items-center md:justify-end md:gap-3">
           {links.map((link) =>
-            <MenuBarLink key={link.text} href={link.href} text={link.text} icon={link.icon} />)}
+            <MenuBarLink key={link.id} href={link.href} text={link.text} icon={link.icon} />)}
           {/* mobile-only Menu button */}
           <li className="flex flex-col items-center justify-center md:hidden">
             <MenuIcon className="h-5 w-5 mb-1" />
@@ -67,8 +68,9 @@ export function MenuBar () {
           </li>
 
           {/* md-only Logout button */}
-          <li className="hidden">
-            <button><LogOut /> Sair</button>
+          <li className="hidden md:flex md:gap-1 md:items-center">
+            <LogOut className="h-5 w-5" />
+            <span className="text-xs md:uppercase md:leading-none">Sair</span>
           </li>
         </ul>
       </div>

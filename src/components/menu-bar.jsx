@@ -1,12 +1,25 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Handshake, MessageCircle, Heart, Library, MenuIcon } from "lucide-react"
+import { LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon } from "lucide-react"
 import { tempLink } from "@/lib/utils"
 
-const mobileLinks = [
-  { href: tempLink, text: "Oportunidades", icon: Handshake },
-  { href: tempLink, text: "Mensagens", icon: MessageCircle },
-  { href: tempLink, text: "Desejos", icon: Heart },
-  { href: tempLink, text: "Coleção", icon: Library },
+const oportunitiesLink = { href: tempLink, text: "Oportunidades", icon: Handshake }
+const messagesLink = { href: tempLink, text: "Mensagens", icon: MessageCircle }
+const desiresLink = { href: tempLink, text: "Desejos", icon: Heart }
+const collectionLink = { href: tempLink, text: "Coleção", icon: Library }
+
+const mobileLinks = [oportunitiesLink, messagesLink, desiresLink, collectionLink]
+
+const mdLinks = [
+  oportunitiesLink,
+  { href: tempLink, text: "Propostas", icon: ListChecks },
+  { href: tempLink, text: "Trocas", icon: ArrowRightLeft },
+  desiresLink,
+  collectionLink,
+  messagesLink,
+  { href: tempLink, text: "Preferências", icon: Settings },
 ]
 
 function MenuBarLink ({ href, text, icon: Icon }) {
@@ -18,18 +31,35 @@ function MenuBarLink ({ href, text, icon: Icon }) {
   )
 }
 
+function useBreakpoint () {
+  const [isMdBreakpoint, setIsMdBreakpoint] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)") // md breakpoint in Tailwind
+    const handleChange = () => setIsMdBreakpoint(mediaQuery.matches)
+
+    handleChange() // set initial value
+    mediaQuery.addEventListener("change", handleChange)
+
+    return () => mediaQuery.removeEventListener("change", handleChange)
+  }, [])
+
+  return { isMdBreakpoint }
+}
+
 export function MenuBar () {
+  const { isMdBreakpoint } = useBreakpoint()
+  const links = isMdBreakpoint ? mdLinks : mobileLinks
   return (
     <nav>
       <div>
         <strong>MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
         <ul>
-          <li>Oportunidades</li>
-          <li>Mensagens</li>
-          <li>Desejos</li>
-          <li>Coleção</li>
+          {links.map((link) =>
+            <MenuBarLink key={link.text} href={link.href} text={link.text} icon={link.icon} />)}
         </ul>
         <button>Menu</button>
+        <button><LogOut /> Sair</button>
       </div>
     </nav>
   )

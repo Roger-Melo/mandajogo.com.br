@@ -57,20 +57,20 @@ export function MenuBar () {
         {/* lg-only heading */}
         <strong className="hidden">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
 
-        {/* lg-only heading */}
         <ul className="flex justify-around flex-1">
           {links.map((link) =>
             <MenuBarLink key={link.text} href={link.href} text={link.text} icon={link.icon} />)}
+          {/* mobile-only Menu button */}
+          <li className="flex flex-col items-center justify-center md:hidden">
+            <MenuIcon className="h-5 w-5 mb-1" />
+            <span className="text-xs">Menu</span>
+          </li>
+
+          {/* md-only Logout button */}
+          <li className="hidden">
+            <button><LogOut /> Sair</button>
+          </li>
         </ul>
-
-        {/* mobile-only Menu button */}
-        <div className="flex flex-col items-center justify-center md:hidden">
-          <MenuIcon className="h-5 w-5 mb-1" />
-          <span className="text-xs">Menu</span>
-        </div>
-
-        {/* md-only Logout button */}
-        <button className="hidden"><LogOut /> Sair</button>
       </div>
     </nav>
   )

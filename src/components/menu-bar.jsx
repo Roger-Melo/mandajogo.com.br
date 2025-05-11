@@ -23,6 +23,8 @@ export function MenuBar () {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between bg-primary-blue text-white w-full px-2 py-3 ssm:px-4 md:bottom-auto md:top-0 md:bg-primary-black md:px-10">
       {links.map((link) => <MenuBarLink key={link.text} href={link.href} text={link.text} icon={link.icon} />)}
+
+      {/* Mobile-only Menu button */}
       <div className="flex flex-col items-center justify-center md:hidden">
         <MenuIcon className="h-5 w-5 mb-1" />
         <span className="text-xs">Menu</span>

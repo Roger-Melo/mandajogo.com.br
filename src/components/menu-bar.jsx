@@ -51,15 +51,26 @@ export function MenuBar () {
   const { isMdBreakpoint } = useBreakpoint()
   const links = isMdBreakpoint ? mdLinks : mobileLinks
   return (
-    <nav>
-      <div>
-        <strong>MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
-        <ul>
+    // md:bottom-auto md:top-0 md:bg-primary-black md:px-10
+    <nav className="bg-primary-blue text-white fixed bottom-0 left-0 right-0 z-50">
+      <div className="flex w-full items-center justify-between px-2 py-3 gap-3">
+        {/* lg-only heading */}
+        <strong className="hidden">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
+
+        {/* lg-only heading */}
+        <ul className="flex w-full justify-between">
           {links.map((link) =>
             <MenuBarLink key={link.text} href={link.href} text={link.text} icon={link.icon} />)}
         </ul>
-        <button>Menu</button>
-        <button><LogOut /> Sair</button>
+
+        {/* mobile-only Menu button */}
+        <div className="flex flex-col items-center justify-center md:hidden">
+          <MenuIcon className="h-5 w-5 mb-1" />
+          <span className="text-xs">Menu</span>
+        </div>
+
+        {/* md-only Logout button */}
+        <button className="hidden"><LogOut /> Sair</button>
       </div>
     </nav>
   )

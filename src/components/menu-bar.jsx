@@ -53,12 +53,12 @@ export function MenuBar () {
   return (
     // md:bottom-auto md:top-0 md:bg-primary-black md:px-10
     <nav className="bg-primary-blue text-white fixed bottom-0 left-0 right-0 z-50">
-      <div className="flex w-full items-center justify-between px-2 py-3 gap-3">
+      <div className="flex items-center justify-between px-2 py-3 gap-4">
         {/* lg-only heading */}
         <strong className="hidden">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
 
         {/* lg-only heading */}
-        <ul className="flex w-full justify-between">
+        <ul className="flex justify-around flex-1">
           {links.map((link) =>
             <MenuBarLink key={link.text} href={link.href} text={link.text} icon={link.icon} />)}
         </ul>

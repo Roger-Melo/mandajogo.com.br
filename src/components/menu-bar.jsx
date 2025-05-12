@@ -54,7 +54,7 @@ export function MenuBar () {
     : mobileLinks
   return (
     <nav className="bg-primary-blue text-white fixed bottom-0 left-0 right-0 z-50 md:bg-slate-950 md:bottom-auto md:top-0 md:px-8">
-      <div className="flex items-center justify-between px-2 py-3 gap-4 lg:max-w-[1120px] lg:mx-auto lg:px-0">
+      <div className="flex items-center justify-between px-2 py-3 gap-4 lg:max-w-site-width lg:mx-auto lg:px-0">
         {/* xl-only heading */}
         <strong className="hidden xl:block xl:text-xs xl:uppercase">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
 

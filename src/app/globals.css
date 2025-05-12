@@ -12,6 +12,7 @@ li {
   --color-primary-black: #0F0F0F;
   --color-primary-yellow: #FFD221;
   --breakpoint-ssm: 28rem;
+  --container-site-width: 1120px;
 }
 
 @theme inline {

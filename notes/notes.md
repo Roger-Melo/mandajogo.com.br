@@ -15,7 +15,7 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   ✅ section: new releases
   - menu bar
     ✅ mobile: logged in
-    - desktop: logged in
+    ✅ desktop: logged in
     - mobile: logged out
     - desktop: logged out
   - mobile: menu opened

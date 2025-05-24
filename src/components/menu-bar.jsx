@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { Logo } from "@/components/logo"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
-import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
 import { cn, tempLink } from "@/lib/utils"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
@@ -73,21 +75,37 @@ function DrawerMobileMenu () {
         </li>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="bg-amber-600">
+        <div className="bg-primary-blue">
           <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+            <div className="flex justify-end">
+              <DrawerClose asChild>
+                <Button variant="ghost" className="bg-transparent w-12 h-12">
+                  <X strokeWidth={3} />
+                </Button>
+              </DrawerClose>
+            </div>
+            <DrawerTitle>
+              <div className="flex justify-center">
+                <Logo />
+              </div>
+            </DrawerTitle>
+            <DrawerDescription></DrawerDescription>
           </DrawerHeader>
+          <ul>
+            <li>
+              <Link href={tempLink}>
+                <img className="w-20 h-auto" src="/logos/ps5.svg" alt={`PS5 logo`} />
+              </Link>
+            </li>
+          </ul>
+          {/* menu items */}
           <div className="p-4 pb-0 bg-red-700">
             <div className="flex items-center justify-center space-x-2">
               <h2>Hello</h2>
             </div>
           </div>
           <DrawerFooter>
-            <button>Submit</button>
-            <DrawerClose asChild>
-              <button variant="outline">Cancel</button>
-            </DrawerClose>
+            {/* another links */}
           </DrawerFooter>
         </div>
       </DrawerContent>

@@ -1,10 +1,11 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { MoveRight } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import Link from "next/link"
 import Image from "next/image"
 import { cn, tempLink } from "@/lib/utils"
+import { PlatformsList } from "@/components/platforms-list"
+import { GameTooltip } from "@/components/game-tooltip"
 
 function GameBadgesList ({ game }) {
   const badgeTexts = [game.platform, `${game.desired} desejos`, `${game.offered} ofertas`, `Nota ${game.rating}`]
@@ -22,35 +23,6 @@ function GameBadgesList ({ game }) {
 function GameDescription ({ game }) {
   return (
     <p className="text-primary-blue">{game.description}</p>
-  )
-}
-
-function GameTooltip ({ text, children }) {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent>
-          <p>{text}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
-}
-
-function GamePlatformLinksList ({ game }) {
-  return (
-    <ul className="flex gap-2">
-      {game.platforms.map((platform) =>
-        <li key={platform.name}>
-          <GameTooltip text="Ver jogo">
-            <Link href={tempLink}>
-              <img className="w-20 h-auto" src={platform.logo} alt={`${platform.name} logo`} />
-            </Link>
-          </GameTooltip>
-        </li>
-      )}
-    </ul>
   )
 }
 
@@ -81,7 +53,7 @@ export function GameCard ({ cardType, game }) {
             ? (
               <>
                 <GameDescription game={game} />
-                <GamePlatformLinksList game={game} />
+                <PlatformsList game={game} />
               </>
             )
             : <GameBadgesList game={game} />

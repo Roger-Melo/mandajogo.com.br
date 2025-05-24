@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus } from "lucide-react"
 import { cn, tempLink } from "@/lib/utils"
 
@@ -62,6 +63,38 @@ function getLinks ({ user, isMdBreakpoint }) {
   return loggedUserLinks
 }
 
+function DrawerMobileMenu () {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <li className="flex flex-col items-center justify-center md:hidden">
+          <MenuIcon className="h-5 w-5 mb-1" />
+          <span className="text-xs">Menu</span>
+        </li>
+      </DrawerTrigger>
+      <DrawerContent>
+        <div className="bg-amber-600">
+          <DrawerHeader>
+            <DrawerTitle>Move Goal</DrawerTitle>
+            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4 pb-0 bg-red-700">
+            <div className="flex items-center justify-center space-x-2">
+              <h2>Hello</h2>
+            </div>
+          </div>
+          <DrawerFooter>
+            <button>Submit</button>
+            <DrawerClose asChild>
+              <button variant="outline">Cancel</button>
+            </DrawerClose>
+          </DrawerFooter>
+        </div>
+      </DrawerContent>
+    </Drawer>
+  )
+}
+
 export function MenuBar () {
   const { isMdBreakpoint } = useBreakpoint()
   const user = true // this const is a temp placeholder to test markup & styling
@@ -74,13 +107,7 @@ export function MenuBar () {
 
         <ul className="flex justify-around flex-1 md:items-center md:justify-end md:gap-3">
           {links.map((link) => <MenuBarLink key={link.id} href={link.href} text={link.text} icon={link.icon} user={user} />)}
-          {/* mobile-and-logged-user-only Menu button */}
-          {user && (
-            <li className="flex flex-col items-center justify-center md:hidden">
-              <MenuIcon className="h-5 w-5 mb-1" />
-              <span className="text-xs">Menu</span>
-            </li>
-          )}
+          {user && !isMdBreakpoint && <DrawerMobileMenu />}
 
           {/* md-only Logout button */}
           {user && (

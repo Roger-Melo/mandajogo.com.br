@@ -16,8 +16,8 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   - menu bar
     ✅ mobile: logged in
     ✅ desktop: logged in
-    - mobile: logged out
-    - desktop: logged out
+    ✅ mobile: logged out
+    ✅ desktop: logged out
   - mobile: menu opened
   - desktop: consoles bar
   - desktop: top bar (mobile bottom bar)

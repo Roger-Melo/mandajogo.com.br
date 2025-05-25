@@ -1,16 +1,18 @@
 import Link from "next/link"
-import { GameTooltip } from "@/components/game-tooltip"
+import { ReusableTooltip } from "@/components/reusable-tooltip"
+import { cn } from "@/lib/utils"
 
-export function PlatformsList ({ game }) {
+export function PlatformsList ({ data, tooltipText, logosWidth, linksType }) {
+  // linksType: "platform" | "game"
   return (
     <ul className="flex gap-2">
-      {game.platforms.map((platform) =>
-        <li key={platform.name}>
-          <GameTooltip text="Ver jogo">
-            <Link href="#">
-              <img className="w-20 h-auto" src={platform.logo} alt={`${platform.name} logo`} />
+      {data.platforms.map((item) =>
+        <li key={item.name}>
+          <ReusableTooltip text={tooltipText}>
+            <Link href={linksType === "game" ? `/game/${item.permalink}/${data.supplyPermalink}` : "#"}>
+              <img className={cn("h-auto", logosWidth)} src={`/logos/${item.permalink}.svg`} alt={`${item.name} logo`} />
             </Link>
-          </GameTooltip>
+          </ReusableTooltip>
         </li>
       )}
     </ul>

@@ -6,7 +6,8 @@ import { Logo } from "@/components/logo"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, platforms } from "@/lib/utils"
+import { PlatformsList } from "@/components/platforms-list"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
   return (
@@ -75,7 +76,7 @@ function DrawerMobileMenu () {
         </li>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="bg-primary-blue">
+        <div className="bg-primary-blue space-y-6">
           <DrawerHeader>
             <div className="flex justify-end">
               <DrawerClose asChild>
@@ -91,13 +92,7 @@ function DrawerMobileMenu () {
             </DrawerTitle>
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
-          <ul>
-            <li>
-              <Link href="#">
-                <img className="w-20 h-auto" src="/logos/ps5.svg" alt={`PS5 logo`} />
-              </Link>
-            </li>
-          </ul>
+          <PlatformsList data={platforms} tooltipText="Ver página" logosWidth="w-28" linksType="platform" />
           {/* menu items */}
           <div className="p-4 pb-0 bg-red-700">
             <div className="flex items-center justify-center space-x-2">

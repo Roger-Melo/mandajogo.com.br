@@ -4,12 +4,13 @@ import { cn } from "@/lib/utils"
 
 export function PlatformsList ({ data, tooltipText, logosWidth, linksType }) {
   // linksType: "platform" | "game"
+  const dataArray = linksType === "game" ? data.platforms : data
   return (
-    <ul className="flex gap-2">
-      {data.platforms.map((item) =>
-        <li key={item.name}>
+    <ul className={cn("flex gap-2", linksType === "game" ? "" : "flex-wrap justify-center")}>
+      {dataArray.map((item, index) =>
+        <li key={index}>
           <ReusableTooltip text={tooltipText}>
-            <Link href={linksType === "game" ? `/game/${item.permalink}/${data.supplyPermalink}` : "#"}>
+            <Link href={linksType === "game" ? `/game/${item.permalink}/${data.supplyPermalink}` : `/console/${item.permalink}`}>
               <img className={cn("h-auto", logosWidth)} src={`/logos/${item.permalink}.svg`} alt={`${item.name} logo`} />
             </Link>
           </ReusableTooltip>

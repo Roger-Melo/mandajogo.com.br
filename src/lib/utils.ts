@@ -23,6 +23,15 @@ export const topOfferedGames = [
   { id: Math.random(), title: "Ratchet & Clank: Rift Apart", platform: "PS5", desired: 210, offered: 268, rating: 8.8, cover: "/covers/ps5/ratchet-and-clank-rift-apart.jpg" },
 ]
 
+export const platforms = [
+  { id: Math.random(), name: "Playstation 5", permalink: "ps5", },
+  { id: Math.random(), name: "Playstation 4", permalink: "ps4", },
+  { id: Math.random(), name: "XBOX One", permalink: "xbox-one", },
+  { id: Math.random(), name: "Nintendo Switch", permalink: "switch", },
+  { id: Math.random(), name: "Wii U", permalink: "wii-u", },
+  { id: Math.random(), name: "Playstation 3", permalink: "ps3", },
+]
+
 export const newReleases = [
   {
     id: Math.random(),

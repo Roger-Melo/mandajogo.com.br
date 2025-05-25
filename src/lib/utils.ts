@@ -97,3 +97,23 @@ export const newReleases = [
     description: "Suikoden I & II HD Remaster: Clássicos RPGs Ganham Vida Nova no PS5!\n\nOs lendários jogos de RPG Suikoden I e II retornam com um remaster em HD, trazendo uma experiência visual e sonora totalmente revigorada. Gráficos e sons foram atualizados para proporcionar ao jogador um mergulho ainda mais profundo nas histórias épicas desses clássicos. Não perca a oportunidade de reviver essa aventura melhor do que nunca!"
   },
 ]
+
+export const drawerMobilePrimaryLinks = [
+  { href: "#", text: "Propostas" },
+  { href: "#", text: "Trocas em Andamento" },
+  { href: "#", text: "Histórico de Trocas" },
+  { href: "#", text: "Seguindo" },
+  { href: "#", text: "Preferências" },
+  { href: "#", text: "Editar Cadastro" },
+]
+
+export const drawerMobileSecondaryLinks = [
+  { href: "#", text: "Blog" },
+  { href: "#", text: "Ranking de Trocadores" },
+  { href: "#", text: "Dicas" },
+  { href: "#", text: "Dúvidas Frequentes" },
+  { href: "#", text: "Fale Conosco" },
+  { href: "#", text: "Termos de Uso" },
+  { href: "#", text: "Política de Privacidade" },
+  { href: "#", text: "Sair" },
+]

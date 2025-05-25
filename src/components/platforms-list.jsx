@@ -6,7 +6,7 @@ export function PlatformsList ({ data, tooltipText, logosWidth, linksType }) {
   // linksType: "platform" | "game"
   const dataArray = linksType === "game" ? data.platforms : data
   return (
-    <ul className={cn("flex gap-2", linksType === "game" ? "" : "flex-wrap justify-center")}>
+    <ul className={cn("flex gap-2", linksType === "game" ? "" : "flex-wrap justify-center px-4")}>
       {dataArray.map((item, index) =>
         <li key={index}>
           <ReusableTooltip text={tooltipText}>

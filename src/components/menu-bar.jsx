@@ -6,7 +6,7 @@ import { Logo } from "@/components/logo"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
-import { cn, platforms } from "@/lib/utils"
+import { cn, platforms, drawerMobilePrimaryLinks, drawerMobileSecondaryLinks } from "@/lib/utils"
 import { PlatformsList } from "@/components/platforms-list"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
@@ -66,25 +66,17 @@ function getLinks ({ user, isMdBreakpoint }) {
   return loggedUserLinks
 }
 
-const drawerMobilePrimaryLinks = [
-  { href: "#", text: "Propostas" },
-  { href: "#", text: "Trocas em Andamento" },
-  { href: "#", text: "Histórico de Trocas" },
-  { href: "#", text: "Seguindo" },
-  { href: "#", text: "Preferências" },
-  { href: "#", text: "Editar Cadastro" },
-]
-
-const drawerMobileSecondaryLinks = [
-  { href: "#", text: "Blog" },
-  { href: "#", text: "Ranking de Trocadores" },
-  { href: "#", text: "Dicas" },
-  { href: "#", text: "Dúvidas Frequentes" },
-  { href: "#", text: "Fale Conosco" },
-  { href: "#", text: "Termos de Uso" },
-  { href: "#", text: "Política de Privacidade" },
-  { href: "#", text: "Sair" },
-]
+function DrawerMobileLinksList ({ data }) {
+  return (
+    <ul className="divide-y-1">
+      {data.map((link) =>
+        <li key={link.text} className="text-lg py-2">
+          <Link href={link.href}>{link.text}</Link>
+        </li>
+      )}
+    </ul>
+  )
+}
 
 function DrawerMobileMenu () {
   return (
@@ -113,22 +105,10 @@ function DrawerMobileMenu () {
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <PlatformsList data={platforms} tooltipText="Ver página" logosWidth="w-28" linksType="platform" />
-          <nav className="bg-red-700">
-            <ul className="">
-              {drawerMobilePrimaryLinks.map((link) =>
-                <li key={link.text}>
-                  <Link href={link.href}>{link.text}</Link>
-                </li>
-              )}
-            </ul>
-            <h2 className="text-yellow-300">Outros links</h2>
-            <ul>
-              {drawerMobileSecondaryLinks.map((link) =>
-                <li key={link.text}>
-                  <Link href={link.href}>{link.text}</Link>
-                </li>
-              )}
-            </ul>
+          <nav className="px-4 pt-4 pb-8">
+            <DrawerMobileLinksList data={drawerMobilePrimaryLinks} />
+            <h2 className="text-sm font-bold mt-8 mb-2">Outros links</h2>
+            <DrawerMobileLinksList data={drawerMobileSecondaryLinks} />
           </nav>
         </div>
       </DrawerContent>

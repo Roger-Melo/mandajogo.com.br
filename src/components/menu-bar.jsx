@@ -95,7 +95,7 @@ function DrawerMobileMenu () {
           <span className="text-xs">Menu</span>
         </li>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="bg-primary-blue">
         <div className="bg-primary-blue space-y-6">
           <DrawerHeader>
             <div className="flex justify-end">

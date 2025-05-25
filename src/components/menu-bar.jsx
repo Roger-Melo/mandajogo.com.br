@@ -6,7 +6,7 @@ import { Logo } from "@/components/logo"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
-import { cn, tempLink } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
   return (
@@ -36,27 +36,27 @@ function useBreakpoint () {
 function getLinks ({ user, isMdBreakpoint }) {
   if (!user) {
     const notLoggedUserLinks = [
-      { id: Math.random(), href: tempLink, text: "Participar do MandaJogo", icon: UserRoundPlus },
-      { id: Math.random(), href: tempLink, text: "Acessar minha conta", icon: LogIn },
+      { id: Math.random(), href: "#", text: "Participar do MandaJogo", icon: UserRoundPlus },
+      { id: Math.random(), href: "#", text: "Acessar minha conta", icon: LogIn },
     ]
     return notLoggedUserLinks
   }
 
-  const oportunitiesLink = { id: Math.random(), href: tempLink, text: "Oportunidades", icon: Handshake }
-  const messagesLink = { id: Math.random(), href: tempLink, text: "Mensagens", icon: MessageCircle }
-  const desiresLink = { id: Math.random(), href: tempLink, text: "Desejos", icon: Heart }
-  const collectionLink = { id: Math.random(), href: tempLink, text: "Coleção", icon: Library }
+  const oportunitiesLink = { id: Math.random(), href: "#", text: "Oportunidades", icon: Handshake }
+  const messagesLink = { id: Math.random(), href: "#", text: "Mensagens", icon: MessageCircle }
+  const desiresLink = { id: Math.random(), href: "#", text: "Desejos", icon: Heart }
+  const collectionLink = { id: Math.random(), href: "#", text: "Coleção", icon: Library }
 
   const loggedUserMobileLinks = [oportunitiesLink, messagesLink, desiresLink, collectionLink]
 
   const loggedUserMdLinks = [
     oportunitiesLink,
-    { id: Math.random(), href: tempLink, text: "Propostas", icon: ListChecks },
-    { id: Math.random(), href: tempLink, text: "Trocas", icon: ArrowRightLeft },
+    { id: Math.random(), href: "#", text: "Propostas", icon: ListChecks },
+    { id: Math.random(), href: "#", text: "Trocas", icon: ArrowRightLeft },
     desiresLink,
     collectionLink,
     messagesLink,
-    { id: Math.random(), href: tempLink, text: "Preferências", icon: Settings },
+    { id: Math.random(), href: "#", text: "Preferências", icon: Settings },
   ]
 
   const loggedUserLinks = isMdBreakpoint
@@ -93,7 +93,7 @@ function DrawerMobileMenu () {
           </DrawerHeader>
           <ul>
             <li>
-              <Link href={tempLink}>
+              <Link href="#">
                 <img className="w-20 h-auto" src="/logos/ps5.svg" alt={`PS5 logo`} />
               </Link>
             </li>

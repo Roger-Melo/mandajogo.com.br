@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Logo } from "@/components/logo"
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
 import { cn, platforms } from "@/lib/utils"
@@ -66,6 +66,26 @@ function getLinks ({ user, isMdBreakpoint }) {
   return loggedUserLinks
 }
 
+const drawerMobilePrimaryLinks = [
+  { href: "#", text: "Propostas" },
+  { href: "#", text: "Trocas em Andamento" },
+  { href: "#", text: "Histórico de Trocas" },
+  { href: "#", text: "Seguindo" },
+  { href: "#", text: "Preferências" },
+  { href: "#", text: "Editar Cadastro" },
+]
+
+const drawerMobileSecondaryLinks = [
+  { href: "#", text: "Blog" },
+  { href: "#", text: "Ranking de Trocadores" },
+  { href: "#", text: "Dicas" },
+  { href: "#", text: "Dúvidas Frequentes" },
+  { href: "#", text: "Fale Conosco" },
+  { href: "#", text: "Termos de Uso" },
+  { href: "#", text: "Política de Privacidade" },
+  { href: "#", text: "Sair" },
+]
+
 function DrawerMobileMenu () {
   return (
     <Drawer>
@@ -93,15 +113,23 @@ function DrawerMobileMenu () {
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <PlatformsList data={platforms} tooltipText="Ver página" logosWidth="w-28" linksType="platform" />
-          {/* menu items */}
-          <div className="p-4 pb-0 bg-red-700">
-            <div className="flex items-center justify-center space-x-2">
-              <h2>Hello</h2>
-            </div>
-          </div>
-          <DrawerFooter>
-            {/* another links */}
-          </DrawerFooter>
+          <nav className="bg-red-700">
+            <ul className="">
+              {drawerMobilePrimaryLinks.map((link) =>
+                <li key={link.text}>
+                  <Link href={link.href}>{link.text}</Link>
+                </li>
+              )}
+            </ul>
+            <h2 className="text-yellow-300">Outros links</h2>
+            <ul>
+              {drawerMobileSecondaryLinks.map((link) =>
+                <li key={link.text}>
+                  <Link href={link.href}>{link.text}</Link>
+                </li>
+              )}
+            </ul>
+          </nav>
         </div>
       </DrawerContent>
     </Drawer>

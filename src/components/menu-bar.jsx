@@ -96,7 +96,7 @@ function DrawerMobileMenu () {
         </li>
       </DrawerTrigger>
       <DrawerContent className="bg-primary-blue">
-        <div className="bg-primary-blue space-y-6">
+        <div className="flex flex-col max-h-[100dvh] overflow-y-auto space-y-6">
           <DrawerHeader>
             <div className="flex justify-end">
               <DrawerClose asChild>

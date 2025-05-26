@@ -6,7 +6,8 @@ import { Logo } from "@/components/logo"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
-import { cn, platforms, drawerMobilePrimaryLinks, drawerMobileSecondaryLinks, siteName, siteDescription } from "@/lib/utils"
+import { cn, siteName, siteDescription } from "@/lib/utils"
+import { platforms } from "@/db/sample-data"
 import { PlatformsList } from "@/components/platforms-list"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
@@ -77,6 +78,26 @@ function DrawerMobileLinksList ({ data }) {
     </ul>
   )
 }
+
+const drawerMobilePrimaryLinks = [
+  { href: "#", text: "Propostas" },
+  { href: "#", text: "Trocas em Andamento" },
+  { href: "#", text: "Histórico de Trocas" },
+  { href: "#", text: "Seguindo" },
+  { href: "#", text: "Preferências" },
+  { href: "#", text: "Editar Cadastro" },
+]
+
+const drawerMobileSecondaryLinks = [
+  { href: "#", text: "Blog" },
+  { href: "#", text: "Ranking de Trocadores" },
+  { href: "#", text: "Dicas" },
+  { href: "#", text: "Dúvidas Frequentes" },
+  { href: "#", text: "Fale Conosco" },
+  { href: "#", text: "Termos de Uso" },
+  { href: "#", text: "Política de Privacidade" },
+  { href: "#", text: "Sair" },
+]
 
 function DrawerMobileMenu () {
   return (

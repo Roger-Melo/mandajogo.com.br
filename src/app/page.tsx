@@ -2,7 +2,7 @@ import { Hero } from "@/components/hero"
 import { SectionTopGames } from "@/components/section-top-games"
 import { SectionNewReleases } from "@/components/section-new-releases"
 import { ExchangersRanking } from "@/components/exchangers-ranking"
-import { topDesiredGames, topOfferedGames, newReleases } from "@/lib/utils"
+import { topDesiredGames, topOfferedGames, newReleases } from "@/db/sample-data"
 
 function TopDesiredHeading() {
   return <>Os mais <span className="text-primary-yellow">desejados</span></>

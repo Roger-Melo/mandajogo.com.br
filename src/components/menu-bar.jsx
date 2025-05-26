@@ -70,7 +70,7 @@ function DrawerMobileLinksList ({ data }) {
   return (
     <ul className="divide-y-1">
       {data.map((link) =>
-        <li key={link.text} className="text-lg py-2">
+        <li key={link.text} className="text-lg py-3">
           <Link href={link.href}>{link.text}</Link>
         </li>
       )}

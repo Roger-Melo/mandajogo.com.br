@@ -6,7 +6,7 @@ import { Logo } from "@/components/logo"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
-import { cn, platforms, drawerMobilePrimaryLinks, drawerMobileSecondaryLinks } from "@/lib/utils"
+import { cn, platforms, drawerMobilePrimaryLinks, drawerMobileSecondaryLinks, siteName } from "@/lib/utils"
 import { PlatformsList } from "@/components/platforms-list"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
@@ -37,7 +37,7 @@ function useBreakpoint () {
 function getLinks ({ user, isMdBreakpoint }) {
   if (!user) {
     const notLoggedUserLinks = [
-      { id: Math.random(), href: "#", text: "Participar do MandaJogo", icon: UserRoundPlus },
+      { id: Math.random(), href: "#", text: `Participar do ${siteName}`, icon: UserRoundPlus },
       { id: Math.random(), href: "#", text: "Acessar minha conta", icon: LogIn },
     ]
     return notLoggedUserLinks
@@ -124,7 +124,7 @@ export function MenuBar () {
     <nav className="bg-primary-blue text-white fixed bottom-0 left-0 right-0 z-50 md:bg-slate-950 md:bottom-auto md:top-0">
       <div className="flex items-center justify-between px-2 py-3 gap-4 md:px-10 lg:max-w-site-width lg:mx-auto xl:px-0">
         {/* xl-only heading */}
-        <strong className="hidden xl:block xl:text-xs xl:uppercase">MandaJogo - Comunidade de Troca de Jogos de Videogame</strong>
+        <strong className="hidden xl:block xl:text-xs xl:uppercase">{siteName} - Comunidade de Troca de Jogos de Videogame</strong>
 
         <ul className="flex justify-around flex-1 md:items-center md:justify-end md:gap-3">
           {links.map((link) => <MenuBarLink key={link.id} href={link.href} text={link.text} icon={link.icon} user={user} />)}

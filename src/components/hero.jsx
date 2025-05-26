@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { UserRoundPlus } from "lucide-react"
-
-const siteName = "MandaJogo"
+import { siteName } from "@/lib/utils"
 
 export function Hero () {
   return (

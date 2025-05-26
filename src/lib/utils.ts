@@ -5,6 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const siteName = "MandaJogo"
+
 export const topDesiredGames = [
   { id: Math.random(), title: "The Last of Us Part II Remastered", platform: "PS5", desired: 130, offered: 41, rating: 9.3, cover: "/covers/ps5/the-last-of-us-part-ii-remastered.jpg" },
   { id: Math.random(), title: "Astro Bot", platform: "PS5", desired: 70, offered: 30, rating: 9.3, cover: "/covers/ps5/astro-bot.jpg" },

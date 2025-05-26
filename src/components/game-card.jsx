@@ -38,15 +38,26 @@ function GamePageButton ({ cardType, gamePageLink }) {
   )
 }
 
+function getPageLink ({ cardType, game }) {
+  return cardType === "topGame"
+    ? `/game/${game.platform.slug}/${game.slug}`
+    : `/game/${game.platforms[0].slug}/${game.slug}`
+}
+
+function getImageSrc ({ cardType, game }) {
+  const platformSlug = cardType === "topGame" ? game.platform.slug : game.platforms[0].slug
+  return `/covers/${platformSlug}/${game.imageCover}`
+}
+
 export function GameCard ({ cardType, game }) {
-  const gamePageLink = `/game/${game.platform.slug}/${game.slug}`
+  const pageLink = getPageLink({ cardType, game })
   return (
     <li className={cn("break-inside-avoid mb-4 w-full border-2 rounded-2xl border-white/20 p-4 flex flex-col gap-4", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : "")}>
-      <Link href={gamePageLink} className="ssm:flex-shrink-0 ssm:w-[183px] sm:mx-auto">
-        <Image width={236} height={294} src={`/covers/${game.platform.slug}/${game.imageCover}`} alt={game.title} className="mx-auto w-full h-auto" />
+      <Link href={pageLink} className="ssm:flex-shrink-0 ssm:w-[183px] sm:mx-auto">
+        <Image width={236} height={294} src={getImageSrc({ cardType, game })} alt={game.title} className="mx-auto w-full h-auto" />
       </Link>
       <div className={cn("ssm:flex ssm:flex-col ssm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "ssm:justify-between")}>
-        <Link href={gamePageLink}>
+        <Link href={pageLink}>
           <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center", { "text-primary-blue": cardType === "newReleaseGame" })}>{game.title}</h3>
         </Link>
         <div className={cn("flex justify-between items-center gap-4 ssm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
@@ -59,7 +70,7 @@ export function GameCard ({ cardType, game }) {
             )
             : <GameBadgesList game={game} />
           }
-          {cardType === "topGame" && <GamePageButton cardType={cardType} gamePageLink={gamePageLink} />}
+          {cardType === "topGame" && <GamePageButton cardType={cardType} gamePageLink={pageLink} />}
         </div>
       </div>
     </li>

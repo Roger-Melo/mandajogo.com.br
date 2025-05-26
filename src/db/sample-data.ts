@@ -156,8 +156,8 @@ export const newReleases = [
     slug: "atomfall",
     releasedOn: "2025-05-30T03:00:00Z",
     platforms: [
-      { name: "Playstation 5", slug: "ps5", company: "Sony" },
       { name: "Playstation 4", slug: "ps4", company: "Sony" },
+      { name: "Playstation 5", slug: "ps5", company: "Sony" },
     ],
     description: "Prepare-se para uma jornada intensa em \"Atomfall\", onde suas escolhas serão cruciais em um cenário devastado por um desastre nuclear. Explore a tranquila, mas perigosa, paisagem do campo britânico e descubra os segredos ocultos dessa intrigante narrativa. Cada decisão pode mudar o rumo de sua sobrevivência!",
   },

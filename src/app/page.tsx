@@ -20,7 +20,7 @@ export default function HomePage() {
         <SectionTopGames games={topDesiredGames} heading={<TopDesiredHeading />} />
         <SectionTopGames games={topOfferedGames} heading={<TopOfferedHeading />} />
         <ExchangersRanking />
-        {/* <SectionNewReleases games={newReleases} /> */}
+        <SectionNewReleases games={newReleases} />
       </main>
     </>
   )

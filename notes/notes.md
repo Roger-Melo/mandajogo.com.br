@@ -18,12 +18,14 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
     ✅ desktop: logged in
     ✅ mobile: logged out
     ✅ desktop: logged out
-  - mobile: menu opened
+  ✅ mobile: menu opened
+  ✅ desktop: top bar (mobile bottom bar)
   - desktop: consoles bar
-  - desktop: top bar (mobile bottom bar)
   - desktop: yellow footer
   - section: site statistics
-- remove dark mode
 - Game page
+  - 🚧 dynamic route
+- Automated tests
+- remove dark mode
 - Sign up page
 - Login page

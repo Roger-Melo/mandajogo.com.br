@@ -1,18 +1,7 @@
 import Link from "next/link"
 import { ReusableTooltip } from "@/components/reusable-tooltip"
 import { cn } from "@/lib/utils"
-/*
-  {
-    imageCover: "stellar-blade.jpg",
-    slug: "suikoden-i-and-ii-hd-remaster-gate-rune-and-dunan-unification-wars",
-    releasedOn: "2025-05-30T03:00:00Z",
-    platforms: [
-      { name: "Playstation 5", slug: "ps5", company: "Sony" },
-      { name: "Nintendo Switch", slug: "nintendo-switch", company: "Nintendo" },
-    ],
-    description: "...",
-  },
-*/
+
 export function PlatformsList ({ data, tooltipText, logosWidth, linksType }) {
   // linksType: "platform" | "game"
   const dataArray = linksType === "game" ? data.platforms : data

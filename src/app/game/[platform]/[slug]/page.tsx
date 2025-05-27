@@ -111,7 +111,7 @@ export default async function GamePage({ params }: GamePageProps) {
                 <div>
                   <div>
                     <a href="/profile/aryhoo">
-                      <Image src="https://cdn.trocajogo.net/users/a66dc119-b704-45f0-b69a-8282b11e8167.jpg" alt="Rafael" title="Rafael" />
+                      <img width={50} height={50} src="https://cdn.trocajogo.net/users/a66dc119-b704-45f0-b69a-8282b11e8167.jpg" alt="Rafael" title="Rafael" />
                     </a>
                   </div>
                   <div>
@@ -126,7 +126,7 @@ export default async function GamePage({ params }: GamePageProps) {
               </div>
             </td>
             <td>
-              <Image alt="" title="" src="https://cdn.trocajogo.net/static/gauge5.svg" />
+              <img alt="" title="" src="https://cdn.trocajogo.net/static/gauge5.svg" />
             </td>
             <td>
               <div>

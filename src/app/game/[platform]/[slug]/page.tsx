@@ -13,17 +13,14 @@ export default async function GamePage({ params }: GamePageProps) {
   console.log("slug:", slug, "platform:", platform)
   return (
     <main className="pb-10">
-      <section className="px-4 py-8 bg-slate-950 md:max-w-site-width md:mx-auto lg:py-16 lg:flex lg:px-10">
-        <article className="bg-red-600 lg:flex">
-          {/* image container */}
-          <div className="flex flex-col items-center bg-sky-500">
-            {/* image */}
-            <div className="flex flex-col items-center">
-              <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm" />
+      <section className="px-4 py-8 bg-slate-950 md:max-w-site-width md:mx-auto lg:py-16 lg:flex lg:px-10 xl:px-0">
+        <article className="bg-red-600 lg:flex lg:w-3/4">
+          <div className="flex flex-col items-center bg-sky-500 lg:w-1/4 lg:items-start">
+            <div className="flex flex-col items-center lg:items-start">
+              <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm lg:w-36" />
               <Image unoptimized width={112} height={30} className="h-auto w-20 my-4" src={`/logos/${game.platformSlug}.svg`} alt={`${game.platformName} logo`} />
             </div>
-            {/* game info */}
-            <ul className="flex gap-4 justify-center sm:gap-8 lg:flex-col">
+            <ul className="flex gap-4 justify-center sm:gap-8 lg:flex-col lg:gap-2">
               <li className="flex gap-1 items-center">
                 <Heart className="w-4 translate-y-[1px] sm:w-6" />
                 <span className="text-xs sm:text-base">
@@ -47,8 +44,7 @@ export default async function GamePage({ params }: GamePageProps) {
               </li>
             </ul>
           </div>
-          {/* text container */}
-          <div className="bg-amber-400 sm:max-w-xl sm:mx-auto md:text-center md:my-8">
+          <div className="bg-amber-400 sm:max-w-xl sm:mx-auto md:text-center md:my-8 lg:w-3/4">
             <div className="bg-black my-6">
               <small className="block text-sm text-slate-400">{game.platformName}</small>
               <h1 className="text-3xl font-bold mt-1 mb-3">{game.title}</h1>
@@ -215,7 +211,7 @@ export default async function GamePage({ params }: GamePageProps) {
           </div>
         </article>
 
-        <aside className="bg-green-500">
+        <aside className="bg-green-500 lg:w-1/4">
           <h3>Video Promocional</h3>
           {/* youtube video */}
           <h3>Jogos Similares</h3>

@@ -217,7 +217,7 @@ export const platforms = [
   { id: Math.random(), name: "Playstation 3", slug: "ps3", },
 ]
 
-export const eldenRing = {
+export const game = {
   title: "Elden Ring",
   description: "Elden Ring certamente se provou o jogo mais ambicioso da FromSoftware e removeu qualquer preocupação de mudanças drásticas. Tudo que foi adicionado vem para acrescentar e enaltecer o que a empresa faz de melhor. O escopo maior da experiência é um presente e um deleite aos fãs, que ficarão felizes em saber que há mais conteúdo e de maior qualidade.",
   slug: "elden-ring",

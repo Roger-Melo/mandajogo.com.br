@@ -1,6 +1,8 @@
 import Image from "next/image"
-import { cn } from "@/lib/utils"
-import { eldenRing as gameData } from "@/db/sample-data"
+import { HandHelping, Heart, Star } from "lucide-react"
+import { game } from "@/db/sample-data"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -11,30 +13,58 @@ export default async function GamePage({ params }: GamePageProps) {
   console.log("slug:", slug, "platform:", platform)
   return (
     <main className="pb-10">
-      <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-site-width md:mx-auto">
-        <ul className="flex gap-2 justify-center">
-          <li>{gameData.wishes} Desejos</li>
-          <li>{gameData.offers} Ofertas</li>
-          <li>Nota {gameData.scoreMandaJogo}</li>
-        </ul>
+      <section className="px-4 py-8 bg-slate-950 md:max-w-site-width md:mx-auto lg:py-16">
+        <article className="flex flex-col items-center">
+          <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm" />
+          <Image unoptimized width={112} height={30} className="h-auto w-20 my-4" src={`/logos/${game.platformSlug}.svg`} alt={`${game.platformName} logo`} />
 
-        <article>
-          <Image width={236} height={294} src="/covers/ps5/elden-ring.jpg" alt="Elden Ring" className="mx-auto w-full h-auto" />
-          <Image unoptimized width={112} height={30} className={cn("h-auto", "w-52")} src={`/logos/ps5.svg`} alt={`PlayStation 5 logo`} />
+          <ul className="flex gap-4 justify-center sm:gap-8">
+            <li className="flex gap-1 items-center">
+              <Heart className="w-4 translate-y-[1px] sm:w-6" />
+              <span className="text-xs sm:text-base">
+                <span className="font-bold">{game.wishes}</span>{" "}
+                Desejos
+              </span>
+            </li>
+            <li className="flex gap-1 items-center">
+              <HandHelping className="w-4 translate-y-[1px] sm:w-6" />
+              <span className="text-xs sm:text-base">
+                <span className="font-bold">{game.offers}</span>{" "}
+                Ofertas
+              </span>
+            </li>
+            <li className="flex gap-1 items-center">
+              <Star className="w-4 translate-y-[1px] sm:w-6" />
+              <span className="text-xs sm:text-base">
+                Nota{" "}
+                <span className="font-bold">{game.scoreMandaJogo}</span>
+              </span>
+            </li>
+          </ul>
+
+          <div className="my-6">
+            <small className="block text-sm text-slate-400">{game.platformName}</small>
+            <h1 className="text-3xl font-bold mt-1 mb-3">{game.title}</h1>
+            <p className="text-slate-300">{game.description}</p>
+          </div>
+
+          <ul className="flex gap-3 w-full justify-between mb-8">
+            <li className="w-full">
+              <Button className="bg-primary-yellow pb-3 w-full text-slate-900" asChild>
+                <Link href="#">
+                  <Heart className="translate-y-[1px]" />Eu quero
+                </Link>
+              </Button>
+            </li>
+            <li className="w-full">
+              <Button className="bg-primary-blue pb-3 w-full" asChild>
+                <Link href="#">
+                  <Star className="translate-y-[1px]" />Eu tenho
+                </Link>
+              </Button>
+            </li>
+          </ul>
         </article>
-
-        <small>Playstation 5</small>
-        <h1>Elden Ring</h1>
-        <p>Elden Ring certamente se provou o jogo mais ambicioso da FromSoftware e removeu qualquer preocupação de mudanças drásticas. Tudo que foi adicionado vem para acrescentar e enaltecer o que a empresa faz de melhor. O escopo maior da experiência é um presente e um deleite aos fãs, que ficarão felizes em saber que há mais conteúdo e de maior qualidade.</p>
-
-        <ul>
-          <li>
-            <button>Eu quero</button>
-          </li>
-          <li>
-            <button>Eu tenho</button>
-          </li>
-        </ul>
 
         <button>Proprietários</button>{/* Interessados | Ficha Técnica */}
         <form>

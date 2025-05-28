@@ -214,15 +214,17 @@ export default async function GamePage({ params }: GamePageProps) {
         </article>
 
         <aside className="space-y-6 mb-48 md:px-6 lg:px-0">
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg text-slate-400">Vídeo Promocional</h3>
             <iframe className="aspect-video w-full" src={`https://www.youtube.com/embed/${game.urlVideo}`} allowFullScreen />
           </div>
-          <div className="hidden lg:block lg:space-y-4">
+          <div className="hidden lg:block lg:space-y-2">
             <h3 className="text-lg text-slate-400">Jogos Similares</h3>
-            <ul className="grid grid-cols-2 gap-2">
-              <GameCard cardType="similarGame" key={1} game={topDesiredGames[0]} />
-              <GameCard cardType="similarGame" key={2} game={topDesiredGames[1]} />
+            <ul className="grid grid-cols-3 gap-2">
+              {topDesiredGames
+                .filter((filteredGame) => filteredGame.title !== game.title)
+                .map((game) => <GameCard cardType="similarGame" key={game.id} game={game} />)
+              }
             </ul>
           </div>
         </aside>

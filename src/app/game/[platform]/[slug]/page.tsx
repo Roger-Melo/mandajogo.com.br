@@ -53,14 +53,14 @@ export default async function GamePage({ params }: GamePageProps) {
 
             <ul className="flex gap-3 w-full justify-between mb-8 sm:w-sm sm:gap-4 sm:mx-auto lg:mx-0">
               <li className="w-full">
-                <Button className="bg-primary-yellow pb-3 w-full text-slate-900" asChild>
+                <Button className="font-medium bg-primary-yellow pb-3 w-full text-slate-900 hover:bg-primary-yellow/90" asChild>
                   <Link href="#">
                     <Heart />Eu quero
                   </Link>
                 </Button>
               </li>
               <li className="w-full">
-                <Button className="bg-primary-blue pb-3 w-full" asChild>
+                <Button className="font-medium bg-primary-blue pb-3 w-full hover:bg-primary-blue/80" asChild>
                   <Link href="#">
                     <Star />Eu tenho
                   </Link>

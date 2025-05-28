@@ -22,21 +22,21 @@ export default async function GamePage({ params }: GamePageProps) {
             </div>
             <ul className="flex gap-4 justify-center sm:gap-8 lg:flex-col lg:gap-2">
               <li className="flex gap-1 items-center lg:gap-2">
-                <Heart className="w-4 translate-y-[1px] sm:w-6" />
+                <Heart className="w-4 sm:w-6" />
                 <span className="text-xs sm:text-base">
                   <span className="font-bold">{game.wishes}</span>{" "}
                   Desejos
                 </span>
               </li>
               <li className="flex gap-1 items-center lg:gap-2">
-                <HandHelping className="w-4 translate-y-[1px] sm:w-6" />
+                <HandHelping className="w-4 sm:w-6" />
                 <span className="text-xs sm:text-base">
                   <span className="font-bold">{game.offers}</span>{" "}
                   Ofertas
                 </span>
               </li>
               <li className="flex gap-1 items-center lg:gap-2">
-                <Star className="w-4 translate-y-[1px] sm:w-6" />
+                <Star className="w-4 sm:w-6" />
                 <span className="text-xs sm:text-base">
                   Nota{" "}
                   <span className="font-bold">{game.scoreMandaJogo}</span>
@@ -55,14 +55,14 @@ export default async function GamePage({ params }: GamePageProps) {
               <li className="w-full">
                 <Button className="bg-primary-yellow pb-3 w-full text-slate-900" asChild>
                   <Link href="#">
-                    <Heart className="translate-y-[1px]" />Eu quero
+                    <Heart />Eu quero
                   </Link>
                 </Button>
               </li>
               <li className="w-full">
                 <Button className="bg-primary-blue pb-3 w-full" asChild>
                   <Link href="#">
-                    <Star className="translate-y-[1px]" />Eu tenho
+                    <Star />Eu tenho
                   </Link>
                 </Button>
               </li>

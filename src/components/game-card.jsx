@@ -39,21 +39,24 @@ function GamePageButton ({ cardType, gamePageLink }) {
 }
 
 function getPageLink ({ cardType, game }) {
-  return cardType === "topGame"
+  return cardType === "topGame" || cardType === "similarGame"
     ? `/game/${game.platform.slug}/${game.slug}`
     : `/game/${game.platforms[0].slug}/${game.slug}`
 }
 
 function getImageSrc ({ cardType, game }) {
-  const platformSlug = cardType === "topGame" ? game.platform.slug : game.platforms[0].slug
+  const platformSlug = cardType === "topGame" || cardType === "similarGame"
+    ? game.platform.slug
+    : game.platforms[0].slug
   return `/covers/${platformSlug}/${game.imageCover}`
 }
 
 export function GameCard ({ cardType, game }) {
+  // cardType: "topGame" | "newReleaseGame" | "similarGame"
   const pageLink = getPageLink({ cardType, game })
   return (
     <li className={cn("break-inside-avoid mb-4 w-full border-2 rounded-2xl border-white/20 p-4 flex flex-col gap-4", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : "")}>
-      <Link href={pageLink} className="ssm:flex-shrink-0 ssm:w-[183px] sm:mx-auto">
+      <Link href={pageLink} className={cn("ssm:flex-shrink-0 sm:mx-auto", { "ssm:w-[183px]": cardType !== "similarGame" })}>
         <Image width={236} height={294} src={getImageSrc({ cardType, game })} alt={game.title} className="mx-auto w-full h-auto" />
       </Link>
       <div className={cn("ssm:flex ssm:flex-col ssm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "ssm:justify-between")}>
@@ -61,18 +64,20 @@ export function GameCard ({ cardType, game }) {
           <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center", { "text-primary-blue": cardType === "newReleaseGame" })}>{game.title}</h3>
         </Link>
         <div className={cn("flex justify-between items-center gap-4 ssm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
-          {cardType === "newReleaseGame"
-            ? (
-              <>
-                <GameDescription game={game} />
-                <PlatformsList data={game} tooltipText="Ver jogo" logosWidth="w-20" linksType="game" />
-              </>
-            )
-            : <GameBadgesList game={game} />
-          }
-          {cardType === "topGame" && <GamePageButton cardType={cardType} gamePageLink={pageLink} />}
+          {cardType === "newReleaseGame" && (
+            <>
+              <GameDescription game={game} />
+              <PlatformsList data={game} tooltipText="Ver jogo" logosWidth="w-20" linksType="game" />
+            </>
+          )}
+          {cardType === "topGame" && (
+            <>
+              <GameBadgesList game={game} />
+              <GamePageButton cardType={cardType} gamePageLink={pageLink} />
+            </>
+          )}
         </div>
       </div>
-    </li>
+    </li >
   )
 }

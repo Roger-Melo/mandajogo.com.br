@@ -1,8 +1,10 @@
+import Link from "next/link"
 import Image from "next/image"
 import { HandHelping, Heart, Star } from "lucide-react"
 import { game } from "@/db/sample-data"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { GameCard } from "@/components/game-card"
+import { topDesiredGames } from "@/db/sample-data"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -218,7 +220,10 @@ export default async function GamePage({ params }: GamePageProps) {
           </div>
           <div className="hidden lg:block lg:space-y-4">
             <h3 className="text-lg text-slate-400">Jogos Similares</h3>
-            {/* games list */}
+            <ul className="grid grid-cols-2 gap-2">
+              <GameCard cardType="similarGame" key={1} game={topDesiredGames[0]} />
+              <GameCard cardType="similarGame" key={2} game={topDesiredGames[1]} />
+            </ul>
           </div>
         </aside>
       </section>

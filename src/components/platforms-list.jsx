@@ -10,7 +10,7 @@ export function PlatformsList ({ data, tooltipText, logosWidth, linksType }) {
       {dataArray.map((item, index) =>
         <li key={index}>
           <ReusableTooltip text={tooltipText}>
-            <Link href={linksType === "game" ? `/game/${item.slug}/${data.slug}` : `/console/${item.slug}`}>
+            <Link href={linksType === "game" ? `/game/${item.slug}/${data.slug}` : `#`}>
               <img className={cn("h-auto", logosWidth)} src={`/logos/${item.slug}.svg`} alt={`${item.name} logo`} />
             </Link>
           </ReusableTooltip>

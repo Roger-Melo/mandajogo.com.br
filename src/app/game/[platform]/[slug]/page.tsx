@@ -12,10 +12,10 @@ export default async function GamePage({ params }: GamePageProps) {
   const { slug, platform } = await params
   console.log("slug:", slug, "platform:", platform)
   return (
-    <main className="pb-10">
-      <section className="outline-2 outline-green-500 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 xl:px-0 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6">
-        <article className="outline-2 outline-red-500 lg:grid lg:grid-cols-[1fr_3fr] lg:gap-6">
-          <div className="outline-2 outline-sky-500 flex flex-col items-center lg:items-start">
+    <main className="pb-10 bg-radial-[at_25%_25%] from-primary-blue/10 to-slate-950 to-75%">
+      <section className="flex flex-col gap-8 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 xl:px-0 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6">
+        <article className="lg:grid lg:grid-cols-[1fr_3fr] lg:gap-6">
+          <div className="flex flex-col items-center lg:items-start">
             <div className="flex flex-col items-center lg:items-start">
               <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm lg:w-36" />
               <Image unoptimized width={112} height={30} className="h-auto w-20 my-4" src={`/logos/${game.platformSlug}.svg`} alt={`${game.platformName} logo`} />
@@ -44,11 +44,11 @@ export default async function GamePage({ params }: GamePageProps) {
               </li>
             </ul>
           </div>
-          <div className="outline-3 outline-yellow-500 sm:max-w-xl sm:mx-auto md:text-center md:my-8 lg:max-w-none lg:my-0 lg:text-left">
-            <div className="outline-2 outline-green-500 my-6 lg:mt-0">
-              <small className="block text-sm text-slate-400">{game.platformName}</small>
-              <h1 className="text-3xl font-bold mt-1 mb-3 lg:text-5xl">{game.title}</h1>
-              <p className="text-slate-300 lg:text-xl">{game.description}</p>
+          <div className="md:text-center md:my-8 lg:max-w-none lg:my-0 lg:text-left">
+            <div className="my-6 lg:mt-0">
+              <small className="block text-sm text-slate-400 sm:max-w-xl sm:mx-auto">{game.platformName}</small>
+              <h1 className="text-3xl font-bold mt-1 mb-3 sm:max-w-xl sm:mx-auto lg:text-5xl">{game.title}</h1>
+              <p className="text-slate-300 sm:max-w-xl sm:mx-auto lg:text-xl">{game.description}</p>
             </div>
 
             <ul className="flex gap-3 w-full justify-between mb-8 sm:w-sm sm:gap-4 sm:mx-auto lg:mx-0">
@@ -211,11 +211,15 @@ export default async function GamePage({ params }: GamePageProps) {
           </div>
         </article>
 
-        <aside className="outline-2 outline-green-500">
-          <h3>Video Promocional</h3>
-          {/* youtube video */}
-          <h3>Jogos Similares</h3>
-          {/* games list */}
+        <aside className="space-y-6 mb-48 md:px-6 lg:px-0">
+          <div className="space-y-4">
+            <h3 className="text-lg text-slate-400">Vídeo Promocional</h3>
+            <iframe className="aspect-video w-full" src={`https://www.youtube.com/embed/${game.urlVideo}`} allowFullScreen />
+          </div>
+          <div className="hidden lg:block lg:space-y-4">
+            <h3 className="text-lg text-slate-400">Jogos Similares</h3>
+            {/* games list */}
+          </div>
         </aside>
       </section>
     </main>

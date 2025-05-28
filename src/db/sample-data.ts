@@ -1,14 +1,14 @@
 export const topDesiredGames = [
   {
     id: Math.random(),
-    title: "The Last of Us Part II Remastered",
-    imageCover: "the-last-of-us-part-ii-remastered.jpg",
-    slug: "the-last-of-us-part-ii-remastered",
+    title: "Elden Ring",
+    imageCover: "elden-ring.jpg",
+    slug: "elden-ring",
     platform: { name: "PlayStation 5", slug: "ps5" },
     description: null,
-    offers: 134,
-    wishes: 249,
-    rating: 9.3,
+    offers: 193,
+    wishes: 303,
+    rating: 9.5,
   },
   {
     id: Math.random(),

@@ -72,7 +72,7 @@ export default async function GamePage({ params }: GamePageProps) {
               </ul>
             </div>
           </div>
-          <section className="lg:col-span-2">
+          <section className="hidden lg:col-span-2">
             <h3>Proprietários</h3>{/* Interessados | Ficha Técnica */}
             {/* pagination */}
             <p>1, 2, 3, 4, 5, 6, 7...</p>

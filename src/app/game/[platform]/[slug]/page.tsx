@@ -19,7 +19,7 @@ export default async function GamePage({ params }: GamePageProps) {
         <article className="lg:grid lg:grid-cols-[1fr_3fr] lg:gap-6">
           <div className="flex flex-col items-center lg:items-start">
             <div className="flex flex-col items-center lg:items-start">
-              <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm lg:w-36" />
+              <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm lg:w-full" />
               <Image unoptimized width={112} height={30} className="h-auto w-20 my-4" src={`/logos/${game.platformSlug}.svg`} alt={`${game.platformName} logo`} />
             </div>
             <ul className="flex gap-4 justify-center sm:gap-8 lg:flex-col lg:gap-2">

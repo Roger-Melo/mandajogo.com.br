@@ -61,7 +61,7 @@ export function GameCard ({ cardType, game }) {
       </Link>
       <div className={cn("ssm:flex ssm:flex-col ssm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "ssm:justify-between")}>
         <Link href={pageLink}>
-          <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold my-4 ssm:text-left ssm:mt-0 sm:text-center", cardType === "newReleaseGame" ? "text-primary-blue" : cardType === "similarGame" ? "text-xs mb-0 text-slate-400" : "")}>{game.title}</h3>
+          <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold mt-0 mb-4 ssm:text-left sm:text-center", cardType === "newReleaseGame" ? "text-primary-blue" : cardType === "similarGame" ? "text-xs mb-0 text-slate-400" : "")}>{game.title}</h3>
         </Link>
         <div className={cn("flex justify-between items-center gap-4 ssm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
           {cardType === "newReleaseGame" && (

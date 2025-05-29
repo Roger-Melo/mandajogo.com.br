@@ -16,7 +16,7 @@ export default async function GamePage({ params }: GamePageProps) {
   return (
     <main className="pb-10 bg-radial-[at_25%_25%] from-primary-blue/10 to-slate-950 to-75%">
       <section className="flex flex-col gap-8 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6 xl:px-0">
-        <article className="md:px-6 lg:px-0 lg: space-y-6">
+        <article className="md:px-6 lg:px-0 lg:space-y-6">
           <div className="lg:grid lg:grid-cols-[1fr_3fr] lg:gap-6 lg:mb-0">
             <div className="flex flex-col items-center lg:items-start">
               <div className="flex flex-col items-center lg:items-start">
@@ -72,8 +72,10 @@ export default async function GamePage({ params }: GamePageProps) {
               </ul>
             </div>
           </div>
-          <section className="hidden lg:col-span-2">
-            <h3>Proprietários</h3>{/* Interessados | Ficha Técnica */}
+          <section className="space-y-2 lg:col-span-2">
+            <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
+            <img src="/rafael-card.png" />
+            <img src="/rafael-card-02.png" />
             {/* pagination */}
             <p>1, 2, 3, 4, 5, 6, 7...</p>
           </section>

@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "name": "Rafael",
+      "username": "aryhoo",
+      "imageAvatar": "rafael.jpg",
+      "isVerified": false,
+      "supplyName": null,
+      "imageCover": null,
+      "supplyPermalink": null,
+      "bundlePermalink": null,
+      "scoreGeneral": 0,
+      "exchangesCount": 0,
+      "enumLevel": 5,
+      "enumLevelDesc": null,
+      "conditionMedia": 6,
+      "conditionMediaDesc": null,
+      "conditionBooklet": 6,
+      "conditionBookletDesc": null,
+      "conditionBox": 6,
+      "conditionBoxDesc": null,
+      "enumVersion": 1,
+      "enumVersionDesc": null,
+      "enumRegion": 1,
+      "enumRegionDesc": null,
+      "notes": null,
+      "city": "Vitória",
+      "state": "ES",
+      "distance": 0.0,
+      "lat": 0.0,
+      "lng": 0.0
+    }
+  ],
+  "page": 1,
+  "totalUsers": 98
+}

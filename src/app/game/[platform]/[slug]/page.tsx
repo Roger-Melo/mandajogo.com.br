@@ -75,7 +75,7 @@ export default async function GamePage({ params }: GamePageProps) {
           </div>
           <section className="space-y-2 lg:col-span-2">
             <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
-            <ul>
+            <ul className="grid grid-cols-1 gap-4">
               <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
                 <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4">
                   <section className="flex flex-col justify-center items-center">
@@ -86,26 +86,90 @@ export default async function GamePage({ params }: GamePageProps) {
                   </section>
 
                   <ul className="space-y-3">
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <Image unoptimized width={50} height={33} className="h-auto w-6" src={`/svg/gauges/6-muito-alto.svg`} alt={"Interesse"} />
                       <span>Interesse</span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Mídia"} />
                       <span>Mídia</span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Caixinha"} />
                       <span>Caixinha</span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Encarte"} />
                       <span>Encarte</span>
                     </li>
                   </ul>
                 </div>
 
-                <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue">Fazer proposta</Button>
+                <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
+              </li>
+
+              <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
+                <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4">
+                  <section className="flex flex-col justify-center items-center">
+                    <Image src="/users/game-owners/rafael.jpg" width={250} height={250} alt="Imagem Rafael" className="rounded-full w-20" />
+                    <h3 className="text-2xl font-semibold mt-2">Guilherme</h3>
+                    <p className="text-xs">Rio de Janeiro / RJ</p>
+                    <Badge className="bg-slate-800 text-slate-400 mt-2">0 trocas</Badge>
+                  </section>
+
+                  <ul className="space-y-3">
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={50} height={33} className="h-auto w-6" src={`/svg/gauges/6-muito-alto.svg`} alt={"Interesse"} />
+                      <span>Interesse</span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Mídia"} />
+                      <span>Mídia</span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Caixinha"} />
+                      <span>Caixinha</span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Encarte"} />
+                      <span>Encarte</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
+              </li>
+
+              <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
+                <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4">
+                  <section className="flex flex-col justify-center items-center">
+                    <Image src="/users/game-owners/rafael.jpg" width={250} height={250} alt="Imagem Rafael" className="rounded-full w-20" />
+                    <h3 className="text-2xl font-semibold mt-2">Guilherme</h3>
+                    <p className="text-xs">Rio de Janeiro / RJ</p>
+                    <Badge className="bg-slate-800 text-slate-400 mt-2">0 trocas</Badge>
+                  </section>
+
+                  <ul className="space-y-3">
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={50} height={33} className="h-auto w-6" src={`/svg/gauges/6-muito-alto.svg`} alt={"Interesse"} />
+                      <span>Interesse</span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Mídia"} />
+                      <span>Mídia</span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Caixinha"} />
+                      <span>Caixinha</span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Encarte"} />
+                      <span>Encarte</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
               </li>
             </ul>
             {/* pagination */}

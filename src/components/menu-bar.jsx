@@ -12,7 +12,7 @@ import { PlatformsList } from "@/components/platforms-list"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {
   return (
-    <Link href={href} className={cn("flex flex-col items-center justify-center gap-1", user ? "md:flex-row" : "ssm:flex-row")}>
+    <Link href={href} className={cn("flex flex-col items-center justify-center gap-1", user ? "md:flex-row" : "xsm:flex-row")}>
       <Icon className="h-5 w-5" />
       <span className="text-xs md:uppercase md:leading-none">{text}</span>
     </Link>

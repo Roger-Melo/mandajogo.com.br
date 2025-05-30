@@ -56,14 +56,14 @@ export function GameCard ({ cardType, game }) {
   const pageLink = getPageLink({ cardType, game })
   return (
     <li className={cn("break-inside-avoid mb-4 w-full border-2 rounded-2xl border-white/20 p-4 flex flex-col gap-4", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : cardType === "similarGame" ? "mb-0 p-3 gap-2 rounded-xl" : "")}>
-      <Link href={pageLink} className={cn("ssm:flex-shrink-0 sm:mx-auto", { "ssm:w-[183px]": cardType !== "similarGame" })}>
+      <Link href={pageLink} className={cn("xsm:flex-shrink-0 sm:mx-auto", { "xsm:w-[183px]": cardType !== "similarGame" })}>
         <Image width={236} height={294} src={getImageSrc({ cardType, game })} alt={game.title} className="mx-auto w-full h-auto" />
       </Link>
-      <div className={cn("ssm:flex ssm:flex-col ssm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "ssm:justify-between")}>
+      <div className={cn("xsm:flex xsm:flex-col xsm:w-full sm:h-full", cardType === "newReleaseGame" ? "" : "xsm:justify-between")}>
         <Link href={pageLink}>
-          <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold mt-0 mb-4 ssm:text-left sm:text-center", cardType === "newReleaseGame" ? "text-primary-blue" : cardType === "similarGame" ? "text-xs mb-0 text-slate-400" : "")}>{game.title}</h3>
+          <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold mt-0 mb-4 xsm:text-left sm:text-center", cardType === "newReleaseGame" ? "text-primary-blue" : cardType === "similarGame" ? "text-xs mb-0 text-slate-400" : "")}>{game.title}</h3>
         </Link>
-        <div className={cn("flex justify-between items-center gap-4 ssm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
+        <div className={cn("flex justify-between items-center gap-4 xsm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
           {cardType === "newReleaseGame" && (
             <>
               <GameDescription game={game} />

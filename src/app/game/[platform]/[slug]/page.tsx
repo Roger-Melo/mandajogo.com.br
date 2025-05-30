@@ -16,8 +16,12 @@ function UserCard() {
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
         <section className="flex flex-col justify-center items-center ml-auto">
-          <Image src="/users/game-owners/rafael.jpg" width={250} height={250} alt="Imagem Rafael" className="rounded-full w-20" />
-          <h3 className="text-2xl font-semibold mt-2">Guilherme</h3>
+          <Link href="#">
+            <Image src="/users/game-owners/rafael.jpg" width={250} height={250} alt="Imagem Rafael" className="rounded-full w-20 hover:opacity-80" />
+          </Link>
+          <Link href="#">
+            <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400">Guilherme</h3>
+          </Link>
           <p className="text-xs text-slate-500">Rio de Janeiro / RJ</p>
           <Badge className="bg-slate-800 text-slate-400 mt-2">0 trocas</Badge>
         </section>
@@ -42,7 +46,9 @@ function UserCard() {
         </ul>
       </div>
 
-      <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
+      <Button asChild className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">
+        <Link href="#">Fazer proposta</Link>
+      </Button>
     </li>
   )
 }

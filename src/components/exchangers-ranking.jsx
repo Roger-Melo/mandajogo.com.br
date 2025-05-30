@@ -4,11 +4,11 @@ import { randomUUID } from "crypto"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 const topExchangers = [
-  { id: randomUUID(), avatar: "/users/gustavo.jpg", position: 1, name: "Gustavo Caetano", city: "Bauru", state: "SP" },
-  { id: randomUUID(), avatar: "/users/fabio.jpg", position: 1, name: "Fabio Motto", city: "São Paulo", state: "SP" },
-  { id: randomUUID(), avatar: "/users/eduardo.jpg", position: 2, name: "Eduardo Gomes", city: "Osasco", state: "SP" },
-  { id: randomUUID(), avatar: "/users/alex.jpg", position: 2, name: "Alex Cruz", city: "Rio de Janeiro", state: "RJ" },
-  { id: randomUUID(), avatar: "/users/erich.jpg", position: 3, name: "Erich vinícius", city: "Rio de Janeiro", state: "RJ" },
+  { id: randomUUID(), avatar: "/users/top-exchangers/gustavo.jpg", position: 1, name: "Gustavo Caetano", city: "Bauru", state: "SP" },
+  { id: randomUUID(), avatar: "/users/top-exchangers/fabio.jpg", position: 1, name: "Fabio Motto", city: "São Paulo", state: "SP" },
+  { id: randomUUID(), avatar: "/users/top-exchangers/eduardo.jpg", position: 2, name: "Eduardo Gomes", city: "Osasco", state: "SP" },
+  { id: randomUUID(), avatar: "/users/top-exchangers/alex.jpg", position: 2, name: "Alex Cruz", city: "Rio de Janeiro", state: "RJ" },
+  { id: randomUUID(), avatar: "/users/top-exchangers/erich.jpg", position: 3, name: "Erich vinícius", city: "Rio de Janeiro", state: "RJ" },
 ]
 
 function Exchanger ({ avatar, position, name, city, state }) {

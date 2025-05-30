@@ -1,11 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { HandHelping, Heart, Star } from "lucide-react"
-import { game } from "@/db/sample-data"
+import { game } from "@/db/sample-data/game"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GameCard } from "@/components/game-card"
-import { topDesiredGames } from "@/db/sample-data"
+import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>

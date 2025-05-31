@@ -11,6 +11,26 @@ type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
 }
 
+function Aside() {
+  return (
+    <aside className="space-y-6 md:px-6 lg:px-0">
+      <div className="space-y-2">
+        <h3 className="text-lg text-slate-400">Vídeo Promocional</h3>
+        <iframe className="aspect-video w-full" src={`https://www.youtube.com/embed/${game.urlVideo}`} allowFullScreen />
+      </div>
+      <div className="hidden lg:block lg:space-y-2">
+        <h3 className="text-lg text-slate-400">Jogos Similares</h3>
+        <ul className="grid grid-cols-3 gap-2">
+          {topDesiredGames
+            .filter((filteredGame) => filteredGame.title !== game.title)
+            .map((game) => <GameCard cardType="similarGame" key={game.id} game={game} />)
+          }
+        </ul>
+      </div>
+    </aside>
+  )
+}
+
 function UserCard() {
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
@@ -124,22 +144,7 @@ export default async function GamePage({ params }: GamePageProps) {
             <p className="hidden">1, 2, 3, 4, 5, 6, 7...</p>
           </section>
         </article>
-
-        <aside className="space-y-6 md:px-6 lg:px-0">
-          <div className="space-y-2">
-            <h3 className="text-lg text-slate-400">Vídeo Promocional</h3>
-            <iframe className="aspect-video w-full" src={`https://www.youtube.com/embed/${game.urlVideo}`} allowFullScreen />
-          </div>
-          <div className="hidden lg:block lg:space-y-2">
-            <h3 className="text-lg text-slate-400">Jogos Similares</h3>
-            <ul className="grid grid-cols-3 gap-2">
-              {topDesiredGames
-                .filter((filteredGame) => filteredGame.title !== game.title)
-                .map((game) => <GameCard cardType="similarGame" key={game.id} game={game} />)
-              }
-            </ul>
-          </div>
-        </aside>
+        <Aside />
       </section>
     </main>
   )

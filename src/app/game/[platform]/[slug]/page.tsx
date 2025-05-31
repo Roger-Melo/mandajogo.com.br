@@ -133,6 +133,19 @@ function UserCard() {
   )
 }
 
+function OwnersSection() {
+  return (
+    <section className="space-y-2 lg:col-span-2 lg:mt-6">
+      <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <UserCard />
+      </ul>
+      {/* pagination */}
+      <p className="hidden">1, 2, 3, 4, 5, 6, 7...</p>
+    </section>
+  )
+}
+
 export default async function GamePage({ params }: GamePageProps) {
   const { slug, platform } = await params
   console.log("slug:", slug, "platform:", platform)
@@ -141,14 +154,7 @@ export default async function GamePage({ params }: GamePageProps) {
       <section className="flex flex-col gap-8 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6 xl:px-0">
         <article className="md:px-6 lg:px-0 lg:space-y-6">
           <GameInfo />
-          <section className="space-y-2 lg:col-span-2 lg:mt-6">
-            <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <UserCard />
-            </ul>
-            {/* pagination */}
-            <p className="hidden">1, 2, 3, 4, 5, 6, 7...</p>
-          </section>
+          <OwnersSection />
         </article>
         <Aside />
       </section>

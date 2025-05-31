@@ -129,15 +129,32 @@ function GameInfo() {
   )
 }
 
+function getBoxCondition(conditionBox: number) {
+  // example: /restricted/collection-edit/ps3/metal-gear-solid-the-legacy-collection
+  const commonPath = `/svg/conditions`
+  const conditions = {
+    0: { svgPath: `${commonPath}/0.svg`, alt: "Condição da Mídia: Mídia lascada ou trincada" },
+    1: { svgPath: `${commonPath}/1.svg`, alt: "Condição da Mídia: Riscos significativos" },
+    2: { svgPath: `${commonPath}/2.svg`, alt: "Condição da Mídia: Muitos riscos pequenos" },
+    3: { svgPath: `${commonPath}/3.svg`, alt: "Condição da Mídia: Poucos riscos pequenos" },
+    4: { svgPath: `${commonPath}/4.svg`, alt: "Condição da Mídia: Apenas marcas de dedos" },
+    5: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Nenhum risco ou marcas de dedos" },
+    6: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Jogo lacrado" },
+  }
+  // @ts-expect-error temp
+  return conditions[conditionBox]
+}
+
 function getMediaCondition(conditionMedia: number) {
   const commonPath = `/svg/conditions`
   const conditions = {
-    0: { svgPath: `${commonPath}/0-nao-ha.svg`, alt: "não há mídia" },
-    1: { svgPath: `${commonPath}/1-com-danos.svg`, alt: "Mídia lascada ou trincada" },
-    2: { svgPath: `${commonPath}/2-pequenos-danos.svg`, alt: "com pequenos danos" },
-    3: { svgPath: `${commonPath}/3-bom.svg`, alt: "em boas condições" },
-    4: { svgPath: `${commonPath}/4-perfeito.svg`, alt: "em perfeito estado" },
-    5: { svgPath: `${commonPath}/5-lacrado.svg`, alt: "lacrada" },
+    0: { svgPath: `${commonPath}/0.svg`, alt: "Condição da Mídia: Mídia lascada ou trincada" },
+    1: { svgPath: `${commonPath}/1.svg`, alt: "Condição da Mídia: Riscos significativos" },
+    2: { svgPath: `${commonPath}/2.svg`, alt: "Condição da Mídia: Muitos riscos pequenos" },
+    3: { svgPath: `${commonPath}/3.svg`, alt: "Condição da Mídia: Poucos riscos pequenos" },
+    4: { svgPath: `${commonPath}/4.svg`, alt: "Condição da Mídia: Apenas marcas de dedos" },
+    5: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Nenhum risco ou marcas de dedos" },
+    6: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Jogo lacrado" },
   }
   // @ts-expect-error temp
   return conditions[conditionMedia]
@@ -146,13 +163,13 @@ function getMediaCondition(conditionMedia: number) {
 function getInterestLevels(enumLevel: number) {
   const commonPath = `/svg/gauges`
   const gauges = {
-    0: { svgPath: `${commonPath}/0-digital.svg`, alt: "Minha versão é digital" },
-    1: { svgPath: `${commonPath}/1-somente-exibicao.svg`, alt: "Jogo disponível apenas para exibição" },
-    2: { svgPath: `${commonPath}/2-muito-baixo.svg`, alt: "Muito baixo. Não troco, prefiro vê-lo empoeirando na estante" },
-    3: { svgPath: `${commonPath}/3-baixo.svg`, alt: "Baixo. Vai precisar suar para me convencer a trocá-lo" },
-    4: { svgPath: `${commonPath}/4-medio.svg`, alt: "Médio. Se pintar uma boa proposta, eu troco" },
-    5: { svgPath: `${commonPath}/5-alto.svg`, alt: "Alto. Avaliarei com carinho as ofertas" },
-    6: { svgPath: `${commonPath}/6-muito-alto.svg`, alt: "Muito alto. Quero trocar de qualquer jeito" },
+    0: { svgPath: `${commonPath}/0-digital.svg`, alt: "Nível de interesse: Minha versão é digital" },
+    1: { svgPath: `${commonPath}/1-somente-exibicao.svg`, alt: "Nível de interesse: Jogo disponível apenas para exibição" },
+    2: { svgPath: `${commonPath}/2-muito-baixo.svg`, alt: "Nível de interesse: Muito baixo. Não troco, prefiro vê-lo empoeirando na estante" },
+    3: { svgPath: `${commonPath}/3-baixo.svg`, alt: "Nível de interesse: Baixo. Vai precisar suar para me convencer a trocá-lo" },
+    4: { svgPath: `${commonPath}/4-medio.svg`, alt: "Nível de interesse: Médio. Se pintar uma boa proposta, eu troco" },
+    5: { svgPath: `${commonPath}/5-alto.svg`, alt: "Nível de interesse: Alto. Avaliarei com carinho as ofertas" },
+    6: { svgPath: `${commonPath}/6-muito-alto.svg`, alt: "Nível de interesse: Muito alto. Quero trocar de qualquer jeito" },
   }
   // @ts-expect-error temp
   return gauges[enumLevel]
@@ -164,11 +181,11 @@ function GameConditionInfo({ user }: { user: User }) {
   return (
     <ul className="space-y-3">
       <li className="flex gap-2 items-center">
-        <Image unoptimized width={50} height={33} className="h-auto w-6" src={interestLevel.svgPath} alt={`Nível de interesse: ${interestLevel.alt}`} />
+        <Image unoptimized width={50} height={33} className="h-auto w-6" src={interestLevel.svgPath} alt={interestLevel.alt} />
         <span>Interesse</span>
       </li>
       <li className="flex gap-2 items-center">
-        <Image unoptimized width={184} height={192} className="h-auto w-6" src={mediaCondition.svgPath} alt={`Condição da Mídia: ${mediaCondition.alt}`} />
+        <Image unoptimized width={184} height={192} className="h-auto w-6" src={mediaCondition.svgPath} alt={mediaCondition.alt} />
         <span>Mídia</span>
       </li>
       <li className="flex gap-2 items-center">

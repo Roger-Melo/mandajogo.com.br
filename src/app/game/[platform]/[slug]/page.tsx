@@ -12,6 +12,43 @@ type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
 }
 
+// temp
+type User = {
+  name: string
+  username: string
+  imageAvatar: string
+  isVerified: boolean
+  supplyName: string | null
+  imageCover: string | null
+  supplyPermalink: string | null
+  bundlePermalink: string | null
+  scoreGeneral: number
+  exchangesCount: number
+  enumLevel: number
+  enumLevelDesc: string | null
+  conditionMedia: number
+  conditionMediaDesc: string | null
+  conditionBooklet: number
+  conditionBookletDesc: string | null
+  conditionBox: number
+  conditionBoxDesc: string | null
+  enumVersion: number
+  enumVersionDesc: string | null
+  enumRegion: number
+  enumRegionDesc: string | null
+  notes: string | null
+  city: string
+  state: string
+  distance: number
+  lat: number
+  lng: number
+}
+
+// temp
+type UserCardProps = {
+  user: User
+}
+
 function Aside() {
   return (
     <aside className="space-y-6 md:px-6 lg:px-0">
@@ -96,7 +133,7 @@ function getMediaCondition(conditionMedia: number) {
   const commonPath = `/svg/conditions`
   const conditions = {
     0: { svgPath: `${commonPath}/0-nao-ha.svg`, alt: "não há mídia" },
-    1: { svgPath: `${commonPath}/1-com-danos.svg`, alt: "com danos" },
+    1: { svgPath: `${commonPath}/1-com-danos.svg`, alt: "Mídia lascada ou trincada" },
     2: { svgPath: `${commonPath}/2-pequenos-danos.svg`, alt: "com pequenos danos" },
     3: { svgPath: `${commonPath}/3-bom.svg`, alt: "em boas condições" },
     4: { svgPath: `${commonPath}/4-perfeito.svg`, alt: "em perfeito estado" },
@@ -121,46 +158,32 @@ function getInterestLevels(enumLevel: number) {
   return gauges[enumLevel]
 }
 
-// temp
-type User = {
-  name: string
-  username: string
-  imageAvatar: string
-  isVerified: boolean
-  supplyName: string | null
-  imageCover: string | null
-  supplyPermalink: string | null
-  bundlePermalink: string | null
-  scoreGeneral: number
-  exchangesCount: number
-  enumLevel: number
-  enumLevelDesc: string | null
-  conditionMedia: number
-  conditionMediaDesc: string | null
-  conditionBooklet: number
-  conditionBookletDesc: string | null
-  conditionBox: number
-  conditionBoxDesc: string | null
-  enumVersion: number
-  enumVersionDesc: string | null
-  enumRegion: number
-  enumRegionDesc: string | null
-  notes: string | null
-  city: string
-  state: string
-  distance: number
-  lat: number
-  lng: number
-}
-
-// temp
-type UserCardProps = {
-  user: User
+function GameConditionInfo({ user }: { user: User }) {
+  const interestLevel = getInterestLevels(user.enumLevel)
+  const mediaCondition = getMediaCondition(user.conditionMedia)
+  return (
+    <ul className="space-y-3">
+      <li className="flex gap-2 items-center">
+        <Image unoptimized width={50} height={33} className="h-auto w-6" src={interestLevel.svgPath} alt={`Nível de interesse: ${interestLevel.alt}`} />
+        <span>Interesse</span>
+      </li>
+      <li className="flex gap-2 items-center">
+        <Image unoptimized width={184} height={192} className="h-auto w-6" src={mediaCondition.svgPath} alt={`Condição da Mídia: ${mediaCondition.alt}`} />
+        <span>Mídia</span>
+      </li>
+      <li className="flex gap-2 items-center">
+        <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição da Caixinha"} />
+        <span>Caixinha</span>
+      </li>
+      <li className="flex gap-2 items-center">
+        <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Encarte"} />
+        <span>Encarte</span>
+      </li>
+    </ul>
+  )
 }
 
 function UserCard({ user }: UserCardProps) {
-  const interestLevel = getInterestLevels(user.enumLevel)
-  const mediaCondition = getMediaCondition(user.conditionMedia)
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
@@ -175,26 +198,7 @@ function UserCard({ user }: UserCardProps) {
           <p className="text-xs text-slate-500">{user.city} / {user.state}</p>
           <Badge className="bg-slate-800 text-slate-400 mt-2">{user.exchangesCount} trocas</Badge>
         </section>
-
-        {/* game info */}
-        <ul className="space-y-3">
-          <li className="flex gap-2 items-center">
-            <Image unoptimized width={50} height={33} className="h-auto w-6" src={interestLevel.svgPath} alt={`Nível de interesse: ${interestLevel.alt}`} />
-            <span>Interesse</span>
-          </li>
-          <li className="flex gap-2 items-center">
-            <Image unoptimized width={184} height={192} className="h-auto w-6" src={mediaCondition.svgPath} alt={`Condição da Mídia: ${mediaCondition.alt}`} />
-            <span>Mídia</span>
-          </li>
-          <li className="flex gap-2 items-center">
-            <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição da Caixinha"} />
-            <span>Caixinha</span>
-          </li>
-          <li className="flex gap-2 items-center">
-            <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Encarte"} />
-            <span>Encarte</span>
-          </li>
-        </ul>
+        <GameConditionInfo user={user} />
       </div>
 
       <Button asChild className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">

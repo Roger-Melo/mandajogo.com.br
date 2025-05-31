@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
+import { gameOwners } from "@/db/sample-data/game-owners"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -91,32 +92,102 @@ function GameInfo() {
   )
 }
 
-function UserCard() {
+function getMediaCondition(conditionMedia: number) {
+  const commonPath = `/svg/conditions`
+  const conditions = {
+    0: { svgPath: `${commonPath}/0-nao-ha.svg`, alt: "não há mídia" },
+    1: { svgPath: `${commonPath}/1-com-danos.svg`, alt: "com danos" },
+    2: { svgPath: `${commonPath}/2-pequenos-danos.svg`, alt: "com pequenos danos" },
+    3: { svgPath: `${commonPath}/3-bom.svg`, alt: "em boas condições" },
+    4: { svgPath: `${commonPath}/4-perfeito.svg`, alt: "em perfeito estado" },
+    5: { svgPath: `${commonPath}/5-lacrado.svg`, alt: "lacrada" },
+  }
+  // @ts-expect-error temp
+  return conditions[conditionMedia]
+}
+
+function getInterestLevels(enumLevel: number) {
+  const commonPath = `/svg/gauges`
+  const gauges = {
+    0: { svgPath: `${commonPath}/0-digital.svg`, alt: "Minha versão é digital" },
+    1: { svgPath: `${commonPath}/1-somente-exibicao.svg`, alt: "Jogo disponível apenas para exibição" },
+    2: { svgPath: `${commonPath}/2-muito-baixo.svg`, alt: "Muito baixo. Não troco, prefiro vê-lo empoeirando na estante" },
+    3: { svgPath: `${commonPath}/3-baixo.svg`, alt: "Baixo. Vai precisar suar para me convencer a trocá-lo" },
+    4: { svgPath: `${commonPath}/4-medio.svg`, alt: "Médio. Se pintar uma boa proposta, eu troco" },
+    5: { svgPath: `${commonPath}/5-alto.svg`, alt: "Alto. Avaliarei com carinho as ofertas" },
+    6: { svgPath: `${commonPath}/6-muito-alto.svg`, alt: "Muito alto. Quero trocar de qualquer jeito" },
+  }
+  // @ts-expect-error temp
+  return gauges[enumLevel]
+}
+
+// temp
+type User = {
+  name: string
+  username: string
+  imageAvatar: string
+  isVerified: boolean
+  supplyName: string | null
+  imageCover: string | null
+  supplyPermalink: string | null
+  bundlePermalink: string | null
+  scoreGeneral: number
+  exchangesCount: number
+  enumLevel: number
+  enumLevelDesc: string | null
+  conditionMedia: number
+  conditionMediaDesc: string | null
+  conditionBooklet: number
+  conditionBookletDesc: string | null
+  conditionBox: number
+  conditionBoxDesc: string | null
+  enumVersion: number
+  enumVersionDesc: string | null
+  enumRegion: number
+  enumRegionDesc: string | null
+  notes: string | null
+  city: string
+  state: string
+  distance: number
+  lat: number
+  lng: number
+}
+
+// temp
+type UserCardProps = {
+  user: User
+}
+
+function UserCard({ user }: UserCardProps) {
+  const interestLevel = getInterestLevels(user.enumLevel)
+  const mediaCondition = getMediaCondition(user.conditionMedia)
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
+        {/* user info */}
         <section className="flex flex-col justify-center items-center ml-auto">
           <Link href="#">
-            <Image src="/users/game-owners/rafael.jpg" width={250} height={250} alt="Imagem Rafael" className="rounded-full w-20 hover:opacity-80" />
+            <Image src={`/users/game-owners/${user.imageAvatar}`} width={250} height={250} alt={`Imagem ${user.name}`} className="rounded-full w-20 hover:opacity-80" />
           </Link>
           <Link href="#">
-            <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400">Guilherme</h3>
+            <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400">{user.name}</h3>
           </Link>
-          <p className="text-xs text-slate-500">Rio de Janeiro / RJ</p>
-          <Badge className="bg-slate-800 text-slate-400 mt-2">0 trocas</Badge>
+          <p className="text-xs text-slate-500">{user.city} / {user.state}</p>
+          <Badge className="bg-slate-800 text-slate-400 mt-2">{user.exchangesCount} trocas</Badge>
         </section>
 
+        {/* game info */}
         <ul className="space-y-3">
           <li className="flex gap-2 items-center">
-            <Image unoptimized width={50} height={33} className="h-auto w-6" src={`/svg/gauges/6-muito-alto.svg`} alt={"Interesse"} />
+            <Image unoptimized width={50} height={33} className="h-auto w-6" src={interestLevel.svgPath} alt={`Nível de interesse: ${interestLevel.alt}`} />
             <span>Interesse</span>
           </li>
           <li className="flex gap-2 items-center">
-            <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Mídia"} />
+            <Image unoptimized width={184} height={192} className="h-auto w-6" src={mediaCondition.svgPath} alt={`Condição da Mídia: ${mediaCondition.alt}`} />
             <span>Mídia</span>
           </li>
           <li className="flex gap-2 items-center">
-            <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Caixinha"} />
+            <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição da Caixinha"} />
             <span>Caixinha</span>
           </li>
           <li className="flex gap-2 items-center">
@@ -138,7 +209,7 @@ function OwnersSection() {
     <section className="space-y-2 lg:col-span-2 lg:mt-6">
       <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <UserCard />
+        {gameOwners.data.map((user) => <UserCard key={user.username} user={user} />)}
       </ul>
       {/* pagination */}
       <p className="hidden">1, 2, 3, 4, 5, 6, 7...</p>

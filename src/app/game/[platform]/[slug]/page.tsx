@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 import { gameOwners } from "@/db/sample-data/game-owners"
+import { getBoxCondition, getInterestLevels, getMediaCondition } from "@/lib/utils"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -129,55 +130,10 @@ function GameInfo() {
   )
 }
 
-function getBoxCondition(conditionBox: number) {
-  // example: /restricted/collection-edit/ps3/metal-gear-solid-the-legacy-collection
-  const commonPath = `/svg/conditions`
-  const conditions = {
-    0: { svgPath: `${commonPath}/0.svg`, alt: "Condição da Mídia: Mídia lascada ou trincada" },
-    1: { svgPath: `${commonPath}/1.svg`, alt: "Condição da Mídia: Riscos significativos" },
-    2: { svgPath: `${commonPath}/2.svg`, alt: "Condição da Mídia: Muitos riscos pequenos" },
-    3: { svgPath: `${commonPath}/3.svg`, alt: "Condição da Mídia: Poucos riscos pequenos" },
-    4: { svgPath: `${commonPath}/4.svg`, alt: "Condição da Mídia: Apenas marcas de dedos" },
-    5: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Nenhum risco ou marcas de dedos" },
-    6: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Jogo lacrado" },
-  }
-  // @ts-expect-error temp
-  return conditions[conditionBox]
-}
-
-function getMediaCondition(conditionMedia: number) {
-  const commonPath = `/svg/conditions`
-  const conditions = {
-    0: { svgPath: `${commonPath}/0.svg`, alt: "Condição da Mídia: Mídia lascada ou trincada" },
-    1: { svgPath: `${commonPath}/1.svg`, alt: "Condição da Mídia: Riscos significativos" },
-    2: { svgPath: `${commonPath}/2.svg`, alt: "Condição da Mídia: Muitos riscos pequenos" },
-    3: { svgPath: `${commonPath}/3.svg`, alt: "Condição da Mídia: Poucos riscos pequenos" },
-    4: { svgPath: `${commonPath}/4.svg`, alt: "Condição da Mídia: Apenas marcas de dedos" },
-    5: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Nenhum risco ou marcas de dedos" },
-    6: { svgPath: `${commonPath}/5.svg`, alt: "Condição da Mídia: Jogo lacrado" },
-  }
-  // @ts-expect-error temp
-  return conditions[conditionMedia]
-}
-
-function getInterestLevels(enumLevel: number) {
-  const commonPath = `/svg/gauges`
-  const gauges = {
-    0: { svgPath: `${commonPath}/0-digital.svg`, alt: "Nível de interesse: Minha versão é digital" },
-    1: { svgPath: `${commonPath}/1-somente-exibicao.svg`, alt: "Nível de interesse: Jogo disponível apenas para exibição" },
-    2: { svgPath: `${commonPath}/2-muito-baixo.svg`, alt: "Nível de interesse: Muito baixo. Não troco, prefiro vê-lo empoeirando na estante" },
-    3: { svgPath: `${commonPath}/3-baixo.svg`, alt: "Nível de interesse: Baixo. Vai precisar suar para me convencer a trocá-lo" },
-    4: { svgPath: `${commonPath}/4-medio.svg`, alt: "Nível de interesse: Médio. Se pintar uma boa proposta, eu troco" },
-    5: { svgPath: `${commonPath}/5-alto.svg`, alt: "Nível de interesse: Alto. Avaliarei com carinho as ofertas" },
-    6: { svgPath: `${commonPath}/6-muito-alto.svg`, alt: "Nível de interesse: Muito alto. Quero trocar de qualquer jeito" },
-  }
-  // @ts-expect-error temp
-  return gauges[enumLevel]
-}
-
 function GameConditionInfo({ user }: { user: User }) {
   const interestLevel = getInterestLevels(user.enumLevel)
   const mediaCondition = getMediaCondition(user.conditionMedia)
+  const boxCondition = getBoxCondition(user.conditionBox)
   return (
     <ul className="space-y-3">
       <li className="flex gap-2 items-center">
@@ -189,7 +145,7 @@ function GameConditionInfo({ user }: { user: User }) {
         <span>Mídia</span>
       </li>
       <li className="flex gap-2 items-center">
-        <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição da Caixinha"} />
+        <Image unoptimized width={184} height={192} className="h-auto w-6" src={boxCondition.svgPath} alt={boxCondition.alt} />
         <span>Caixinha</span>
       </li>
       <li className="flex gap-2 items-center">

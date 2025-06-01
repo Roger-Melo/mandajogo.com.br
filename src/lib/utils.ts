@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const siteName = "MandaJogo"
 export const siteDescription = "Comunidade de Troca de Jogos de Videogame"
 
-export function getBoxCondition(conditionBox: number) {
+export function getBoxCondition(conditionBox = 0) {
   const commonPath = `/svg/conditions`
   const conditions = {
     0: { svgPath: `${commonPath}/0.svg`, alt: "Condição: Sem caixa e sem capa" },
@@ -24,7 +24,7 @@ export function getBoxCondition(conditionBox: number) {
   return conditions[conditionBox]
 }
 
-export function getMediaCondition(conditionMedia: number) {
+export function getMediaCondition(conditionMedia = 0) {
   const commonPath = `/svg/conditions`
   const conditions = {
     0: { svgPath: `${commonPath}/0.svg`, alt: "Condição da Mídia: Lascada ou trincada" },
@@ -39,7 +39,7 @@ export function getMediaCondition(conditionMedia: number) {
   return conditions[conditionMedia]
 }
 
-export function getBookletCondition(conditionBooklet: number) {
+export function getBookletCondition(conditionBooklet = 0) {
   const commonPath = `/svg/conditions`
   const conditions = {
     0: { svgPath: `${commonPath}/0.svg`, alt: "Condição do Manual: Sem manual" },
@@ -55,7 +55,7 @@ export function getBookletCondition(conditionBooklet: number) {
   return conditions[conditionBooklet]
 }
 
-export function getInterestLevels(enumLevel: number) {
+export function getInterestLevels(enumLevel = 0) {
   const commonPath = `/svg/gauges`
   const gauges = {
     0: { svgPath: `${commonPath}/0-digital.svg`, alt: "Nível de interesse: Minha versão é digital" },

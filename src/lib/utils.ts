@@ -39,6 +39,22 @@ export function getMediaCondition(conditionMedia: number) {
   return conditions[conditionMedia]
 }
 
+export function getBookletCondition(conditionBooklet: number) {
+  const commonPath = `/svg/conditions`
+  const conditions = {
+    0: { svgPath: `${commonPath}/0.svg`, alt: "Condição do Manual: Sem manual" },
+    1: { svgPath: `${commonPath}/1.svg`, alt: "Condição do Manual: Rasgos, rasuras ou páginas faltantes" },
+    2: { svgPath: `${commonPath}/2.svg`, alt: "Condição do Manual: Avarias significativas" },
+    3: { svgPath: `${commonPath}/3.svg`, alt: "Condição do Manual: Pequenos amassados" },
+    4: { svgPath: `${commonPath}/4.svg`, alt: "Condição do Manual: Cores desbotadas pela luz" },
+    5: { svgPath: `${commonPath}/5.svg`, alt: "Condição do Manual: Apenas marcas de dedos" },
+    6: { svgPath: `${commonPath}/5.svg`, alt: "Condição do Manual: Nenhum arranhão ou marcas de dedos" },
+    7: { svgPath: `${commonPath}/5.svg`, alt: "Condição do Manual: Jogo lacrado" },
+  }
+  // @ts-expect-error temp
+  return conditions[conditionBooklet]
+}
+
 export function getInterestLevels(enumLevel: number) {
   const commonPath = `/svg/gauges`
   const gauges = {

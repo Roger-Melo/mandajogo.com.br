@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 import { gameOwners } from "@/db/sample-data/game-owners"
-import { getBoxCondition, getInterestLevels, getMediaCondition } from "@/lib/utils"
+import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -134,6 +134,7 @@ function GameConditionInfo({ user }: { user: User }) {
   const interestLevel = getInterestLevels(user.enumLevel)
   const mediaCondition = getMediaCondition(user.conditionMedia)
   const boxCondition = getBoxCondition(user.conditionBox)
+  const bookletCondition = getBookletCondition(user.conditionBooklet)
   return (
     <ul className="space-y-3">
       <li className="flex gap-2 items-center">
@@ -149,7 +150,7 @@ function GameConditionInfo({ user }: { user: User }) {
         <span>Caixinha</span>
       </li>
       <li className="flex gap-2 items-center">
-        <Image unoptimized width={184} height={192} className="h-auto w-6" src={`/svg/conditions/4-perfeito.svg`} alt={"Condição do Encarte"} />
+        <Image unoptimized width={184} height={192} className="h-auto w-6" src={bookletCondition.svgPath} alt={bookletCondition.alt} />
         <span>Encarte</span>
       </li>
     </ul>
@@ -158,7 +159,7 @@ function GameConditionInfo({ user }: { user: User }) {
 
 function UserCard({ user }: UserCardProps) {
   return (
-    <li className="border-2 border-slate-800 rounded-2xl text-slate-300 space-y-4">
+    <li className="border-2 border-slate-800 rounded-2xl text-slate-300 flex flex-col gap-4 justify-between">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
         {/* user info */}
         <section className="flex flex-col justify-center items-center ml-auto">
@@ -166,9 +167,9 @@ function UserCard({ user }: UserCardProps) {
             <Image src={`/users/game-owners/${user.imageAvatar}`} width={250} height={250} alt={`Imagem ${user.name}`} className="rounded-full w-20 hover:opacity-80" />
           </Link>
           <Link href="#">
-            <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400">{user.name}</h3>
+            <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400 text-center">{user.name.split(" ")[0]}</h3>
           </Link>
-          <p className="text-xs text-slate-500">{user.city} / {user.state}</p>
+          <p className="text-xs text-slate-500 text-center">{user.city} / {user.state}</p>
           <Badge className="bg-slate-800 text-slate-400 mt-2">{user.exchangesCount} trocas</Badge>
         </section>
         <GameConditionInfo user={user} />

@@ -8,15 +8,11 @@ import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 import { gameOwners } from "@/db/sample-data/game-owners"
 import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
-import type { User } from "@/types"
+// temp
+import type { GameOwner } from "@/types"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
-}
-
-// temp
-type UserCardProps = {
-  user: User
 }
 
 function Aside() {
@@ -99,7 +95,7 @@ function GameInfo() {
   )
 }
 
-function GameConditionInfo({ user }: { user: User }) {
+function GameConditionInfo({ user }: { user: GameOwner }) {
   const interestLevel = getInterestLevels(user.enumLevel)
   const mediaCondition = getMediaCondition(user.conditionMedia)
   const boxCondition = getBoxCondition(user.conditionBox)
@@ -126,7 +122,7 @@ function GameConditionInfo({ user }: { user: User }) {
   )
 }
 
-function UserCard({ user }: UserCardProps) {
+function UserCard({ user }: { user: GameOwner }) {
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 flex flex-col gap-4 justify-between">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">

@@ -1,5 +1,5 @@
 // temp
-export type User = {
+export type GameOwner = {
   name: string
   username: string
   imageAvatar: string
@@ -25,7 +25,4 @@ export type User = {
   notes: string | null
   city: string
   state: string
-  distance: number
-  lat: number
-  lng: number
 }

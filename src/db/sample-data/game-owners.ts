@@ -26,9 +26,6 @@ export const gameOwners = {
       notes: null,
       city: "Vitória",
       state: "ES",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Breno",
@@ -56,9 +53,6 @@ export const gameOwners = {
       notes: null,
       city: "Belo Horizonte",
       state: "MG",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Ricardo",
@@ -86,9 +80,6 @@ export const gameOwners = {
       notes: null,
       city: "São Paulo",
       state: "SP",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Mario",
@@ -116,9 +107,6 @@ export const gameOwners = {
       notes: null,
       city: "Rio de Janeiro",
       state: "RJ",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Arthur",
@@ -146,9 +134,6 @@ export const gameOwners = {
       notes: null,
       city: "Lagoa da Prata",
       state: "MG",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Raffael",
@@ -176,9 +161,6 @@ export const gameOwners = {
       notes: null,
       city: "São Paulo",
       state: "SP",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Lamartine X",
@@ -206,9 +188,6 @@ export const gameOwners = {
       notes: null,
       city: "São Bernardo do Campo",
       state: "SP",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "André",
@@ -236,9 +215,6 @@ export const gameOwners = {
       notes: null,
       city: "São Paulo",
       state: "SP",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "Lucas",
@@ -266,9 +242,6 @@ export const gameOwners = {
       notes: null,
       city: "São Paulo",
       state: "SP",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
     {
       name: "William",
@@ -296,9 +269,6 @@ export const gameOwners = {
       notes: null,
       city: "Ibitinga",
       state: "SP",
-      distance: 0.0,
-      lat: 0.0,
-      lng: 0.0
     },
   ],
   page: 1,

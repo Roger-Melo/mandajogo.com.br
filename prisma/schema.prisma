@@ -9,3 +9,33 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model GameOwner {
+  id                   String   @id @default(cuid())
+  createdAt            DateTime @default(now())
+  name                 String
+  username             String   @unique
+  imageAvatar          String
+  isVerified           Boolean
+  supplyName           String?
+  imageCover           String?
+  supplyPermalink      String?
+  bundlePermalink      String?
+  scoreGeneral         Int
+  exchangesCount       Int
+  enumLevel            Int
+  enumLevelDesc        String?
+  conditionMedia       Int
+  conditionMediaDesc   String?
+  conditionBooklet     Int
+  conditionBookletDesc String?
+  conditionBox         Int
+  conditionBoxDesc     String?
+  enumVersion          Int
+  enumVersionDesc      String?
+  enumRegion           Int
+  enumRegionDesc       String?
+  notes                String?
+  city                 String
+  state                String
+}

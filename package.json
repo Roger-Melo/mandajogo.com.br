@@ -10,6 +10,9 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "5.6.0",
     "@radix-ui/react-avatar": "1.1.7",

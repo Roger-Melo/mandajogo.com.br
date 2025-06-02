@@ -1,4 +1,8 @@
-export const gameOwners = {
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
+
+const gameOwners = {
   data: [
     {
       id: "clx3c5d6e7f8g9h0i1j2k3l4",
@@ -294,3 +298,28 @@ export const gameOwners = {
   page: 1,
   totalUsers: 98
 }
+
+async function main() {
+  console.log(`Start seeding ...`)
+
+  for (const gameOwner of gameOwners.data) {
+    const result = await prisma.gameOwner.upsert({
+      where: { id: gameOwner.id },
+      update: {},
+      create: gameOwner,
+    })
+    console.log(`Created gameOwner with id: ${result.id}`)
+  }
+
+  console.log(`Seeding finished.`)
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })

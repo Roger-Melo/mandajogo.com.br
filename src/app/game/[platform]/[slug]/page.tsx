@@ -8,8 +8,7 @@ import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 import { gameOwners } from "@/db/sample-data/game-owners"
 import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
-// temp
-import type { GameOwner } from "@/types"
+import type { GameOwner } from "@prisma/client"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -129,7 +128,7 @@ function UserCard({ user }: { user: GameOwner }) {
         {/* user info */}
         <section className="flex flex-col justify-center items-center ml-auto">
           <Link href="#">
-            <Image src={`/users/game-owners/${user.imageAvatar}`} width={250} height={250} alt={`Imagem ${user.name}`} className="rounded-full w-20 hover:opacity-80" />
+            <Image src={user.imageAvatar} width={250} height={250} alt={`Imagem ${user.name}`} className="rounded-full w-20 hover:opacity-80" />
           </Link>
           <Link href="#">
             <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400 text-center">{user.name.split(" ")[0]}</h3>

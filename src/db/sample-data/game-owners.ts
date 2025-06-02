@@ -3,7 +3,7 @@ export const gameOwners = {
     {
       name: "Rafael",
       username: "aryhoo",
-      imageAvatar: "rafael.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/rafael.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -30,7 +30,7 @@ export const gameOwners = {
     {
       name: "Breno",
       username: "brsalomon",
-      imageAvatar: "breno.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/breno.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -57,7 +57,7 @@ export const gameOwners = {
     {
       name: "Ricardo",
       username: "ricamehlitz",
-      imageAvatar: "ricardo.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/ricardo.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -84,7 +84,7 @@ export const gameOwners = {
     {
       name: "Mario",
       username: "marioventura",
-      imageAvatar: "mario.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/mario.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -111,7 +111,7 @@ export const gameOwners = {
     {
       name: "Arthur",
       username: "arthurhrc",
-      imageAvatar: "arthur.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/arthur.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -138,7 +138,7 @@ export const gameOwners = {
     {
       name: "Raffael",
       username: "raffapappa",
-      imageAvatar: "raffael.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/raffael.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -165,7 +165,7 @@ export const gameOwners = {
     {
       name: "Lamartine X",
       username: "lamartine_x_adriana_vidal_gomes",
-      imageAvatar: "lamartine.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/lamartine.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -192,7 +192,7 @@ export const gameOwners = {
     {
       name: "André",
       username: "dedeapollo",
-      imageAvatar: "andre.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/andre.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -219,7 +219,7 @@ export const gameOwners = {
     {
       name: "Lucas",
       username: "bereman20",
-      imageAvatar: "lucas.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/lucas.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,
@@ -246,7 +246,7 @@ export const gameOwners = {
     {
       name: "William",
       username: "will.pinhe",
-      imageAvatar: "william.jpg",
+      imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/william.jpg",
       isVerified: false,
       supplyName: null,
       imageCover: null,

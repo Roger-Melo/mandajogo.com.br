@@ -8,11 +8,13 @@ import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 // import { gameOwners } from "@/db/sample-data/game-owners"
 import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
-import type { GameOwner } from "@prisma/client"
+import { type GameOwner, PrismaClient } from "@prisma/client"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
 }
+
+const prisma = new PrismaClient()
 
 function Aside() {
   return (
@@ -146,11 +148,12 @@ function UserCard({ user }: { user: GameOwner }) {
   )
 }
 
-function OwnersList() {
+async function OwnersList() {
+  const gameOwners = await prisma.gameOwner.findMany()
   return (
     <>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {/* {gameOwners.data.map((user) => <UserCard key={user.username} user={user} />)} */}
+        {gameOwners.map((user) => <UserCard key={user.username} user={user} />)}
       </ul>
       {/* pagination */}
       <p className="hidden">1, 2, 3, 4, 5, 6, 7...</p>

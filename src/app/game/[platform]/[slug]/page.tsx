@@ -8,12 +8,19 @@ import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 // import { gameOwners } from "@/db/sample-data/game-owners"
 import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { type GameOwner } from "@prisma/client"
 import prisma from "@/lib/db"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+type CommonProps = {
+  ownersPage: number
+  platform: string
+  slug: string
 }
 
 function Aside() {
@@ -148,37 +155,45 @@ function UserCard({ user }: { user: GameOwner }) {
   )
 }
 
-async function OwnersList({ ownersPage = 1 }) {
+async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
   const take = 2
   const gameOwners = await prisma.gameOwner.findMany({
     orderBy: { enumLevel: "desc" },
     take,
     skip: (ownersPage - 1) * take,
   })
+  const totalCount = await prisma.gameOwner.count()
+
+  const prevPath = ownersPage > 1 && `/game/${platform}/${slug}?owners-page=${ownersPage - 1}`
+  const hasNextPage = totalCount > (take * ownersPage)
+  const nextPath = hasNextPage && `/game/${platform}/${slug}?owners-page=${ownersPage + 1}`
 
   return (
     <>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {gameOwners.map((user) => <UserCard key={user.username} user={user} />)}
       </ul>
-      {/* pagination */}
-      <p className="hidden">1, 2, 3, 4, 5, 6, 7...</p>
+
+      {/* PaginationControls */}
+      <section>
+        {prevPath && <Link href={prevPath}>Anterior</Link>}
+        {nextPath && <Link href={nextPath}>Próxima</Link>}
+      </section>
     </>
   )
 }
 
-function OwnersSection({ ownersPage = 1 }) {
+function OwnersSection({ ownersPage = 1, platform, slug }: CommonProps) {
   return (
     <section className="space-y-2 lg:col-span-2 lg:mt-6">
       <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
-      <OwnersList ownersPage={ownersPage} />
+      <OwnersList ownersPage={ownersPage} platform={platform} slug={slug} />
     </section>
   )
 }
 
 export default async function GamePage({ params, searchParams }: GamePageProps) {
-  const { slug, platform } = await params
-  console.log("slug:", slug, "platform:", platform)
+  const { platform, slug } = await params
   const searchParamsObj = await searchParams
   const ownersPage = searchParamsObj["owners-page"] ? Number(searchParamsObj["owners-page"]) : 1
   return (
@@ -186,7 +201,7 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
       <section className="flex flex-col gap-8 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6 xl:px-0">
         <article className="md:px-6 lg:px-0 lg:space-y-6">
           <GameInfo />
-          <OwnersSection ownersPage={ownersPage} />
+          <OwnersSection ownersPage={ownersPage} platform={platform} slug={slug} />
         </article>
         <Aside />
       </section>

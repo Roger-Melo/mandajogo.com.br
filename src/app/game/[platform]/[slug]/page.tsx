@@ -8,13 +8,12 @@ import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 // import { gameOwners } from "@/db/sample-data/game-owners"
 import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
-import { type GameOwner, PrismaClient } from "@prisma/client"
+import { type GameOwner } from "@prisma/client"
+import prisma from "@/lib/db"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
 }
-
-const prisma = new PrismaClient()
 
 function Aside() {
   return (

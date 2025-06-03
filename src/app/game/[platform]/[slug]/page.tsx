@@ -13,6 +13,7 @@ import prisma from "@/lib/db"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 function Aside() {
@@ -147,8 +148,14 @@ function UserCard({ user }: { user: GameOwner }) {
   )
 }
 
-async function OwnersList() {
-  const gameOwners = await prisma.gameOwner.findMany({ orderBy: { enumLevel: "desc" } })
+async function OwnersList({ ownersPage = 1 }) {
+  const take = 2
+  const gameOwners = await prisma.gameOwner.findMany({
+    orderBy: { enumLevel: "desc" },
+    take,
+    skip: (ownersPage - 1) * take,
+  })
+
   return (
     <>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -160,24 +167,26 @@ async function OwnersList() {
   )
 }
 
-function OwnersSection() {
+function OwnersSection({ ownersPage = 1 }) {
   return (
     <section className="space-y-2 lg:col-span-2 lg:mt-6">
       <h3 className="text-lg text-slate-400">Proprietários</h3>{/* Interessados | Ficha Técnica */}
-      <OwnersList />
+      <OwnersList ownersPage={ownersPage} />
     </section>
   )
 }
 
-export default async function GamePage({ params }: GamePageProps) {
+export default async function GamePage({ params, searchParams }: GamePageProps) {
   const { slug, platform } = await params
   console.log("slug:", slug, "platform:", platform)
+  const searchParamsObj = await searchParams
+  const ownersPage = searchParamsObj["owners-page"] ? Number(searchParamsObj["owners-page"]) : 1
   return (
     <main className="pb-10 bg-radial-[at_25%_25%] from-primary-blue/10 to-slate-950 to-75%">
       <section className="flex flex-col gap-8 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6 xl:px-0">
         <article className="md:px-6 lg:px-0 lg:space-y-6">
           <GameInfo />
-          <OwnersSection />
+          <OwnersSection ownersPage={ownersPage} />
         </article>
         <Aside />
       </section>

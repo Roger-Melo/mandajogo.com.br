@@ -148,7 +148,7 @@ function UserCard({ user }: { user: GameOwner }) {
 }
 
 async function OwnersList() {
-  const gameOwners = await prisma.gameOwner.findMany()
+  const gameOwners = await prisma.gameOwner.findMany({ orderBy: { enumLevel: "desc" } })
   return (
     <>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">

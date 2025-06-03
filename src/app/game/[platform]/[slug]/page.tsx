@@ -8,7 +8,7 @@ import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 // import { gameOwners } from "@/db/sample-data/game-owners"
 import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { type GameOwner } from "@prisma/client"
 import prisma from "@/lib/db"
 
@@ -156,7 +156,7 @@ function UserCard({ user }: { user: GameOwner }) {
 }
 
 async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
-  const take = 2
+  const take = 4
   const gameOwners = await prisma.gameOwner.findMany({
     orderBy: { enumLevel: "desc" },
     take,
@@ -169,41 +169,29 @@ async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
   const nextPath = hasNextPage && `/game/${platform}/${slug}?owners-page=${ownersPage + 1}`
 
   return (
-    <>
+    <div className="space-y-4">
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {gameOwners.map((user) => <UserCard key={user.username} user={user} />)}
       </ul>
 
-      {/* PaginationControls */}
-      <section>
-        {prevPath && <Link href={prevPath}>Anterior</Link>}
-        {nextPath && <Link href={nextPath}>Próxima</Link>}
-      </section>
-
+      {/* TODO: fix scroll after click */}
+      {/* TODO: retornar última página caso um número maior que a última seja inserido na url */}
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="w-full">
           {prevPath && (
-            <PaginationItem>
+            <PaginationItem className="mr-auto">
               <PaginationPrevious href={prevPath} />
             </PaginationItem>
           )}
 
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-
           {nextPath && (
-            <PaginationItem>
+            <PaginationItem className="ml-auto">
               <PaginationNext href={nextPath} />
             </PaginationItem>
           )}
         </PaginationContent>
       </Pagination>
-    </>
+    </div>
   )
 }
 

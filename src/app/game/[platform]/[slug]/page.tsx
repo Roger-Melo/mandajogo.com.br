@@ -179,6 +179,30 @@ async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
         {prevPath && <Link href={prevPath}>Anterior</Link>}
         {nextPath && <Link href={nextPath}>Próxima</Link>}
       </section>
+
+      <Pagination>
+        <PaginationContent>
+          {prevPath && (
+            <PaginationItem>
+              <PaginationPrevious href={prevPath} />
+            </PaginationItem>
+          )}
+
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+
+          {nextPath && (
+            <PaginationItem>
+              <PaginationNext href={nextPath} />
+            </PaginationItem>
+          )}
+        </PaginationContent>
+      </Pagination>
     </>
   )
 }

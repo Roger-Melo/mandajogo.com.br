@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import prisma from "@/lib/db"
+import { unstable_cache } from "next/cache"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -71,7 +72,7 @@ export function getInterestLevels(enumLevel = 0) {
   return gauges[enumLevel]
 }
 
-export async function getGameOwners({ take = 2, page = 1 }) {
+export const getGameOwners = unstable_cache(async ({ take = 2, page = 1 }) => {
   const gameOwners = await prisma.gameOwner.findMany({
     orderBy: { enumLevel: "desc" },
     take,
@@ -80,4 +81,4 @@ export async function getGameOwners({ take = 2, page = 1 }) {
 
   const totalCount = await prisma.gameOwner.count()
   return { gameOwners, totalCount }
-}
+})

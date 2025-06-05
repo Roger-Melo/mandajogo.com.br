@@ -7,10 +7,9 @@ import { Badge } from "@/components/ui/badge"
 import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/sample-data/top-desired-games"
 // import { gameOwners } from "@/db/sample-data/game-owners"
-import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
+import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition, getGameOwners } from "@/lib/utils"
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { type GameOwner } from "@prisma/client"
-import prisma from "@/lib/db"
 
 type GamePageProps = {
   params: Promise<{ slug: string; platform: string }>
@@ -157,12 +156,7 @@ function UserCard({ user }: { user: GameOwner }) {
 
 async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
   const take = 4
-  const gameOwners = await prisma.gameOwner.findMany({
-    orderBy: { enumLevel: "desc" },
-    take,
-    skip: (ownersPage - 1) * take,
-  })
-  const totalCount = await prisma.gameOwner.count()
+  const { gameOwners, totalCount } = await getGameOwners({ take, page: ownersPage })
 
   const prevPath = ownersPage > 1 && `/game/${platform}/${slug}?owners-page=${ownersPage - 1}`
   const hasNextPage = totalCount > (take * ownersPage)

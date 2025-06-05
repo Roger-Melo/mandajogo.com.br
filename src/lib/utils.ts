@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import prisma from "@/lib/db"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -68,4 +69,15 @@ export function getInterestLevels(enumLevel = 0) {
   }
   // @ts-expect-error temp
   return gauges[enumLevel]
+}
+
+export async function getGameOwners({ take = 2, page = 1 }) {
+  const gameOwners = await prisma.gameOwner.findMany({
+    orderBy: { enumLevel: "desc" },
+    take,
+    skip: (page - 1) * take,
+  })
+
+  const totalCount = await prisma.gameOwner.count()
+  return { gameOwners, totalCount }
 }

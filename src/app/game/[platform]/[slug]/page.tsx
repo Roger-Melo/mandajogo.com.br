@@ -179,13 +179,13 @@ async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
         <PaginationContent className="w-full">
           {prevPath && (
             <PaginationItem className="mr-auto">
-              <PaginationPrevious href={prevPath} scroll={false} />
+              <PaginationPrevious href={prevPath} scroll={false} className="hover:bg-primary-yellow hover:text-primary-blue" />
             </PaginationItem>
           )}
 
           {nextPath && (
             <PaginationItem className="ml-auto">
-              <PaginationNext href={nextPath} scroll={false} />
+              <PaginationNext href={nextPath} scroll={false} className="hover:bg-primary-yellow hover:text-primary-blue" />
             </PaginationItem>
           )}
         </PaginationContent>

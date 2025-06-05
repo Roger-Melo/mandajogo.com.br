@@ -174,19 +174,18 @@ async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
         {gameOwners.map((user) => <UserCard key={user.username} user={user} />)}
       </ul>
 
-      {/* TODO: fix scroll after click */}
       {/* TODO: retornar última página caso um número maior que a última seja inserido na url */}
       <Pagination>
         <PaginationContent className="w-full">
           {prevPath && (
             <PaginationItem className="mr-auto">
-              <PaginationPrevious href={prevPath} />
+              <PaginationPrevious href={prevPath} scroll={false} />
             </PaginationItem>
           )}
 
           {nextPath && (
             <PaginationItem className="ml-auto">
-              <PaginationNext href={nextPath} />
+              <PaginationNext href={nextPath} scroll={false} />
             </PaginationItem>
           )}
         </PaginationContent>

@@ -134,7 +134,6 @@ function UserCard({ user }: { user: GameOwner }) {
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 flex flex-col gap-4 justify-between">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
-        {/* user info */}
         <section className="flex flex-col justify-center items-center ml-auto">
           <Link href="#">
             <Image src={user.imageAvatar} width={250} height={250} alt={`Imagem ${user.name}`} className="rounded-full w-20 hover:opacity-80" />
@@ -148,9 +147,7 @@ function UserCard({ user }: { user: GameOwner }) {
         <GameConditionInfo user={user} />
       </div>
 
-      <Button asChild className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">
-        <Link href="#">Fazer proposta</Link>
-      </Button>
+      <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
     </li>
   )
 }
@@ -169,7 +166,6 @@ async function OwnersList({ ownersPage = 1, platform, slug }: CommonProps) {
         {gameOwners.map((user) => <UserCard key={user.username} user={user} />)}
       </ul>
 
-      {/* TODO: retornar última página caso um número maior que a última seja inserido na url */}
       <Pagination>
         <PaginationContent className="w-full">
           {prevPath && (

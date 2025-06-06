@@ -1,31 +1,4 @@
-// temp
-export type GameOwner = {
-  name: string
-  username: string
-  imageAvatar: string
-  isVerified: boolean
-  supplyName: string | null
-  imageCover: string | null
-  supplyPermalink: string | null
-  bundlePermalink: string | null
-  scoreGeneral: number
-  exchangesCount: number
-  enumLevel: number
-  enumLevelDesc: string | null
-  conditionMedia: number
-  conditionMediaDesc: string | null
-  conditionBooklet: number
-  conditionBookletDesc: string | null
-  conditionBox: number
-  conditionBoxDesc: string | null
-  enumVersion: number
-  enumVersionDesc: string | null
-  enumRegion: number
-  enumRegionDesc: string | null
-  notes: string | null
-  city: string
-  state: string
-}
+export { type GameOwner } from "@prisma/client"
 
 // temp
 export type Game = {

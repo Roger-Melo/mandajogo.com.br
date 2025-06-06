@@ -4,6 +4,41 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GameConditionInfo } from "@/components/game-page/game-condition-info"
 import { type GameOwner } from "@/types"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+
+function ProposalDialog({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Está certo disso?</DialogTitle>
+          <DialogDescription>
+            Descrição do Dialog
+
+            {/* inner dialog */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button>Clica aqui</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Está certo disso?</DialogTitle>
+                  <DialogDescription>
+                    Descrição do Dialog interno
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
+}
 
 export function UserCard({ user }: { user: GameOwner }) {
   return (
@@ -22,7 +57,9 @@ export function UserCard({ user }: { user: GameOwner }) {
         <GameConditionInfo user={user} />
       </div>
 
-      <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
+      <ProposalDialog>
+        <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
+      </ProposalDialog>
     </li>
   )
 }

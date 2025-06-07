@@ -7,6 +7,7 @@ import type { Game, GameOwner } from "@/types"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { cn } from "@/lib/utils"
 
 type ProposalDialogProps = {
   children: React.ReactNode
@@ -24,7 +25,7 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
         <div>
           <DialogHeader>
             <DialogTitle className="text-base font-normal mb-1">Detalhe do Jogo</DialogTitle>
-            <div>
+            <div className="mb-2">
               <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="w-[160px] h-auto rounded-sm mx-auto" />
               <h2 className="text-2xl font-bold mt-2 mb-1">{game.title}</h2>
               <strong className="text-sm">Versão:</strong>{" "}<span className="text-sm">Normal</span>
@@ -32,9 +33,12 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
               <strong className="text-sm">Região:</strong>{" "}<span className="text-sm">América (R1)</span>
             </div>
             <DialogDescription />
-            <div className="bg-green-500">
-              <UserDetails user={user} />
-              <strong>Minha Nota {10}</strong>
+            <div className="flex gap-4 items-center justify-between">
+              <UserDetails user={user} type="horizontal" />
+              <div className="flex items-center gap-2">
+                <strong className="font-normal text-sm text-right">Minha Nota</strong>
+                <span className="text-2xl font-bold">{10}</span>
+              </div>
             </div>
           </DialogHeader>
           <div className="bg-sky-600">
@@ -104,18 +108,24 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
     </Dialog>
   )
 }
+type UserDetailsProps = {
+  user: GameOwner
+  type: "vertical" | "horizontal"
+}
 
-function UserDetails({ user }: { user: GameOwner }) {
+function UserDetails({ user, type }: UserDetailsProps) {
   return (
-    <section className="flex flex-col justify-center items-center ml-auto">
+    <section className={cn("flex justify-center items-center", type === "vertical" ? "ml-auto flex-col" : "flex-row gap-2")}>
       <Link href="#">
-        <Image src={user.imageAvatar} width={250} height={250} alt={`Imagem ${user.name}`} className="rounded-full w-20 hover:opacity-80" />
+        <Image src={user.imageAvatar} width={250} height={250} alt={`Imagem ${user.name}`} className={cn("rounded-full hover:opacity-80", type === "vertical" ? "w-20" : "w-12")} />
       </Link>
-      <Link href="#">
-        <h3 className="text-2xl font-semibold mt-2 hover:text-slate-400 text-center">{user.name.split(" ")[0]}</h3>
-      </Link>
-      <p className="text-xs text-slate-500 text-center">{user.city} / {user.state}</p>
-      <Badge className="bg-slate-800 text-slate-400 mt-2">{user.exchangesCount} trocas</Badge>
+      <div className={cn("", type === "vertical" ? "text-2xl text-center" : "text-left flex flex-col gap-1")}>
+        <Link href="#">
+          <h3 className={cn("font-semibold hover:text-slate-400", type === "vertical" ? "mt-2" : "leading-none")}>{user.name.split(" ")[0]}</h3>
+        </Link>
+        {type === "vertical" && <p className="text-xs text-slate-500 text-center">{user.city} / {user.state}</p>}
+        <Badge className={cn("bg-slate-800 text-slate-400", type === "vertical" ? "mt-2" : "text-[.7rem]")}>{user.exchangesCount} trocas</Badge>
+      </div>
     </section>
   )
 }
@@ -124,7 +134,7 @@ export function UserCard({ user, game }: { user: GameOwner, game: Game }) {
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 flex flex-col gap-4 justify-between">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
-        <UserDetails user={user} />
+        <UserDetails user={user} type="vertical" />
         <GameConditionInfo user={user} />
       </div>
 

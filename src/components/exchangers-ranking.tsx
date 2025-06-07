@@ -1,9 +1,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link"
-import { randomUUID } from "crypto"
+import { randomUUID, UUID } from "crypto"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
-const topExchangers = [
+// temp
+type Exchanger = {
+  id: UUID
+  avatar: string
+  position: number
+  name: string
+  city: string
+  state: string
+}
+
+const topExchangers: Exchanger[] = [
   { id: randomUUID(), avatar: "/users/top-exchangers/gustavo.jpg", position: 1, name: "Gustavo Caetano", city: "Bauru", state: "SP" },
   { id: randomUUID(), avatar: "/users/top-exchangers/fabio.jpg", position: 1, name: "Fabio Motto", city: "São Paulo", state: "SP" },
   { id: randomUUID(), avatar: "/users/top-exchangers/eduardo.jpg", position: 2, name: "Eduardo Gomes", city: "Osasco", state: "SP" },
@@ -11,7 +21,7 @@ const topExchangers = [
   { id: randomUUID(), avatar: "/users/top-exchangers/erich.jpg", position: 3, name: "Erich vinícius", city: "Rio de Janeiro", state: "RJ" },
 ]
 
-function Exchanger ({ avatar, position, name, city, state }) {
+function Exchanger({ avatar, position, name, city, state }: Omit<Exchanger, "id">) {
   return (
     <li
       className="
@@ -47,7 +57,7 @@ function Exchanger ({ avatar, position, name, city, state }) {
   )
 }
 
-export function ExchangersRanking () {
+export function ExchangersRanking() {
   return (
     <section className="px-4 py-8 bg-slate-950 lg:py-16 md:max-w-site-width md:mx-auto">
       <h2 className="font-bold uppercase text-primary-blue mb-6">Ranking de <span className="text-primary-yellow">Trocadores</span></h2>

@@ -1,14 +1,16 @@
 import { getGameOwners } from "@/lib/server-utils"
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { UserCard } from "@/components/game-page/user-card"
+import { Game } from "@/types"
 
 type OwnersListProps = {
   ownersPage: number
   platform: string
   slug: string
+  game: Game
 }
 
-export async function OwnersList({ ownersPage = 1, platform, slug }: OwnersListProps) {
+export async function OwnersList({ ownersPage = 1, platform, slug, game }: OwnersListProps) {
   const take = 4
   const { gameOwners, totalCount } = await getGameOwners({ take, page: ownersPage })
 
@@ -19,7 +21,7 @@ export async function OwnersList({ ownersPage = 1, platform, slug }: OwnersListP
   return (
     <div className="space-y-4">
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {gameOwners.map((user) => <UserCard key={user.username} user={user} />)}
+        {gameOwners.map((user) => <UserCard key={user.username} user={user} game={game} />)}
       </ul>
 
       <Pagination>

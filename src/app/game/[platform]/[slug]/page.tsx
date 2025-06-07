@@ -17,7 +17,7 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
       <section className="flex flex-col gap-8 px-4 py-8 md:max-w-site-width md:mx-auto lg:py-16 lg:px-10 lg:grid lg:grid-cols-[2fr_1fr] lg:gap-6 xl:px-0">
         <article className="md:px-6 lg:px-0 lg:space-y-6">
           <GameInfo game={game} />
-          <OwnersSection ownersPage={ownersPage} platform={platform} slug={slug} />
+          <OwnersSection game={game} ownersPage={ownersPage} platform={platform} slug={slug} />
         </article>
         <Aside game={game} />
       </section>

@@ -5,7 +5,7 @@ export const gameProposal = {
   username: "aryhoo",
   imageAvatar: "https://raw.githubusercontent.com/Roger-Melo/mandajogo.com.br/refs/heads/main/public/users/game-owners/rafael.jpg",
   isVerified: false,
-  supplyName: "Elden Ring",
+  gameTitle: "Elden Ring", // supplyName
   imageCover: "elden-ring.jpg",
   slug: "elden-ring",
   platformSlug: "ps5",

@@ -20,26 +20,27 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>
+      <DialogContent className="text-center overflow-y-auto h-9/10 p-4 bg-slate-950 border-2 border-slate-700">
+        <div>
+          <DialogHeader>
+            <DialogTitle className="text-base font-normal mb-1">Detalhe do Jogo</DialogTitle>
             <div>
-              <h4>Detalhe do Jogo</h4>
-              <h2>{game.title}</h2>
+              <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="w-[160px] h-auto rounded-sm mx-auto" />
+              <h2 className="text-2xl font-bold mt-2 mb-1">{game.title}</h2>
+              <strong className="text-sm">Versão:</strong>{" "}<span className="text-sm">Normal</span>
+              {" | "}
+              <strong className="text-sm">Região:</strong>{" "}<span className="text-sm">América (R1)</span>
             </div>
-          </DialogTitle>
-          <div>
-            <Image width={236} height={294} src={`/covers/${game.platformSlug}/${game.imageCover}`} alt={game.title} className="max-w-[360px] h-auto rounded-sm" />
-            <strong>Versão: Normal</strong>
-            <strong>Região: América (R1)</strong>
-
-            <UserDetails user={user} />
-
-            <strong>Minha Nota {10}</strong>
-
+            <DialogDescription />
+            <div className="bg-green-500">
+              <UserDetails user={user} />
+              <strong>Minha Nota {10}</strong>
+            </div>
+          </DialogHeader>
+          <div className="bg-sky-600">
             <h2>Faça sua proposta</h2>
             <Select>
-              <SelectTrigger className="w-[280px]">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Escolha um jogo" />
               </SelectTrigger>
               <SelectContent>
@@ -62,12 +63,11 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
               </SelectContent>
             </Select>
           </div>
-          <DialogDescription />
 
           {/* inner dialog */}
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button>Enviar proposta</Button>
+              <Button className="w-full">Enviar proposta</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
@@ -99,7 +99,7 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
               <small>Nenhum arranhão ou marcas de dedos</small>
             </div>
           </div>
-        </DialogHeader>
+        </div>
       </DialogContent>
     </Dialog>
   )

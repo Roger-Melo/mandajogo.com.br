@@ -8,51 +8,48 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
+// import { game } from "@/db/sample-data/game"
 
 type ProposalDialogProps = {
   children: React.ReactNode
   game: Game
   user: GameOwner
-  userCollectionData: string
+  loggedUserGamesCollection: LoggedUserGame[]
 }
 
-function GamesSelect() {
-  console.log("renderizou GamesSelect")
+type GamesSelectProps = {
+  loggedUserGamesCollection: LoggedUserGame[]
+}
+
+function GamesSelect({ loggedUserGamesCollection }: GamesSelectProps) {
+  const loggedUserGamesGroupedByPlatform = Object
+    .groupBy(loggedUserGamesCollection, (obj) => obj.platformName)
+  const platforms = Object.keys(loggedUserGamesGroupedByPlatform)
   return (
     <Select>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Escolha um jogo" />
       </SelectTrigger>
       <SelectContent>
-        <SelectGroup>
-          <SelectLabel>PlayStation 3</SelectLabel>
-          <SelectItem value="bioShock-2">BioShock 2</SelectItem>
-          <SelectItem value="call-of-Duty-modern-warfare-3">Call of Duty: Modern Warfare 3</SelectItem>
-          <SelectItem value="dark-souls-iii-the-fire-fades-edition">Dark Souls III: The Fire Fades Edition</SelectItem>
-        </SelectGroup>
-        <SelectGroup>
-          <SelectLabel>PlayStation 4</SelectLabel>
-          <SelectItem value="god-of-war">God of War</SelectItem>
-          <SelectItem value="days-gone">Days Gone</SelectItem>
-        </SelectGroup>
-        <SelectGroup>
-          <SelectLabel>PlayStation 5</SelectLabel>
-          <SelectItem value="god-of-war-ragnarok">God Of War: Ragnarök</SelectItem>
-          <SelectItem value="metaphor-refantazio">Metaphor: ReFantazio</SelectItem>
-        </SelectGroup>
+        {platforms.map((platform) =>
+          <SelectGroup key={platform}>
+            <SelectLabel>{platform}</SelectLabel>
+            {loggedUserGamesGroupedByPlatform[platform]?.map((game, index) =>
+              <SelectItem key={index} value={game.slug}>{game.title}</SelectItem>)}
+          </SelectGroup>
+        )}
       </SelectContent>
     </Select>
   )
 }
 
-function ProposalDialog({ children, game, user, userCollectionData }: ProposalDialogProps) {
-  console.log("userCollectionData:", userCollectionData)
+function ProposalDialog({ children, game, user, loggedUserGamesCollection }: ProposalDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="text-center overflow-y-auto max-h-9/10 p-4 bg-slate-950 border-2 border-slate-700">
+      <DialogContent forceMount={undefined} className="text-center overflow-y-auto max-h-9/10 p-4 bg-slate-950 border-2 border-slate-700">
         <div>
           <DialogHeader>
             <DialogTitle className="text-base font-normal mb-1">Detalhe do Jogo</DialogTitle>
@@ -74,7 +71,7 @@ function ProposalDialog({ children, game, user, userCollectionData }: ProposalDi
           </DialogHeader>
           <div className="outline-2 outline-sky-600 my-4">
             <h2>Faça sua proposta</h2>
-            <GamesSelect />
+            <GamesSelect loggedUserGamesCollection={loggedUserGamesCollection} />
 
             {/* inner dialog */}
             <AlertDialog>
@@ -140,7 +137,28 @@ function UserDetails({ user, type }: UserDetailsProps) {
   )
 }
 
-export function UserCard({ user, game, userCollectionData }: { user: GameOwner; game: Game; userCollectionData: string }) {
+type LoggedUserGame = {
+  title: string
+  imageCover: string
+  slug: string
+  platformName: string
+  platformSlug: string
+  scoreGeneral: number
+  enumLevel: number
+  wishes30days: number
+  offers30days: number
+  createdOn: string
+  isExchanging: boolean
+  orderGuid: string
+}
+
+type UserCardProps = {
+  user: GameOwner
+  game: Game
+  loggedUserGamesCollection: LoggedUserGame[]
+}
+
+export function UserCard({ user, game, loggedUserGamesCollection }: UserCardProps) {
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 flex flex-col gap-4 justify-between">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
@@ -148,7 +166,7 @@ export function UserCard({ user, game, userCollectionData }: { user: GameOwner; 
         <GameConditionInfo user={user} />
       </div>
 
-      <ProposalDialog game={game} user={user} userCollectionData={userCollectionData}>
+      <ProposalDialog game={game} user={user} loggedUserGamesCollection={loggedUserGamesCollection}>
         <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
       </ProposalDialog>
     </li>

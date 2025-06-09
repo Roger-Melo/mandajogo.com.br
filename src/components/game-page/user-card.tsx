@@ -13,15 +13,46 @@ type ProposalDialogProps = {
   children: React.ReactNode
   game: Game
   user: GameOwner
+  userCollectionData: string
 }
 
-function ProposalDialog({ children, game, user }: ProposalDialogProps) {
+function GamesSelect() {
+  console.log("renderizou GamesSelect")
+  return (
+    <Select>
+      <SelectTrigger className="w-full">
+        <SelectValue placeholder="Escolha um jogo" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>PlayStation 3</SelectLabel>
+          <SelectItem value="bioShock-2">BioShock 2</SelectItem>
+          <SelectItem value="call-of-Duty-modern-warfare-3">Call of Duty: Modern Warfare 3</SelectItem>
+          <SelectItem value="dark-souls-iii-the-fire-fades-edition">Dark Souls III: The Fire Fades Edition</SelectItem>
+        </SelectGroup>
+        <SelectGroup>
+          <SelectLabel>PlayStation 4</SelectLabel>
+          <SelectItem value="god-of-war">God of War</SelectItem>
+          <SelectItem value="days-gone">Days Gone</SelectItem>
+        </SelectGroup>
+        <SelectGroup>
+          <SelectLabel>PlayStation 5</SelectLabel>
+          <SelectItem value="god-of-war-ragnarok">God Of War: Ragnarök</SelectItem>
+          <SelectItem value="metaphor-refantazio">Metaphor: ReFantazio</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}
+
+function ProposalDialog({ children, game, user, userCollectionData }: ProposalDialogProps) {
+  console.log("userCollectionData:", userCollectionData)
   return (
     <Dialog>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="text-center overflow-y-auto h-9/10 p-4 bg-slate-950 border-2 border-slate-700">
+      <DialogContent className="text-center overflow-y-auto max-h-9/10 p-4 bg-slate-950 border-2 border-slate-700">
         <div>
           <DialogHeader>
             <DialogTitle className="text-base font-normal mb-1">Detalhe do Jogo</DialogTitle>
@@ -41,54 +72,32 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
               </div>
             </div>
           </DialogHeader>
-          <div className="bg-sky-600">
+          <div className="outline-2 outline-sky-600 my-4">
             <h2>Faça sua proposta</h2>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Escolha um jogo" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>PlayStation 3</SelectLabel>
-                  <SelectItem value="bioShock-2">BioShock 2</SelectItem>
-                  <SelectItem value="call-of-Duty-modern-warfare-3">Call of Duty: Modern Warfare 3</SelectItem>
-                  <SelectItem value="dark-souls-iii-the-fire-fades-edition">Dark Souls III: The Fire Fades Edition</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>PlayStation 4</SelectLabel>
-                  <SelectItem value="god-of-war">God of War</SelectItem>
-                  <SelectItem value="days-gone">Days Gone</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>PlayStation 5</SelectLabel>
-                  <SelectItem value="god-of-war-ragnarok">God Of War: Ragnarök</SelectItem>
-                  <SelectItem value="metaphor-refantazio">Metaphor: ReFantazio</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
+            <GamesSelect />
 
-          {/* inner dialog */}
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button className="w-full">Enviar proposta</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Envio de proposta</AlertDialogTitle>
-                <AlertDialogDescription />
-              </AlertDialogHeader>
-              <div>
-                <strong>Roger receberá uma notificação sobre o seu interesse em realizar essa troca.</strong>
-                <p>Até que sua proposta seja aceita, caso mude de ideia, você poderá cancelá-la a qualquer momento.</p>
-                <p>Caso sua proposta seja aceita, você se compromete desde já a contretizá-la, sob o risco de suspensão ou banimento do MandaJogo caso não respeite nossos termos de uso.</p>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                  <AlertDialogAction>Enviar</AlertDialogAction>
-                </AlertDialogFooter>
-              </div>
-            </AlertDialogContent>
-          </AlertDialog>
+            {/* inner dialog */}
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="w-full">Enviar proposta</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Envio de proposta</AlertDialogTitle>
+                  <AlertDialogDescription />
+                </AlertDialogHeader>
+                <div>
+                  <strong>Roger receberá uma notificação sobre o seu interesse em realizar essa troca.</strong>
+                  <p>Até que sua proposta seja aceita, caso mude de ideia, você poderá cancelá-la a qualquer momento.</p>
+                  <p>Caso sua proposta seja aceita, você se compromete desde já a contretizá-la, sob o risco de suspensão ou banimento do MandaJogo caso não respeite nossos termos de uso.</p>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction>Enviar</AlertDialogAction>
+                  </AlertDialogFooter>
+                </div>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
           <div>
             <div>
               <strong>Mídia</strong>
@@ -108,6 +117,7 @@ function ProposalDialog({ children, game, user }: ProposalDialogProps) {
     </Dialog>
   )
 }
+
 type UserDetailsProps = {
   user: GameOwner
   type: "vertical" | "horizontal"
@@ -130,7 +140,7 @@ function UserDetails({ user, type }: UserDetailsProps) {
   )
 }
 
-export function UserCard({ user, game }: { user: GameOwner, game: Game }) {
+export function UserCard({ user, game, userCollectionData }: { user: GameOwner; game: Game; userCollectionData: string }) {
   return (
     <li className="border-2 border-slate-800 rounded-2xl text-slate-300 flex flex-col gap-4 justify-between">
       <div className="grid grid-cols-2 items-center gap-6 pt-4 px-4 xsm:gap-14 sm:gap-6">
@@ -138,7 +148,7 @@ export function UserCard({ user, game }: { user: GameOwner, game: Game }) {
         <GameConditionInfo user={user} />
       </div>
 
-      <ProposalDialog game={game} user={user}>
+      <ProposalDialog game={game} user={user} userCollectionData={userCollectionData}>
         <Button className="w-full rounded-b-xl rounded-tl-none rounded-tr-none py-5 bg-primary-blue hover:bg-primary-yellow hover:text-primary-blue">Fazer proposta</Button>
       </ProposalDialog>
     </li>

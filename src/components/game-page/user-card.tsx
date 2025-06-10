@@ -27,15 +27,18 @@ function GamesSelect({ loggedUserGamesCollection }: GamesSelectProps) {
   const platforms = Object.keys(loggedUserGamesGroupedByPlatform)
   return (
     <Select>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="w-full border-2 border-slate-600">
         <SelectValue placeholder="Escolha um jogo" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-slate-900 text-slate-300">
         {platforms.map((platform) =>
           <SelectGroup key={platform}>
             <SelectLabel>{platform}</SelectLabel>
-            {loggedUserGamesGroupedByPlatform[platform]?.map((game, index) =>
-              <SelectItem key={index} value={game.slug}>{game.title}</SelectItem>)}
+            {loggedUserGamesGroupedByPlatform[platform]?.map((game) =>
+              <SelectItem key={game.id} value={`${game.platformSlug}/${game.slug}`} className="focus:bg-primary-yellow focus:text-primary-blue focus:font-semibold">
+                {game.title}
+              </SelectItem>
+            )}
           </SelectGroup>
         )}
       </SelectContent>
@@ -69,14 +72,15 @@ function ProposalDialog({ children, game, user, loggedUserGamesCollection }: Pro
               </div>
             </div>
           </DialogHeader>
-          <div className="outline-2 outline-sky-600 my-4">
+          <div className="my-4 space-y-4">
             <h2>Faça sua proposta</h2>
             <GamesSelect loggedUserGamesCollection={loggedUserGamesCollection} />
 
             {/* inner dialog */}
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button className="w-full">Enviar proposta</Button>
+                <Button className="w-full bg-primary-blue">Enviar proposta</Button>
+                {/* <Button className="w-full bg-primary-yellow text-primary-blue">Enviar proposta</Button> */}
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
@@ -138,6 +142,7 @@ function UserDetails({ user, type }: UserDetailsProps) {
 }
 
 type LoggedUserGame = {
+  id: number
   title: string
   imageCover: string
   slug: string

@@ -5,6 +5,7 @@ import { Game } from "@/types"
 
 const loggedUserGamesCollection = [
   {
+    id: Math.random(),
     title: "God Of War: Ragnarök",
     imageCover: "20091212000000_ps5-god-of-war-ragnarok.jpg",
     slug: "god-of-war-ragnarok",
@@ -19,6 +20,7 @@ const loggedUserGamesCollection = [
     orderGuid: "00000000-0000-0000-0000-000000000000"
   },
   {
+    id: Math.random(),
     title: "BioShock 2",
     imageCover: "20091212000000_ps4-bioshock.jpg",
     slug: "bioshock-2",
@@ -33,6 +35,7 @@ const loggedUserGamesCollection = [
     orderGuid: "00000000-0000-0000-0000-000000000000"
   },
   {
+    id: Math.random(),
     title: "BioShock",
     imageCover: "20091212000000_ps3-bioshock.jpg",
     slug: "bioshock",
@@ -47,6 +50,7 @@ const loggedUserGamesCollection = [
     orderGuid: "00000000-0000-0000-0000-000000000000"
   },
   {
+    id: Math.random(),
     title: "BioShock 2",
     imageCover: "20091212000000_ps3-bioshock.jpg",
     slug: "bioshock-2",

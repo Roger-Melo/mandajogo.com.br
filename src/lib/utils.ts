@@ -5,9 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const siteName = "MandaJogo"
-export const siteDescription = "Comunidade de Troca de Jogos de Videogame"
-
 export function getBoxCondition(conditionBox = 0) {
   const commonPath = `/svg/conditions`
   const conditions = {

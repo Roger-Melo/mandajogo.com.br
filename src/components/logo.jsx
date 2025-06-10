@@ -1,4 +1,4 @@
-import { siteName } from "@/lib/utils"
+import { siteName } from "@/lib/constants"
 import Image from "next/image"
 import Link from "next/link"
 

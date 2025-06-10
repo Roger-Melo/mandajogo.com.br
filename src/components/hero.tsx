@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { UserRoundPlus } from "lucide-react"
-import { siteName } from "@/lib/utils"
+import { siteName } from "@/lib/constants"
 
 export function Hero() {
   return (

@@ -1,4 +1,5 @@
 import { getGameOwners } from "@/lib/server-utils"
+import { ownersPerPage } from "@/lib/constants"
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { UserCard } from "@/components/game-page/user-card"
 import { Game } from "@/types"
@@ -73,13 +74,11 @@ type OwnersListProps = {
   game: Game
 }
 
-const take = 4
-
 export async function OwnersList({ ownersPage = 1, platform, slug, game }: OwnersListProps) {
   // owners data
-  const { gameOwners, totalCount } = await getGameOwners({ take, page: ownersPage })
+  const { gameOwners, totalCount } = await getGameOwners({ take: ownersPerPage, page: ownersPage })
   const prevPath = ownersPage > 1 && `/game/${platform}/${slug}?owners-page=${ownersPage - 1}`
-  const hasNextPage = totalCount > (take * ownersPage)
+  const hasNextPage = totalCount > (ownersPerPage * ownersPage)
   const nextPath = hasNextPage && `/game/${platform}/${slug}?owners-page=${ownersPage + 1}`
   // fetch user collection data here & pass it down as props
   return (

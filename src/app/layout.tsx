@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { MenuBar } from "@/components/menu-bar"
 import "./globals.css"
-import { siteDescription, siteName } from "@/lib/utils"
+import { siteDescription, siteName } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: `${siteName} | ${siteDescription}`,

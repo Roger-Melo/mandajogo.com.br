@@ -83,7 +83,7 @@ export async function OwnersList({ ownersPage = 1, platform, slug, game }: Owner
   // fetch user collection data here & pass it down as props
   return (
     <div className="space-y-4">
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <ul data-testid="game-owners-list" className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {gameOwners.map((user) =>
           <UserCard
             key={user.username}

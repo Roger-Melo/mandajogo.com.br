@@ -2,8 +2,13 @@ import { test, expect, type Page } from "@playwright/test"
 import { ownersPerPage } from "@/lib/constants"
 import prisma from "@/lib/db"
 
-async function getGameOwners() {
-  const gameOwners = await prisma.gameOwner.findMany({ orderBy: { enumLevel: "desc" } })
+async function getGameOwners({ take = ownersPerPage, page = 1 } = {}) {
+  const gameOwners = await prisma.gameOwner.findMany({
+    orderBy: { enumLevel: "desc" },
+    take,
+    skip: (page - 1) * take,
+  })
+
   const totalCount = await prisma.gameOwner.count()
   return { gameOwners, totalCount }
 }
@@ -25,19 +30,27 @@ test.describe("GamePage", () => {
     await gameOwnersList.isVisible()
   })
 
-  test("should display the initial game owner cards", async ({ page }: { page: Page }) => {
+  test("should display the initial game owners", async ({ page }: { page: Page }) => {
     const { gameOwners } = await getGameOwners()
-    const initialPageGameOwners = gameOwners.slice(0, ownersPerPage)
     const gameOwnersList = getGameOwnersList(page)
 
-    for (const initialGameOwner of initialPageGameOwners) {
-      const ownerName = gameOwnersList.getByRole("heading", { name: initialGameOwner.name })
+    for (const gameOwner of gameOwners) {
+      const ownerName = gameOwnersList.getByRole("heading", { name: gameOwner.name })
       await expect(ownerName).toBeVisible()
-      const ownerImg = gameOwnersList.getByAltText(`Imagem ${initialGameOwner.name}`)
+      const ownerImg = gameOwnersList.getByAltText(`Imagem ${gameOwner.name}`)
       await expect(ownerImg).toBeVisible()
     }
 
     const proposalButtons = gameOwnersList.getByRole("button", { name: "Fazer proposta" })
     await expect(proposalButtons).toHaveCount(ownersPerPage)
+  })
+
+  test("should display the next game owners when click on next page", async ({ page }: { page: Page }) => {
+    // const { gameOwners } = await getGameOwners({ page: 2 })
+    const nextPaginationButton = page.getByRole("link", { name: "Go to next page" })
+    await nextPaginationButton.click()
+    const gameOwnersPage2Link = "/game/ps5/elden-ring?owners-page=2"
+    await page.waitForURL(gameOwnersPage2Link)
+    await expect(page).toHaveURL(gameOwnersPage2Link)
   })
 })

@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import Link from "next/link"
+// import Link from "next/link"
 import { randomUUID, UUID } from "crypto"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
@@ -38,18 +38,20 @@ function Exchanger({ avatar, position, name, city, state }: Omit<Exchanger, "id"
       "
     >
       {/* avatar */}
-      <Link href="#" className="mx-auto min-[430px]:mx-0">
+      {/* <Link href="#" className="mx-auto min-[430px]:mx-0"> */}
+      <span className="mx-auto min-[430px]:mx-0 cursor-default select-none" role="link" aria-disabled={true}>
         <Avatar className="w-32 h-32 border-4 border-white">
           <AvatarImage src={avatar} alt={`Avatar de ${name}`} />
           <AvatarFallback>{name}</AvatarFallback>
         </Avatar>
-      </Link>
+      </span>
 
       {/* text */}
       <div>
-        <Link href="#">
+        {/* <Link href="#"> */}
+        <span role="link" aria-disabled={true} className="cursor-default select-none">
           <h3 className="wrap-anywhere text-3xl text-center uppercase font-semibold my-4 min-[430px]:text-left min-[430px]:mt-0 min-[430px]:mb-2 sm:text-center">{name}</h3>
-        </Link>
+        </span>
         <p>{position}º Lugar</p>
         <p>{`${city} - ${state}`}</p>
       </div>
@@ -97,9 +99,10 @@ export function ExchangersRanking() {
         </div>
       </Carousel>
 
-      <Link href="#" className="text-center mt-4 mx-auto block w-fit hover:text-primary-yellow">
+      {/* <Link href="#" className="text-center mt-4 mx-auto block w-fit hover:text-primary-yellow"> */}
+      <span role="link" aria-disabled={true} className="text-center mt-4 mx-auto block w-fit hover:text-primary-yellow cursor-default select-none">
         Ver ranking completo
-      </Link>
+      </span>
     </section>
   )
 }

@@ -13,7 +13,7 @@ export function Hero() {
         Sabe aquele game que você já terminou e dificilmente voltará a jogar um dia? No <strong>{siteName}</strong> você encontra pessoas que podem estar interessadas nele!
       </p>
 
-      <Button className="my-4 py-5 w-3xs bg-primary-yellow text-primary-black hover:cursor-pointer hover:bg-primary-yellow/90 lg:my-8 lg:py-6 lg:w-80">
+      <Button className="my-4 py-5 w-3xs bg-primary-yellow text-primary-black hover:cursor-not-allowed hover:bg-primary-yellow/90 hover:opacity-60 lg:my-8 lg:py-6 lg:w-80">
         <UserRoundPlus />Participar do {siteName}
       </Button>
 

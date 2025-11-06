@@ -42,7 +42,7 @@ yarn-error.log*
 next-env.d.ts
 
 # notes
-/notes
+/notes/**
 
 # Playwright
 node_modules/

@@ -1,5 +1,5 @@
 import { GameCard } from "@/components/game-card"
-import { topDesiredGames } from "@/db/sample-data/top-desired-games"
+import { topDesiredGames } from "@/db/top-desired-games"
 import { Game } from "@/types"
 
 export function Aside({ game }: { game: Game }) {

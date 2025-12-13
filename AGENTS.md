@@ -7,7 +7,6 @@
 ## Project Structure & Module Organization
 
 - Next.js app router lives in `src/app` for routes/layouts; shared UI sits in `src/components` (Shadcn primitives in `src/components/ui`), utilities in `src/lib`, and data helpers in `src/db`.
-- Prisma schema and seeds live in `prisma/`; regenerate the client after schema edits. Static assets belong in `public/`; design extras sit in `assets/`.
 - Unit tests stay beside the code they cover (e.g., `component.test.tsx`); Playwright end-to-end specs live in `tests/`.
 
 ## Build, Test, and Development Commands
@@ -16,7 +15,6 @@
 - `npm run lint`: Next.js + ESLint checks.
 - `npm run test:jest`: Jest + Testing Library in watch mode.
 - `npx playwright test`: run Playwright E2E specs; add `--headed` when debugging.
-- `npx prisma generate`: regenerate Prisma client after schema changes; seeds live in `prisma/seed.ts`.
 - `npm run build`: production build only for CI or final verification; `npm start` serves the built app when required.
 
 ## Coding Style & Naming Conventions
@@ -36,13 +34,11 @@
 
 - Conventional commits (`type(scope): summary`); keep each commit focused and lint/tests passing.
 - PRs should summarize changes, link issues/context, list commands run (lint, `npm run test:jest`, `npx playwright test`), and attach UI screenshots when visuals change.
-- Call out migrations or config edits (Prisma schema, lint rules) so reviewers can double-check quickly.
 
 ## Dependency & Environment Tips
 
 - Install exact versions (`npm install package@x.y.z`) and keep `package-lock.json` in sync; restart `npm run dev` after dependency updates.
 - Default to the dev server workflow: iterate with `npm run dev`, not `npm run build`.
-- After schema changes, run `npx prisma generate` and migrations as needed before pushing.
 
 ## Context7
 

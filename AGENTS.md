@@ -1,72 +1,89 @@
-# AGENTS Guidelines for This Repository
+# Repository Guidelines
 
-This repository contains a Next.js application. When working on the project interactively with an agent (e.g. the Codex CLI) please follow the guidelines below.
+<critical>
+- **YOU MUST:** read @package.json to understand the project techs
+</critical>
 
-## Use the Development Server, **not** `npm run build`
+## Project Structure & Module Organization
 
-* **Always use `npm run dev`** while iterating on the application. This starts Next.js in development mode with hot-reload enabled.
-* **Do _not_ run `npm run build` inside the agent session.**
+- Next.js app router lives in `src/app` for routes/layouts; shared UI sits in `src/components` (Shadcn primitives in `src/components/ui`), utilities in `src/lib`, and data helpers in `src/db`.
+- Prisma schema and seeds live in `prisma/`; regenerate the client after schema edits. Static assets belong in `public/`; design extras sit in `assets/`.
+- Unit tests stay beside the code they cover (e.g., `component.test.tsx`); Playwright end-to-end specs live in `tests/`.
+
+## Build, Test, and Development Commands
+
+- `npm run dev`: start the dev server with Turbopack; preferred for daily work.
+- `npm run lint`: Next.js + ESLint checks.
+- `npm run test:jest`: Jest + Testing Library in watch mode.
+- `npx playwright test`: run Playwright E2E specs; add `--headed` when debugging.
+- `npx prisma generate`: regenerate Prisma client after schema changes; seeds live in `prisma/seed.ts`.
+- `npm run build`: production build only for CI or final verification; `npm start` serves the built app when required.
+
+## Coding Style & Naming Conventions
+
+- Favor TypeScript (`.ts`/`.tsx`), 2-space indentation, double-quoted imports, and the `@/` alias for `src`.
+- Use `function` declarations over arrow components; components are PascalCase, hooks start with `use`, utilities camelCase, files kebab-case.
+- Tailwind for styling; keep classes near markup. Extend Shadcn components from `src/components/ui` instead of reimplementing primitives.
+- Keep secrets in `.env` and avoid committing credentials.
+
+## Testing Guidelines
+
+- Jest + Testing Library drive unit/integration coverage; keep `.test.ts(x)` near the code under test and assert user-visible outcomes.
+- Playwright covers user flows from `tests/`; keep specs idempotent and seed data explicitly when needed.
+- Add or update tests alongside behavior changes; lean on Jest for logic, reserving Playwright for meaningful end-to-end paths.
+
+## Commit & Pull Request Guidelines
+
+- Conventional commits (`type(scope): summary`); keep each commit focused and lint/tests passing.
+- PRs should summarize changes, link issues/context, list commands run (lint, `npm run test:jest`, `npx playwright test`), and attach UI screenshots when visuals change.
+- Call out migrations or config edits (Prisma schema, lint rules) so reviewers can double-check quickly.
+
+## Dependency & Environment Tips
+
+- Install exact versions (`npm install package@x.y.z`) and keep `package-lock.json` in sync; restart `npm run dev` after dependency updates.
+- Default to the dev server workflow: iterate with `npm run dev`, not `npm run build`.
+- After schema changes, run `npx prisma generate` and migrations as needed before pushing.
 
 ## Context7
 
 Always use context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
 
-## Keep Dependencies in Sync
-
-If you add or update dependencies remember to:
-
-1. Always install exact version of the dependency. Never with `^`.
-2. Update the appropriate lockfile (`package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`).
-3. Re-start the development server so that Next.js picks up the changes.
-
 ## Coding Conventions
 
 - Prefer TypeScript (`.tsx`/`.ts`), in strict mode, for new components and utilities.
-- Use `function` (keyword) instead of const arrow function. 
-- Stick to 2-space indentation
-- Double-quoted imports, and the `@/` alias when referencing `src`.
-- Components and files exporting JSX/TSX should be PascalCase, hooks start with `use`, utilities remain camelCase and filenames are kebab-case. 
-- Use Shadcn as component library. Its components live in `src/components/ui`
-- Styling leans on Tailwind classes—keep related markup and classes together inside the component file.
-- Keep secrets in `.env`
-
-## Testing Guidelines
-
-Jest with Testing Library is configured via `jest.config.ts` and `jest.setup.ts`; place `.test.ts(x)` files near the code they validate and keep the default coverage output intact. 
-
-Playwright specs in `tests/*.spec.ts` should capture end-to-end flows, stay idempotent, and rely on seeded data when necessary. Call out new or updated tests in the PR description.
-
-## Commit & Pull Request Guidelines
-
-Follow the existing Conventional Commit pattern (`type(scope): summary`), keeping each commit focused and verified by linting and relevant tests. 
-
-PRs should provide a short summary, link to context or issues, list the commands you ran (`npm run lint`, `npm run test:jest`, `npx playwright test`), and add UI screenshots when visuals change. 
-
-Highlight migrations or configuration edits so reviewers can double-check them quickly.
-
-## Commands
-
-### Type check a single file by path
-npm run tsc --noEmit path/to/file.tsx
-
-###  Format a single file by path
-npm run prettier --write path/to/file.tsx
-
-### Lint a single file by path
-npm run eslint --fix path/to/file.tsx
-
-### Unit tests - pick one
-npx jest path/to/file.test.tsx
-
-### Full build when explicitly requested
-npm run build
-
-Note: Always lint, test, and typecheck updated files. Use project-wide build sparingly.
+- Always keep secrets in `.env`
+- Always use descriptive names for consts, variables, parameters, properties, classes (etc...) that you create
 
 ## When stuck
-- ask a clarifying question, propose a short plan, or open a draft PR with notes
-- do not push large speculative changes without confirmation
 
-## Good and bad patterns
+- ask a clarifying question or propose a short plan
+- do not do large speculative changes without confirmation
 
+## Code styling
 
+- Don't implement ESLint disable comments
+  - Don't do (example): `// eslint-disable-next-line react-refresh/only-export-components`
+- Put duplicated values in descriptive consts
+- Use ES Modules instead of require
+- Favor immutable approach & functional methods (map, filter, reduce, toSorted). Avoid mutability and loops like for, while, etc. forEach is ok if really necessary.
+
+## Automated testing
+
+- Write unit & integration tests.
+  - Your tests must be elegant and avoid code/data repetition.
+- Automated tests for the main and critical cases are crucial. Test your implementation/refactoring using the project's techs/standards.
+  - **Critical flows need to be validated, otherwise your task will be invalidated**.
+- If your implementation/refactoring impacts existing tests in the project, you need to update them.
+
+## Output
+
+Provide:
+
+1. **Implementation summary:**
+
+- Only after finishing the task: what was added/modified, without showing code.
+- Your plan output. You don't need to show code.
+
+2. **Step by step to manual browser tests:**
+
+- Show me a detailed step by step of how to test the implementation/refactoring in the browser, to confirm and ensure that what was implemented/refactored works.

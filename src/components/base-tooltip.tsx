@@ -1,6 +1,12 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { JSX } from "react";
 
-export function BaseTooltip ({ text, children }) {
+type BaseTooltipProps = {
+  text: string
+  children: JSX.Element
+}
+
+export function BaseTooltip ({ text, children }: BaseTooltipProps) {
   return (
     <TooltipProvider>
       <Tooltip>

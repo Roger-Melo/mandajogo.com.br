@@ -1,4 +1,6 @@
-export const topDesiredGames = [
+import { TopGame } from "@/types"
+
+export const topDesiredGames: TopGame[] = [
   {
     id: Math.random(),
     title: "Elden Ring",

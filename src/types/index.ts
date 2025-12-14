@@ -1,7 +1,7 @@
 export type Platform = {
   name: string
   slug: string
-  company: string
+  company?: string
 }
 
 export type NewReleasedGame = {
@@ -12,6 +12,18 @@ export type NewReleasedGame = {
   releasedOn: string
   platforms: Platform[]
   description: string
+}
+
+export type TopGame = {
+  id: number
+  title: string
+  imageCover: string
+  slug: string
+  platform: Platform
+  description: null | string
+  offers: number
+  wishes: number
+  rating: number
 }
 
 export type Game = {

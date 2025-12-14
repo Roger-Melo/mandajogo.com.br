@@ -1,6 +1,7 @@
 import { GameCard } from "@/components/game-card"
+import { NewReleasedGame } from "@/types"
 
-export function SectionNewReleases ({ games }) {
+export function SectionNewReleases ({ games }: { games: NewReleasedGame[] }) {
   return (
     <section className="px-4 py-8 bg-primary-yellow lg:py-16">
       <div className="md:max-w-site-width md:mx-auto">

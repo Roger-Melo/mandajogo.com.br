@@ -1,4 +1,6 @@
-export const newReleases = [
+import { NewReleasedGame } from "@/types"
+
+export const newReleases: NewReleasedGame[] = [
   {
     id: Math.random(),
     title: "Suikoden I & II HD Remaster Gate Rune and Dunan Unification Wars",

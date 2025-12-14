@@ -1,6 +1,6 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
-export function ReusableTooltip ({ text, children }) {
+export function BaseTooltip ({ text, children }) {
   return (
     <TooltipProvider>
       <Tooltip>

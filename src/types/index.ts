@@ -1,3 +1,19 @@
+export type Platform = {
+  name: string
+  slug: string
+  company: string
+}
+
+export type NewReleasedGame = {
+  id: number
+  title: string
+  imageCover: string
+  slug: string
+  releasedOn: string
+  platforms: Platform[]
+  description: string
+}
+
 export type Game = {
   title: string
   description: string
@@ -30,31 +46,31 @@ export type Game = {
 }
 
 export type GameOwner = {
-  id: string,
-  createdAt: string,
-  name: string,
-  username: string,
-  imageAvatar: string,
-  isVerified: boolean,
-  supplyName: null,
-  imageCover: null,
-  supplyPermalink: null,
-  bundlePermalink: null,
-  scoreGeneral: number,
-  exchangesCount: number,
-  enumLevel: number,
-  enumLevelDesc: null,
-  conditionMedia: number,
-  conditionMediaDesc: null,
-  conditionBooklet: number,
-  conditionBookletDesc: null,
-  conditionBox: number,
-  conditionBoxDesc: null,
-  enumVersion: number,
-  enumVersionDesc: null,
-  enumRegion: number,
-  enumRegionDesc: null,
-  notes: null,
-  city: string,
-  state: string,
+  id: string
+  createdAt: string
+  name: string
+  username: string
+  imageAvatar: string
+  isVerified: boolean
+  supplyName: null
+  imageCover: null
+  supplyPermalink: null
+  bundlePermalink: null
+  scoreGeneral: number
+  exchangesCount: number
+  enumLevel: number
+  enumLevelDesc: null
+  conditionMedia: number
+  conditionMediaDesc: null
+  conditionBooklet: number
+  conditionBookletDesc: null
+  conditionBox: number
+  conditionBoxDesc: null
+  enumVersion: number
+  enumVersionDesc: null
+  enumRegion: number
+  enumRegionDesc: null
+  notes: null
+  city: string
+  state: string
 }

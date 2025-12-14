@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { PlatformsList } from "@/components/platforms-list"
-import { ReusableTooltip } from "@/components/reusable-tooltip"
+import { BaseTooltip } from "@/components/base-tooltip"
 
 function GameBadgesList ({ game }) {
   const badgeTexts = [game.platform.name, `${game.wishes} desejos`, `${game.offers} ofertas`, `Nota ${game.rating}`]
@@ -28,13 +28,13 @@ function GameDescription ({ game }) {
 
 function GamePageButton ({ cardType, gamePageLink }) {
   return (
-    <ReusableTooltip text="Ver jogo">
+    <BaseTooltip text="Ver jogo">
       <Button asChild size="icon" className={cn("bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10", cardType === "newReleaseGame" ? "self-end border-primary-blue hover:border-primary-blue" : "")}>
         <Link href={gamePageLink}>
           <MoveRight className={cardType === "newReleaseGame" ? "text-primary-blue" : ""} />
         </Link>
       </Button>
-    </ReusableTooltip>
+    </BaseTooltip>
   )
 }
 

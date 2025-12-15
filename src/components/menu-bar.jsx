@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { LogIn, LogOut, Settings, ArrowRightLeft, ListChecks, Handshake, MessageCircle, Heart, Library, MenuIcon, UserRoundPlus, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { siteName, siteDescription } from "@/lib/constants"
-import { platforms } from "@/db/sample-data/platforms"
+import { platforms } from "@/db/platforms"
 import { PlatformsList } from "@/components/platforms-list"
 
 function MenuBarLink ({ href, text, icon: Icon, user }) {

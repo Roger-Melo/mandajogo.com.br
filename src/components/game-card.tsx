@@ -6,11 +6,23 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { PlatformsList } from "@/components/platforms-list"
 import { BaseTooltip } from "@/components/base-tooltip"
+import type { Platform } from "@/types"
 
 type CardType = "topGame" | "newReleaseGame" | "similarGame"
 
 type GameCardProps = {
   cardType: CardType
+  game: {
+    slug: string
+    platform: Platform
+    platforms: Platform[]
+    imageCover: string
+    title: string
+    description: string
+    wishes: number
+    offers: number
+    rating: number
+  }
 }
 
 type GamePageButtonProps = {
@@ -18,15 +30,34 @@ type GamePageButtonProps = {
   gamePageLink: string
 }
 
+type GameBadgesListProps = {
+  game: {
+    platform: Platform
+    wishes: number
+    offers: number
+    rating: number
+  }
+}
+
 type GetImageSrcArgs = {
   cardType: CardType
+  game: {
+    platform: Platform
+    platforms: Platform[]
+    imageCover: string
+  }
 }
 
 type GetPageLinkArgs = {
   cardType: CardType
+  game: {
+    slug: string
+    platform: Platform
+    platforms: Platform[]
+  }
 }
 
-function GameBadgesList ({ game }) {
+function GameBadgesList ({ game }: GameBadgesListProps) {
   const badgeTexts = [game.platform.name, `${game.wishes} desejos`, `${game.offers} ofertas`, `Nota ${game.rating}`]
   return (
     <ul>
@@ -39,7 +70,7 @@ function GameBadgesList ({ game }) {
   )
 }
 
-function GameDescription ({ game }) {
+function GameDescription ({ game }: { game: { description: string } }) {
   return (
     <p className="text-primary-blue">{game.description}</p>
   )

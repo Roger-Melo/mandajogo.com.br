@@ -1,3 +1,19 @@
+export type LoggedUserGame = {
+  id: number
+  title: string
+  imageCover: string
+  slug: string
+  platformName: string
+  platformSlug: string
+  scoreGeneral: number
+  enumLevel: number
+  wishes30days: number
+  offers30days: number
+  createdOn: string
+  isExchanging: boolean
+  orderGuid: string
+}
+
 export type Platform = {
   name: string
   slug: string

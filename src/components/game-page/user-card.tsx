@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GameConditionInfo } from "@/components/game-page/game-condition-info"
-import type { Game, GameOwner } from "@/types"
+import type { Game, GameOwner, LoggedUserGame } from "@/types"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -139,22 +139,6 @@ function UserDetails({ user, type }: UserDetailsProps) {
       </div>
     </section>
   )
-}
-
-type LoggedUserGame = {
-  id: number
-  title: string
-  imageCover: string
-  slug: string
-  platformName: string
-  platformSlug: string
-  scoreGeneral: number
-  enumLevel: number
-  wishes30days: number
-  offers30days: number
-  createdOn: string
-  isExchanging: boolean
-  orderGuid: string
 }
 
 type UserCardProps = {

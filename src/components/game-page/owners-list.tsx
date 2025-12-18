@@ -2,9 +2,9 @@ import { getGameOwners } from "@/lib/server-utils"
 import { ownersPerPage } from "@/lib/constants"
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { UserCard } from "@/components/game-page/user-card"
-import { Game } from "@/types"
+import type { Game, LoggedUserGame } from "@/types"
 
-const loggedUserGamesCollection = [
+const loggedUserGamesCollection: LoggedUserGame[] = [
   {
     id: Math.random(),
     title: "God Of War: Ragnarök",

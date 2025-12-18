@@ -7,6 +7,25 @@ import { cn } from "@/lib/utils"
 import { PlatformsList } from "@/components/platforms-list"
 import { BaseTooltip } from "@/components/base-tooltip"
 
+type CardType = "topGame" | "newReleaseGame" | "similarGame"
+
+type GameCardProps = {
+  cardType: CardType
+}
+
+type GamePageButtonProps = {
+  cardType: CardType
+  gamePageLink: string
+}
+
+type GetImageSrcArgs = {
+  cardType: CardType
+}
+
+type GetPageLinkArgs = {
+  cardType: CardType
+}
+
 function GameBadgesList ({ game }) {
   const badgeTexts = [game.platform.name, `${game.wishes} desejos`, `${game.offers} ofertas`, `Nota ${game.rating}`]
   return (
@@ -26,7 +45,7 @@ function GameDescription ({ game }) {
   )
 }
 
-function GamePageButton ({ cardType, gamePageLink }) {
+function GamePageButton ({ cardType, gamePageLink }: GamePageButtonProps) {
   return (
     <BaseTooltip text="Ver jogo">
       <Button asChild size="icon" className={cn("bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10", cardType === "newReleaseGame" ? "self-end border-primary-blue hover:border-primary-blue" : "")}>
@@ -38,21 +57,20 @@ function GamePageButton ({ cardType, gamePageLink }) {
   )
 }
 
-function getPageLink ({ cardType, game }) {
+function getPageLink ({ cardType, game }: GetPageLinkArgs) {
   return cardType === "topGame" || cardType === "similarGame"
     ? `/game/${game.platform.slug}/${game.slug}`
     : `/game/${game.platforms[0].slug}/${game.slug}`
 }
 
-function getImageSrc ({ cardType, game }) {
+function getImageSrc ({ cardType, game }: GetImageSrcArgs) {
   const platformSlug = cardType === "topGame" || cardType === "similarGame"
     ? game.platform.slug
     : game.platforms[0].slug
   return `/covers/${platformSlug}/${game.imageCover}`
 }
 
-export function GameCard ({ cardType, game }) {
-  // cardType: "topGame" | "newReleaseGame" | "similarGame"
+export function GameCard ({ cardType, game }: GameCardProps) {
   const pageLink = getPageLink({ cardType, game })
   return (
     <li className={cn("break-inside-avoid mb-4 w-full border-2 rounded-2xl border-white/20 p-4 flex flex-col gap-4", cardType === "newReleaseGame" ? "border-primary-blue h-fit" : cardType === "similarGame" ? "mb-0 p-3 gap-2 rounded-xl" : "")}>

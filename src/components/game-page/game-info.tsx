@@ -2,9 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { HandHelping, Heart, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import type { GameDetailsPage } from "@/types"
+import type { GameDetails } from "@/types"
 
-export function GameInfo({ game }: { game: GameDetailsPage }) {
+export function GameInfo({ game }: { game: GameDetails }) {
   return (
     <div className="lg:grid lg:grid-cols-[1fr_3fr] lg:gap-6 lg:mb-2">
       <div className="flex flex-col items-center lg:items-start">

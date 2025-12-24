@@ -1,11 +1,11 @@
 import { OwnersList } from "@/components/game-page/owners-list"
-import { GameDetailsPage } from "@/types"
+import { GameDetails } from "@/types"
 
 type OwnersSectionProps = {
   ownersPage: number
   platform: string
   slug: string
-  game: GameDetailsPage
+  game: GameDetails
 }
 
 export function OwnersSection({ ownersPage = 1, platform, slug, game }: OwnersSectionProps) {

@@ -1,10 +1,10 @@
 import { type JSX } from "react"
 import { GameCard } from "@/components/game-card"
-import { TopGame } from "@/types"
+import type { TopDesiredGame, TopOfferedGame } from "@/types"
 
 type SectionTopGamesProps = {
   heading: JSX.Element
-  games: TopGame[]
+  games: TopDesiredGame[] | TopOfferedGame[]
 }
 
 export function SectionTopGames ({ heading, games }: SectionTopGamesProps) {

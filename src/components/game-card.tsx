@@ -32,9 +32,9 @@ function TopGameDetails ({ game, pageLink }: { game: TopDesiredGame | TopOffered
       </ul>
       {/* GamePageButton */}
       <BaseTooltip text="Ver jogo">
-        <Button asChild size="icon" className={cn("bg-transparent border-primary-blue border-2 hover:bg-transparent hover:cursor-pointer hover:border-primary-blue")}>
+        <Button asChild size="icon" className={cn("bg-transparent border-white/20 border-2 hover:bg-transparent hover:cursor-pointer hover:border-white/10")}>
           <Link href={pageLink}>
-            <MoveRight className="text-primary-blue" />
+            <MoveRight />
           </Link>
         </Button>
       </BaseTooltip>

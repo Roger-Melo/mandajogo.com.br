@@ -4,7 +4,7 @@ import { SectionNewReleases } from "@/components/section-new-releases"
 import { ExchangersRanking } from "@/components/exchangers-ranking"
 import { topDesiredGames } from "@/db/top-desired-games"
 import { topOfferedGames } from "@/db/top-offered-games"
-import { newReleases } from "@/db/new-releases"
+import { newReleaseGames } from "@/db/new-releases"
 
 function TopDesiredHeading() {
   return <>Os mais <span className="text-primary-yellow">desejados</span></>
@@ -22,7 +22,7 @@ export default function HomePage() {
         <SectionTopGames games={topDesiredGames} heading={<TopDesiredHeading />} />
         <SectionTopGames games={topOfferedGames} heading={<TopOfferedHeading />} />
         <ExchangersRanking />
-        <SectionNewReleases games={newReleases} />
+        <SectionNewReleases games={newReleaseGames} />
       </main>
     </>
   )

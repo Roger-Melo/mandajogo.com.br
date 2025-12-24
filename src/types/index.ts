@@ -42,7 +42,8 @@ export type TopGame = {
   rating: number
 }
 
-export type Game = {
+export type GameDetailsPage = {
+  kind: "gameDetailsPage"
   title: string
   description: string
   slug: string

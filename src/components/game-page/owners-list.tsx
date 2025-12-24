@@ -2,7 +2,7 @@ import { getGameOwners } from "@/lib/server-utils"
 import { ownersPerPage } from "@/lib/constants"
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { UserCard } from "@/components/game-page/user-card"
-import type { Game, LoggedUserGame } from "@/types"
+import type { GameDetailsPage, LoggedUserGame } from "@/types"
 
 const loggedUserGamesCollection: LoggedUserGame[] = [
   {
@@ -71,7 +71,7 @@ type OwnersListProps = {
   ownersPage: number
   platform: string
   slug: string
-  game: Game
+  game: GameDetailsPage
 }
 
 export async function OwnersList({ ownersPage = 1, platform, slug, game }: OwnersListProps) {

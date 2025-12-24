@@ -1,4 +1,4 @@
-import { gameDetailsPage } from "@/db/game"
+import { gameDetailsPage } from "@/db/game/game-details"
 import { GameInfo } from "@/components/game-page/game-info"
 import { OwnersSection } from "@/components/game-page/owners-section"
 import { Aside } from "@/components/game-page/aside"

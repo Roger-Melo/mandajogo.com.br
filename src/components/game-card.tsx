@@ -13,6 +13,35 @@ type GameCardProps =
   | { cardType: "newReleaseGame"; game: NewReleaseGame }
   | { cardType: "similarGame"; game: TopDesiredGame }
 
+function NewReleaseDetails ({ game }: { game: NewReleaseGame }) {
+  return (
+    <>
+      <p className="text-primary-blue">{game.description}</p>
+      <PlatformsList data={game} tooltipText="Ver jogo" logosWidth="w-20" linksType="game" />
+    </>
+  )
+}
+
+function TopGameDetails ({ game, pageLink }: { game: TopDesiredGame | TopOfferedGame; pageLink: string }) {
+  const badges = [game.platform.name, `${game.wishes} desejos`, `${game.offers} ofertas`, `Nota ${game.rating}`]
+  return (
+    <>
+      {/* GameBadgesList */}
+      <ul>
+        {badges.map((text, index) => <Badge key={index} className="bg-white/10 text-white/80 ml-0.5">{text}</Badge>)}
+      </ul>
+      {/* GamePageButton */}
+      <BaseTooltip text="Ver jogo">
+        <Button asChild size="icon" className={cn("bg-transparent border-primary-blue border-2 hover:bg-transparent hover:cursor-pointer hover:border-primary-blue")}>
+          <Link href={pageLink}>
+            <MoveRight className="text-primary-blue" />
+          </Link>
+        </Button>
+      </BaseTooltip>
+    </>
+  )
+}
+
 export function GameCard ({ cardType, game }: GameCardProps) {
   const pageLink = cardType === "topGame" || cardType === "similarGame" 
     ? `/game/${game.platform.slug}/${game.slug}`
@@ -32,30 +61,12 @@ export function GameCard ({ cardType, game }: GameCardProps) {
         <Link href={pageLink}>
           <h3 className={cn("wrap-anywhere text-3xl text-center uppercase font-semibold mt-0 mb-4 xsm:text-left sm:text-center", cardType === "newReleaseGame" ? "text-primary-blue" : cardType === "similarGame" ? "text-xs mb-0 text-slate-400" : "")}>{game.title}</h3>
         </Link>
-        <div className={cn("flex justify-between items-center gap-4 xsm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
-          {cardType === "newReleaseGame" && (
-            <>
-              <p className="text-primary-blue">{game.description}</p>
-              <PlatformsList data={game} tooltipText="Ver jogo" logosWidth="w-20" linksType="game" />
-            </>
-          )}
-          {cardType === "topGame" && (
-            <>
-              {/* GameBadgesList */}
-              <ul>
-                {[game.platform.name, `${game.wishes} desejos`, `${game.offers} ofertas`, `Nota ${game.rating}`].map((text, index) => <Badge key={index} className="bg-white/10 text-white/80 ml-0.5">{text}</Badge>)}
-              </ul>
-              {/* GamePageButton */}
-              <BaseTooltip text="Ver jogo">
-              <Button asChild size="icon" className={cn("bg-transparent border-primary-blue border-2 hover:bg-transparent hover:cursor-pointer hover:border-primary-blue")}>
-                <Link href={pageLink}>
-                  <MoveRight className="text-primary-blue" />
-                </Link>
-              </Button>
-            </BaseTooltip>
-            </>
-          )}
-        </div>
+        {cardType !== "similarGame" && (
+          <div className={cn("flex justify-between items-center gap-4 xsm:items-end", { "flex-col": cardType === "newReleaseGame" })}>
+            {cardType === "newReleaseGame" && <NewReleaseDetails game={game} />}
+            {cardType === "topGame" && <TopGameDetails game={game} pageLink={pageLink} /> }
+          </div>
+        )}
       </div>
     </li >
   )

@@ -1,8 +1,8 @@
 import { GameCard } from "@/components/game-card"
 import { topDesiredGames } from "@/db/game/top-desired-games"
-import { GameDetailsPage } from "@/types"
+import { GameDetails } from "@/types"
 
-export function Aside({ game }: { game: GameDetailsPage }) {
+export function Aside({ game }: { game: GameDetails }) {
   return (
     <aside className="space-y-6 md:px-6 lg:px-0">
       <div className="space-y-2">

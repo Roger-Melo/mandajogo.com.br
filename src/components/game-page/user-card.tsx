@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GameConditionInfo } from "@/components/game-page/game-condition-info"
-import type { GameDetailsPage, GameOwner, LoggedUserGame } from "@/types"
+import type { GameDetails, GameOwner, LoggedUserGame } from "@/types"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 
 type ProposalDialogProps = {
   children: React.ReactNode
-  game: GameDetailsPage
+  game: GameDetails
   user: GameOwner
   loggedUserGamesCollection: LoggedUserGame[]
 }
@@ -143,7 +143,7 @@ function UserDetails({ user, type }: UserDetailsProps) {
 
 type UserCardProps = {
   user: GameOwner
-  game: GameDetailsPage
+  game: GameDetails
   loggedUserGamesCollection: LoggedUserGame[]
 }
 

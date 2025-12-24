@@ -20,7 +20,8 @@ export type Platform = {
   company?: string
 }
 
-export type NewReleasedGame = {
+export type NewReleaseGame = {
+  kind: "newReleaseGame"
   id: number
   title: string
   imageCover: string

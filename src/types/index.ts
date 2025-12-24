@@ -31,13 +31,25 @@ export type NewReleaseGame = {
   description: string
 }
 
-export type TopGame = {
+export type TopDesiredGame = {
+  kind: "topDesiredGame"
   id: number
   title: string
   imageCover: string
   slug: string
   platform: Platform
-  description: null | string
+  offers: number
+  wishes: number
+  rating: number
+}
+
+export type TopOfferedGame = {
+  kind: "topOfferedGame"
+  id: number
+  title: string
+  imageCover: string
+  slug: string
+  platform: Platform
   offers: number
   wishes: number
   rating: number

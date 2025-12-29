@@ -1,12 +1,12 @@
 import Image from "next/image"
-import { getBoxCondition, getInterestLevels, getMediaCondition, getBookletCondition } from "@/lib/utils"
+import { getMetadata } from "@/lib/utils"
 import { type GameOwner } from "@/types"
 
 export function GameConditionInfo({ user }: { user: GameOwner }) {
-  const interestLevel = getInterestLevels(user.enumLevel)
-  const mediaCondition = getMediaCondition(user.conditionMedia)
-  const boxCondition = getBoxCondition(user.conditionBox)
-  const bookletCondition = getBookletCondition(user.conditionBooklet)
+  const interestLevel = getMetadata({ kind: "interestLevel", index: user.enumLevel })
+  const mediaCondition = getMetadata({ kind: "mediaCondition", index: user.conditionMedia })
+  const boxCondition = getMetadata({ kind: "boxCondition", index: user.conditionBox })
+  const bookletCondition = getMetadata({ kind: "bookletCondition", index: user.conditionBooklet })
   return (
     <ul className="space-y-3">
       <li className="flex gap-2 items-center">

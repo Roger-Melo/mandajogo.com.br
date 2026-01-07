@@ -8,12 +8,12 @@ export function cn(...inputs: ClassValue[]) {
 const gaugesBasePath = "/svg/gauges"
 const conditionsBasePath = "/svg/conditions"
 
-type SVGPath = typeof gaugesBasePath | typeof conditionsBasePath
+type SVGPath = `${typeof gaugesBasePath | typeof conditionsBasePath}/${number}.svg`
 
 type Metadata = Record<number, { svgPath: SVGPath; alt: string }>
 
 type GetMetadataArgs = {
-  kind: "mediaCondition" | "interestLevel" | "boxCondition" | "bookletCondition"
+  kind: keyof typeof metadataGroups
   index: number
 }
 
@@ -56,10 +56,10 @@ const metadataGroups = {
     { path: gaugesBasePath, alt: "Nível de interesse: Alto. Avaliarei com carinho as ofertas" },
     { path: gaugesBasePath, alt: "Nível de interesse: Muito alto. Quero trocar de qualquer jeito" },
   ]
-}
+} as const
 
 export function getMetadata ({ kind, index = 0 }: GetMetadataArgs) {
-  const metadata: Metadata = metadataGroups[kind].reduce((acc, curr, i) => {
+  const metadata = metadataGroups[kind].reduce<Metadata>((acc, curr, i) => {
     const svgNumber = curr.path === gaugesBasePath
       ? i 
       : i <= 5 ? i : 5
